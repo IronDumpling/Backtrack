@@ -458,6 +458,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5769450805128364255, guid: 48f4c299c1826d94a8946c336a17e062, type: 3}
+      propertyPath: speed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5769450805128364255, guid: 48f4c299c1826d94a8946c336a17e062, type: 3}
+      propertyPath: Zspeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6603738143489931408, guid: 48f4c299c1826d94a8946c336a17e062, type: 3}
       propertyPath: m_Avatar
       value: 
@@ -486,6 +494,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+  animParam_Speed: speed
+  animParam_XSpeed: xSpeed
 --- !u!114 &5769450804488761258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -498,6 +508,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 992f90a612c428647ae0421fb5e988fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Zspeed: 1
+  Xspeed: 1
 --- !u!54 &5769450804488761259
 Rigidbody:
   m_ObjectHideFlags: 0
