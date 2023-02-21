@@ -78,6 +78,7 @@ public class PlayerMotor : MonoBehaviour
     void FixedUpdate()
     {
         var position = transform.position;
+        
         _currentSpeed = (position - _prePosition).magnitude * speedConstant;
         _currentXSpeed = (position.x - _prePosition.x) * speedConstant;
         _prePosition = position;
