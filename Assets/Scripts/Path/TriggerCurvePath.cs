@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class TriggerCurvePath : TriggerBase
 {
+    
     [Header("放入点，生成曲线，让玩家以曲线模式移动，当前玩家位置为起点位置，最后一个点为终点位置")]
     [SerializeField] private Transform[] points;
 
