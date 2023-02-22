@@ -38,6 +38,8 @@ public class PlayerMotor : MonoBehaviour
     {
         get => _currentXSpeed;
     }
+
+
     #endregion
     
     #region 人物属性
@@ -67,7 +69,7 @@ public class PlayerMotor : MonoBehaviour
     public void MoveForward()
     {
         _nextMoveZVelocity = transform.forward * Zspeed * Time.deltaTime;
-        
+        Debug.DrawLine(transform.position,transform.forward + transform.position);
     }
 
     public void MoveHorizontal(float dir)
@@ -83,8 +85,18 @@ public class PlayerMotor : MonoBehaviour
     {
         if (canMove)
         {
-            //_rigidBody.MovePosition(transform.position + (_nextMoveXVelocity + _nextMoveZVelocity) * Time.deltaTime);
-            _rigidBody.velocity = (_nextMoveXVelocity + _nextMoveZVelocity) * speedConstant;
+            Vector3 velBeforeSlope = (_nextMoveXVelocity + _nextMoveZVelocity) * speedConstant;
+
+            Vector3 velAfterSlope = velBeforeSlope;
+            RaycastHit hit;
+            if (IsOnSlope(out hit))
+            {
+                Debug.Log("in");
+                velAfterSlope = Vector3.ProjectOnPlane(velBeforeSlope, hit.normal);
+            }
+
+            _rigidBody.velocity = velAfterSlope;
+            
         }
 
     }
@@ -95,14 +107,7 @@ public class PlayerMotor : MonoBehaviour
         _currentYSpeed = locVel.y;
         _currentXSpeed = locVel.x;
         _currentSpeed = locVel.z;
-        // var position = transform.position;
-        // var prePos = _prePosition;
-        // _currentYSpeed = (position.y - prePos.y) * speedConstant;
-        // position.y = 0;
-        // prePos.y = 0;
-        // _currentSpeed = (position - prePos).magnitude * speedConstant;
-        // _currentXSpeed = (position.x - _prePosition.x) * speedConstant;
-        // _prePosition = position;
+
     }
 
     public void MotorStart()
@@ -124,9 +129,23 @@ public class PlayerMotor : MonoBehaviour
         return Physics.Raycast(transform.position, Vector3.down, _collider.bounds.extents.y + 0.1f,groundLayer);
     }
 
-    private void OnDrawGizmos()
+    private bool IsOnSlope(out RaycastHit hit)
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position,Vector3.down);
+        
+        if (Physics.Raycast(
+                transform.position, Vector3.down,  out hit,
+                _collider.bounds.extents.y + 0.1f, groundLayer))
+        {
+            if (hit.normal != Vector3.up)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return false;
     }
+    
 }
