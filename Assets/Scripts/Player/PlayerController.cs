@@ -40,10 +40,18 @@ public class PlayerController : MonoSingleton<PlayerController>
         _inputXMovement.performed += InputXMovementOnperformed;
         //玩家点击开火按钮
         _playerInput.Player.Fire.performed += FireOnperformed;
+        _playerInput.Player.Jump.performed += JumpOnperformed;
+
         
         
         
         _playerInput.Enable();
+    }
+
+    private void JumpOnperformed(InputAction.CallbackContext obj)
+    {
+        Debug.Log("jump");
+        _motor.JumpVertical();
     }
 
     private void FireOnperformed(InputAction.CallbackContext obj)
