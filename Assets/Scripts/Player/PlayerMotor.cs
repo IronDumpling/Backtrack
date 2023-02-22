@@ -66,13 +66,16 @@ public class PlayerMotor : MonoBehaviour
 
     public void MoveForward()
     {
-        _nextMoveZVelocity = Vector3.forward * Zspeed * Time.deltaTime;
+        _nextMoveZVelocity = transform.forward * Zspeed * Time.deltaTime;
         
     }
 
     public void MoveHorizontal(float dir)
     {
-        _nextMoveXVelocity = new Vector3(dir,0,0) * Xspeed * Time.deltaTime;
+        Vector3 pos = Vector3.zero;
+        if (dir > 0) pos = transform.right * dir;
+        if (dir < 0) pos = transform.right * dir;
+        _nextMoveXVelocity = pos * Xspeed * Time.deltaTime;
 
     }
 
@@ -80,21 +83,26 @@ public class PlayerMotor : MonoBehaviour
     {
         if (canMove)
         {
-            _rigidBody.MovePosition(transform.position + _nextMoveXVelocity + _nextMoveZVelocity);
+            //_rigidBody.MovePosition(transform.position + (_nextMoveXVelocity + _nextMoveZVelocity) * Time.deltaTime);
+            _rigidBody.velocity = (_nextMoveXVelocity + _nextMoveZVelocity) * speedConstant;
         }
 
     }
 
     void FixedUpdate()
     {
-        var position = transform.position;
-        var prePos = _prePosition;
-        _currentYSpeed = (position.y - prePos.y) * speedConstant;
-        position.y = 0;
-        prePos.y = 0;
-        _currentSpeed = (position - prePos).magnitude * speedConstant;
-        _currentXSpeed = (position.x - _prePosition.x) * speedConstant;
-        _prePosition = position;
+        var locVel = transform.InverseTransformDirection(_rigidBody.velocity);
+        _currentYSpeed = locVel.y;
+        _currentXSpeed = locVel.x;
+        _currentSpeed = locVel.z;
+        // var position = transform.position;
+        // var prePos = _prePosition;
+        // _currentYSpeed = (position.y - prePos.y) * speedConstant;
+        // position.y = 0;
+        // prePos.y = 0;
+        // _currentSpeed = (position - prePos).magnitude * speedConstant;
+        // _currentXSpeed = (position.x - _prePosition.x) * speedConstant;
+        // _prePosition = position;
     }
 
     public void MotorStart()
