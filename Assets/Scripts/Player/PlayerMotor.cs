@@ -53,6 +53,9 @@ public class PlayerMotor : MonoBehaviour
     [Header("碰撞/射线属性")] 
     [SerializeField] private LayerMask groundLayer;
 
+    [SerializeField] private float detectionLength = 0.2f;
+
+
     
     private Vector3 _prePosition;
     private void Awake()
@@ -134,7 +137,7 @@ public class PlayerMotor : MonoBehaviour
         
         if (Physics.Raycast(
                 transform.position, Vector3.down,  out hit,
-                _collider.bounds.extents.y + 0.1f, groundLayer))
+                _collider.bounds.extents.y + detectionLength, groundLayer))
         {
             if (hit.normal != Vector3.up)
             {
