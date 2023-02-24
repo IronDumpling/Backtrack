@@ -1,20 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Level1
 {
 
 
-    public class Obstacles : MonoBehaviour
+    public class Obstacles : TriggerBase
     {
-        private void OnTriggerEnter(Collider collision)
+
+
+        protected override void enterEvent()
         {
-            if (collision.transform.CompareTag("Player"))
-            {
-                EventManager.Instance.PlayerDeadEventTrigger();
-            }
+            EventManager.Instance.PlayerDeadEventTrigger();
+
         }
-    
     }
 }
