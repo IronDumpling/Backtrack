@@ -1,12 +1,12 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Numerics;
 using TMPro.EditorUtilities;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEditor.UIElements;
 using UnityEngine;
+using Quaternion = System.Numerics.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
 public class PlayerMotor : MonoBehaviour
@@ -111,6 +111,7 @@ public class PlayerMotor : MonoBehaviour
         _currentXSpeed = locVel.x;
         _currentSpeed = locVel.z;
 
+        RotateInFixedUpdate();
     }
 
     public void MotorStart()
@@ -150,5 +151,45 @@ public class PlayerMotor : MonoBehaviour
         }
         return false;
     }
+
+    private UnityEngine.Quaternion rotate_StartPos;
+    private UnityEngine.Quaternion rotate_EndPos;
+    private float rotate_duration;
+    private float rotate_addUpTime;
+    private AnimationCurve rotate_curve;
+    private bool rotate_start = false;
+    public void RotateInSelfAxis(Vector3 rotateAngle, float duration,AnimationCurve curve)
+    {
+        rotate_StartPos = transform.rotation;
+        rotate_EndPos = UnityEngine.Quaternion.Euler(rotate_StartPos.eulerAngles + rotateAngle);
+        Debug.Log(rotate_StartPos.eulerAngles);
+        Debug.Log(rotate_EndPos.eulerAngles);
+        rotate_duration = duration;
+        rotate_addUpTime = 0;
+        rotate_start = true;
+        rotate_curve = curve;
+        // UnityEngine.Quaternion qt = UnityEngine.Quaternion.Slerp(rotate_StartPos, UnityEngine.Quaternion.Euler(rotate_StartPos.eulerAngles + rotateAngle), 0.1f);
+        // transform.Rotate(qt.eulerAngles);
+    }
+
+    private void RotateInFixedUpdate()
+    {
+
+        if (!rotate_start) return;
+        rotate_addUpTime += Time.deltaTime / rotate_duration;
+        if (rotate_addUpTime > 1f)
+        {
+            rotate_start = false;
+            return;
+        }
+
+        UnityEngine.Quaternion qt =
+            UnityEngine.Quaternion.SlerpUnclamped(rotate_StartPos, rotate_EndPos, rotate_curve.Evaluate(rotate_addUpTime));
+        transform.Rotate(qt.eulerAngles - transform.rotation.eulerAngles);
+        Debug.Log(qt.eulerAngles);
+        if (rotate_addUpTime > 1f) rotate_start = false;
+
+    }
+ 
     
 }
