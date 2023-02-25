@@ -2,9 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using Common;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class CameraController : MonoSingleton<CameraController>
 {
     [HideInInspector] public Transform vcam1;
     [HideInInspector] public Transform vcam2;
