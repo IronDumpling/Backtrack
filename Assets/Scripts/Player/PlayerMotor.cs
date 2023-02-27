@@ -89,15 +89,17 @@ public class PlayerMotor : MonoBehaviour
         if (canMove)
         {
             Vector3 velBeforeSlope = (_nextMoveXVelocity + _nextMoveZVelocity) * speedConstant;
-
+        
             Vector3 velAfterSlope = velBeforeSlope;
             RaycastHit hit;
             if (IsOnSlope(out hit))
             {
-                Debug.Log("in");
                 velAfterSlope = Vector3.ProjectOnPlane(velBeforeSlope, hit.normal);
             }
-
+            else
+            {
+                velAfterSlope.y = _rigidBody.velocity.y;
+            }
             _rigidBody.velocity = velAfterSlope;
             
         }
