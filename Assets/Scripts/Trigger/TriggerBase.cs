@@ -15,6 +15,7 @@ public abstract class TriggerBase : MonoBehaviour
         if (canWork &&  targetLayer == (targetLayer | (1 << collision.gameObject.layer)) )
         {
             enterEvent();
+
         }
     }
 
@@ -23,6 +24,7 @@ public abstract class TriggerBase : MonoBehaviour
     {
 
     }
+
 
     protected virtual void OnTriggerExit(Collider collision)
     {
