@@ -18,7 +18,6 @@ public class PlayerMotor : MonoBehaviour
 
     private Vector3 _nextMoveXVelocity;
     private Vector3 _nextMoveZVelocity;
-    private bool canMove = false;
     #region 外部访问属性
     private float _currentSpeed;
     public float CurrentSpeed
@@ -50,14 +49,17 @@ public class PlayerMotor : MonoBehaviour
     // [SerializeField] private float XAccSpeed = 1f;
     [SerializeField] private float jumpVerticalForce = 2f;
     #endregion
+    #region 碰撞/射线属性
     [Header("碰撞/射线属性")] 
     [SerializeField] private LayerMask groundLayer;
-
     [SerializeField] private float detectionLength = 0.2f;
-
-
+    #endregion
     
-    private Vector3 _prePosition;
+    #region 布尔变量，motor状态
+    private bool canMove = false; //是否可以移动（包括跳跃） 移动的总控制
+    private bool canMoveRight = true; //是否可以像左移动
+    private bool canMoveLeft = true; //是否可以像右移动
+    #endregion
     private void Awake()
     {
         _rigidBody = GetComponent<Rigidbody>();
@@ -66,7 +68,6 @@ public class PlayerMotor : MonoBehaviour
         canMove = false;
         if(_rigidBody == null) Debug.LogError("未找到RigidBody");
         
-        _prePosition = transform.position;
     }
 
     public void MoveForward()
@@ -77,9 +78,24 @@ public class PlayerMotor : MonoBehaviour
 
     public void MoveHorizontal(float dir)
     {
-        Vector3 pos = Vector3.zero;
-        if (dir > 0) pos = transform.right * dir;
-        if (dir < 0) pos = transform.right * dir;
+        Vector3 pos;
+        //检测是否可以往左走，是否可以往右走
+        if (!canMoveRight && dir > 0)
+        {
+            pos = Vector3.zero;
+            
+        }
+
+        if (!canMoveLeft && dir < 0)
+        {
+            pos = Vector3.zero;
+
+        }
+        else
+        {
+           pos  =  transform.right * dir;
+
+        }
         _nextMoveXVelocity = pos * Xspeed * Time.deltaTime;
 
     }
@@ -164,8 +180,6 @@ public class PlayerMotor : MonoBehaviour
     {
         rotate_StartPos = transform.rotation;
         rotate_EndPos = UnityEngine.Quaternion.Euler(rotate_StartPos.eulerAngles + rotateAngle);
-        Debug.Log(rotate_StartPos.eulerAngles);
-        Debug.Log(rotate_EndPos.eulerAngles);
         rotate_duration = duration;
         rotate_addUpTime = 0;
         rotate_start = true;
@@ -188,10 +202,34 @@ public class PlayerMotor : MonoBehaviour
         UnityEngine.Quaternion qt =
             UnityEngine.Quaternion.SlerpUnclamped(rotate_StartPos, rotate_EndPos, rotate_curve.Evaluate(rotate_addUpTime));
         transform.Rotate(qt.eulerAngles - transform.rotation.eulerAngles);
-        Debug.Log(qt.eulerAngles);
         if (rotate_addUpTime > 1f) rotate_start = false;
 
     }
- 
+
+    public void DisableMoveLeft(bool disable)
+    {
+        if (disable)
+        {
+            canMoveLeft = false;
+        }
+        else
+        {
+            canMoveLeft = true;
+        }
+    }
+
+    public void DisableMoveRight(bool disable)
+    {
+        if (disable)
+        {
+            canMoveRight = false;
+
+        }
+        else
+        {
+            canMoveRight = true;
+        }
+    }
+
     
 }
