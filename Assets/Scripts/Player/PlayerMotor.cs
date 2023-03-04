@@ -84,9 +84,7 @@ public class PlayerMotor : MonoBehaviour
         {
             pos = Vector3.zero;
             
-        }
-
-        if (!canMoveLeft && dir < 0)
+        }else if (!canMoveLeft && dir < 0)
         {
             pos = Vector3.zero;
 
