@@ -17,9 +17,9 @@ public class TriggerMovableCurvePath : TriggerBase
         isOneTime = true;
     }
 
-    protected override void enterEvent()
+    protected override void enterEvent()//重写父类的进入事件
     {
-        base.enterEvent();
+        base.enterEvent();//调用父类的进入事件
         PlayerController.Instance.GetComponent<PlayerMotor>().RotateInSelfAxis(finalRotation, rotateDuration ,curve);
     }
 }
