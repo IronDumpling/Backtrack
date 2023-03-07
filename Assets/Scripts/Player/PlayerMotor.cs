@@ -122,7 +122,7 @@ public class PlayerMotor : MonoBehaviour
 
     void FixedUpdate()
     {
-        var locVel = transform.InverseTransformDirection(_rigidBody.velocity);
+        var locVel = transform.InverseTransformDirection(_rigidBody.velocity);//转换为本地坐标系
         _currentYSpeed = locVel.y;
         _currentXSpeed = locVel.x;
         _currentSpeed = locVel.z;
@@ -149,7 +149,7 @@ public class PlayerMotor : MonoBehaviour
         return Physics.Raycast(transform.position, Vector3.down, _collider.bounds.extents.y + 0.1f,groundLayer);
     }
 
-    private bool IsOnSlope(out RaycastHit hit)
+    private bool IsOnSlope(out RaycastHit hit)//检测是否在斜坡上
     {
         
         if (Physics.Raycast(
@@ -174,7 +174,7 @@ public class PlayerMotor : MonoBehaviour
     private float rotate_addUpTime;
     private AnimationCurve rotate_curve;
     private bool rotate_start = false;
-    public void RotateInSelfAxis(Vector3 rotateAngle, float duration,AnimationCurve curve)
+    public void RotateInSelfAxis(Vector3 rotateAngle, float duration,AnimationCurve curve)//自身坐标系旋转
     {
         rotate_StartPos = transform.rotation;
         rotate_EndPos = UnityEngine.Quaternion.Euler(rotate_StartPos.eulerAngles + rotateAngle);
