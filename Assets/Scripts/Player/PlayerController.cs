@@ -73,9 +73,12 @@ public class PlayerController : MonoSingleton<PlayerController>
         _motor.MoveForward();
         _motor.MoveHorizontal(_inputXMovement.ReadValue<Vector2>().x);
         _motor.Move();
-        
-        _animController.SetFloat(_animController.animParam_Speed ,_motor.CurrentSpeed);
-        _animController.SetFloat(_animController.animParam_XSpeed,_motor.CurrentXSpeed);
+
+        if (_animController != null)
+        {
+            _animController.SetFloat(_animController.animParam_Speed ,_motor.CurrentSpeed);
+            _animController.SetFloat(_animController.animParam_XSpeed,_motor.CurrentXSpeed);
+        } 
     }
     
 
