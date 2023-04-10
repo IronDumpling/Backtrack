@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &448474469914421275
+--- !u!1 &1488591498821325571
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,47 +8,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 448474469914421276}
-  - component: {fileID: 448474469914421277}
-  - component: {fileID: 448474469914421274}
-  - component: {fileID: 448474469914421279}
+  - component: {fileID: 1488591498821325575}
+  - component: {fileID: 1488591498821325574}
+  - component: {fileID: 1488591498821325569}
+  - component: {fileID: 1488591498821325568}
   m_Layer: 0
-  m_Name: Height Fog Global
+  m_Name: Dark_Height_Fog_Global
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &448474469914421276
+--- !u!4 &1488591498821325575
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 448474469914421275}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 1488591498821325571}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 74, y: 74, z: 74}
+  m_LocalScale: {x: 149, y: 149, z: 149}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &448474469914421277
+--- !u!33 &1488591498821325574
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 448474469914421275}
+  m_GameObject: {fileID: 1488591498821325571}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &448474469914421274
+--- !u!23 &1488591498821325569
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 448474469914421275}
+  m_GameObject: {fileID: 1488591498821325571}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -84,13 +84,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &448474469914421279
+--- !u!114 &1488591498821325568
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 448474469914421275}
+  m_GameObject: {fileID: 1488591498821325571}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8023d2ae1fcb2948a39527720c2087b, type: 3}
@@ -112,26 +112,26 @@ MonoBehaviour:
   fogIntensity: 1
   fogAxisMode: 1
   fogLayersMode: 10
-  fogColorStart: {r: 1, g: 1, b: 1, a: 1}
-  fogColorEnd: {r: 1, g: 1, b: 1, a: 1}
+  fogColorStart: {r: 0.90943396, g: 1, b: 0.9945111, a: 1}
+  fogColorEnd: {r: 0.90943396, g: 1, b: 0.9852268, a: 1}
   fogColorDuo: 1
   fogDistanceStart: -20
   fogDistanceEnd: 50
-  fogDistanceFalloff: 1
+  fogDistanceFalloff: 1.99
   fogHeightStart: -1
-  fogHeightEnd: 9.28
-  fogHeightFalloff: 1
+  fogHeightEnd: 8.54
+  fogHeightFalloff: 1.98
   categorySkybox: 1
   skyboxFogIntensity: 1
-  skyboxFogHeight: 1
-  skyboxFogFalloff: 2.83
+  skyboxFogHeight: 0.876
+  skyboxFogFalloff: 2.92
   skyboxFogOffset: 0.04
   skyboxFogBottom: 0
   skyboxFogFill: 0
   categoryDirectional: 1
-  directionalIntensity: 1
+  directionalIntensity: 0
   directionalFalloff: 1
-  directionalColor: {r: 0.48794943, g: 0.6949175, b: 0.745283, a: 1}
+  directionalColor: {r: 0.4245283, g: 0.20185119, b: 0.40280372, a: 1}
   categoryNoise: 1
   noiseIntensity: 1
   noiseDistanceEnd: 30
