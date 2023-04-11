@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class TriggerSpeedChange : TriggerBase
 {
-    [SerializeField] private float speedChange = 1f;
+    [SerializeField] private float _ZSpeedChange = 0.5f;
+    [SerializeField] private float _XSpeedChange = 0f;
+
     private PlayerMotor _playerMotor;
 
     private void Start()
@@ -16,6 +18,10 @@ public class TriggerSpeedChange : TriggerBase
     {
         base.enterEvent();
         if(_playerMotor != null)
-            _playerMotor.ZSpeed += speedChange;
+        {
+            _playerMotor.ZSpeed += _ZSpeedChange;
+            _playerMotor.XSpeed += _XSpeedChange;
+        }
+            
     }
 }

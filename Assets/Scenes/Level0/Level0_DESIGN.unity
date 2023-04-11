@@ -403,6 +403,41 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ea202fe2b9bb4d41ba7a1f4e4572cd2, type: 3}
+--- !u!21 &24141786
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Height Fog Global
+  m_Shader: {fileID: 4800000, guid: 3a7ef1b66bafb7a448a880ef76d2e6e6, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3001
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _AdvancedCat: 1
+    - _AlphaCutoff: 0.5
+    - _Banner: 1
+    - _DirectionalCat: 1
+    - _FogAxisMode: 1
+    - _FogCat: 1
+    - _HeightFogGlobal: 1
+    - _IsHeightFogShader: 1
+    - _NoiseCat: 1
+    - _SkyboxCat: 1
+    m_Colors:
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &26574504
 GameObject:
   m_ObjectHideFlags: 0
@@ -2929,6 +2964,14 @@ PrefabInstance:
       propertyPath: speedChange
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6491447663655575292, guid: 79198ef068c604f15895e8c5b26d20d3, type: 3}
+      propertyPath: _XSpeedChange
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491447663655575292, guid: 79198ef068c604f15895e8c5b26d20d3, type: 3}
+      propertyPath: _ZSpeedChange
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8637244420920959715, guid: 79198ef068c604f15895e8c5b26d20d3, type: 3}
       propertyPath: m_Name
       value: ZSpeedChangeTrigger 5 (1)
@@ -3171,41 +3214,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2883261902575857019, guid: ab7ac9625a3c64190b8b9750ab3bcac0, type: 3}
   m_PrefabInstance: {fileID: 273688329}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &285549776
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Height Fog Global
-  m_Shader: {fileID: 4800000, guid: 3a7ef1b66bafb7a448a880ef76d2e6e6, type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3001
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - _AdvancedCat: 1
-    - _AlphaCutoff: 0.5
-    - _Banner: 1
-    - _DirectionalCat: 1
-    - _FogAxisMode: 1
-    - _FogCat: 1
-    - _HeightFogGlobal: 1
-    - _IsHeightFogShader: 1
-    - _NoiseCat: 1
-    - _SkyboxCat: 1
-    m_Colors:
-    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &300110653
 GameObject:
   m_ObjectHideFlags: 0
@@ -4343,7 +4351,7 @@ MonoBehaviour:
   manualPositionAndScale: 0
   renderPriority: 1
   styledSpace0: 0
-  overrideMaterial: {fileID: 586857533}
+  overrideMaterial: {fileID: 945978500}
   overrideCamToVolumeDistance: 0
   overrideVolumeDistanceFade: 3
   version: 0
@@ -4375,7 +4383,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 285549776}
+  - {fileID: 24141786}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5058,6 +5066,14 @@ PrefabInstance:
       propertyPath: speedChange
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6491447663655575292, guid: 79198ef068c604f15895e8c5b26d20d3, type: 3}
+      propertyPath: _XSpeedChange
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491447663655575292, guid: 79198ef068c604f15895e8c5b26d20d3, type: 3}
+      propertyPath: _ZSpeedChange
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8637244420920959715, guid: 79198ef068c604f15895e8c5b26d20d3, type: 3}
       propertyPath: m_Name
       value: ZSpeedChangeTrigger 2
@@ -5069,65 +5085,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5311440025708369156, guid: 79198ef068c604f15895e8c5b26d20d3, type: 3}
   m_PrefabInstance: {fileID: 584765576}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &586857533
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Local
-  m_Shader: {fileID: 4800000, guid: a3a3bc8785681554d9558e2ea68f100e, type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - _Banner: 1
-    - _DirectionalCat: 1
-    - _DirectionalFalloff: 1
-    - _DirectionalIntensity: 1
-    - _FogAxisMode: 1
-    - _FogCat: 1
-    - _FogColorDuo: 1
-    - _FogDistanceEnd: 50
-    - _FogDistanceFalloff: 1
-    - _FogDistanceStart: -20
-    - _FogHeightEnd: 9.28
-    - _FogHeightFalloff: 1
-    - _FogHeightStart: -1
-    - _FogIntensity: 1
-    - _FogLayersMode: 0
-    - _IsHeightFogPreset: 1
-    - _IsHeightFogShader: 1
-    - _NoiseCat: 1
-    - _NoiseDistanceEnd: 30
-    - _NoiseIntensity: 1
-    - _NoiseModeBlend: 1
-    - _NoiseScale: 30
-    - _SkyboxCat: 1
-    - _SkyboxFogBottom: 0.109
-    - _SkyboxFogFalloff: 1
-    - _SkyboxFogFill: 0.109
-    - _SkyboxFogHeight: 1
-    - _SkyboxFogIntensity: 1
-    - _SkyboxFogOffset: -0.03
-    m_Colors:
-    - _DirectionalColor: {r: 0, g: 0, b: 0, a: 1}
-    - _DirectionalDir: {r: -0.11444887, g: 0.9900286, b: -0.08212782, a: 0}
-    - _FogAxisOption: {r: 0, g: 1, b: 0, a: 0}
-    - _FogColorEnd: {r: 0, g: 0, b: 0, a: 1}
-    - _FogColorStart: {r: 0, g: 0, b: 0, a: 1}
-    - _NoiseSpeed: {r: 0.5, g: 0.5, b: 0, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1001 &596757254
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6496,6 +6453,14 @@ PrefabInstance:
       propertyPath: speedChange
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6491447663655575292, guid: 79198ef068c604f15895e8c5b26d20d3, type: 3}
+      propertyPath: _XSpeedChange
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491447663655575292, guid: 79198ef068c604f15895e8c5b26d20d3, type: 3}
+      propertyPath: _ZSpeedChange
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8637244420920959715, guid: 79198ef068c604f15895e8c5b26d20d3, type: 3}
       propertyPath: m_Name
       value: ZSpeedChangeTrigger 4
@@ -7398,6 +7363,14 @@ PrefabInstance:
       propertyPath: speedChange
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 6491447663655575292, guid: 79198ef068c604f15895e8c5b26d20d3, type: 3}
+      propertyPath: _XSpeedChange
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491447663655575292, guid: 79198ef068c604f15895e8c5b26d20d3, type: 3}
+      propertyPath: _ZSpeedChange
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8637244420920959715, guid: 79198ef068c604f15895e8c5b26d20d3, type: 3}
       propertyPath: m_Name
       value: ZSpeedChangeTrigger 3
@@ -7500,6 +7473,14 @@ PrefabInstance:
       propertyPath: speedChange
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6491447663655575292, guid: 79198ef068c604f15895e8c5b26d20d3, type: 3}
+      propertyPath: _XSpeedChange
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491447663655575292, guid: 79198ef068c604f15895e8c5b26d20d3, type: 3}
+      propertyPath: _ZSpeedChange
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8637244420920959715, guid: 79198ef068c604f15895e8c5b26d20d3, type: 3}
       propertyPath: m_Name
       value: ZSpeedChangeTrigger 5
@@ -7581,6 +7562,65 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6361727947223872691, guid: 8e6dafbc9897f473a9b3f60ce42ca0b8, type: 3}
   m_PrefabInstance: {fileID: 945797178}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &945978500
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Local
+  m_Shader: {fileID: 4800000, guid: a3a3bc8785681554d9558e2ea68f100e, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _Banner: 1
+    - _DirectionalCat: 1
+    - _DirectionalFalloff: 1
+    - _DirectionalIntensity: 1
+    - _FogAxisMode: 1
+    - _FogCat: 1
+    - _FogColorDuo: 1
+    - _FogDistanceEnd: 50
+    - _FogDistanceFalloff: 1
+    - _FogDistanceStart: -20
+    - _FogHeightEnd: 9.28
+    - _FogHeightFalloff: 1
+    - _FogHeightStart: -1
+    - _FogIntensity: 1
+    - _FogLayersMode: 0
+    - _IsHeightFogPreset: 1
+    - _IsHeightFogShader: 1
+    - _NoiseCat: 1
+    - _NoiseDistanceEnd: 30
+    - _NoiseIntensity: 1
+    - _NoiseModeBlend: 1
+    - _NoiseScale: 30
+    - _SkyboxCat: 1
+    - _SkyboxFogBottom: 0.109
+    - _SkyboxFogFalloff: 1
+    - _SkyboxFogFill: 0.109
+    - _SkyboxFogHeight: 1
+    - _SkyboxFogIntensity: 1
+    - _SkyboxFogOffset: -0.03
+    m_Colors:
+    - _DirectionalColor: {r: 0, g: 0, b: 0, a: 1}
+    - _DirectionalDir: {r: -0.11444887, g: 0.9900286, b: -0.08212782, a: 0}
+    - _FogAxisOption: {r: 0, g: 1, b: 0, a: 0}
+    - _FogColorEnd: {r: 0, g: 0, b: 0, a: 1}
+    - _FogColorStart: {r: 0, g: 0, b: 0, a: 1}
+    - _NoiseSpeed: {r: 0.5, g: 0.5, b: 0, a: 0}
+  m_BuildTextureStacks: []
 --- !u!1001 &950663919
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7811,7 +7851,7 @@ GameObject:
   m_Component:
   - component: {fileID: 986017825}
   m_Layer: 0
-  m_Name: Trigger (1)
+  m_Name: Trigger 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9051,7 +9091,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 268604053351208683, guid: dfbd45946cc9d410e84670e444d82e14, type: 3}
       propertyPath: m_Name
-      value: Obstacle_3_3
+      value: Obstacle_3_3_Fade_In
       objectReference: {fileID: 0}
     - target: {fileID: 3962835418365099772, guid: dfbd45946cc9d410e84670e444d82e14, type: 3}
       propertyPath: m_RootOrder
@@ -12663,6 +12703,14 @@ PrefabInstance:
       propertyPath: speedChange
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6491447663655575292, guid: 79198ef068c604f15895e8c5b26d20d3, type: 3}
+      propertyPath: _XSpeedChange
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491447663655575292, guid: 79198ef068c604f15895e8c5b26d20d3, type: 3}
+      propertyPath: _ZSpeedChange
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 8637244420920959715, guid: 79198ef068c604f15895e8c5b26d20d3, type: 3}
       propertyPath: m_Name
       value: ZSpeedChangeTrigger 0 (1)
@@ -13001,6 +13049,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3636184427500003095, guid: a4df9b14f94f5094ab3e6fb012eaa30e, type: 3}
   m_PrefabInstance: {fileID: 1652961486}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1655035132 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1366495478618537718, guid: dfbd45946cc9d410e84670e444d82e14, type: 3}
+  m_PrefabInstance: {fileID: 1119752157}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1655035138
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655035132}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1655035139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655035132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b679e6b611d98349a60a2962e002a1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  canWork: 1
+  isOneTime: 0
+  _animator: {fileID: 0}
+  triggerName: FadeInTrigger
 --- !u!1 &1656171554
 GameObject:
   m_ObjectHideFlags: 0
@@ -14188,6 +14280,10 @@ PrefabInstance:
     - target: {fileID: 2574357484891058652, guid: 6caeb51a298e36f45a2be54cb2b07673, type: 3}
       propertyPath: m_Name
       value: Player_Ball
+      objectReference: {fileID: 0}
+    - target: {fileID: 2574357484891058653, guid: 6caeb51a298e36f45a2be54cb2b07673, type: 3}
+      propertyPath: Xspeed
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2574357484891058653, guid: 6caeb51a298e36f45a2be54cb2b07673, type: 3}
       propertyPath: Zspeed
@@ -15447,6 +15543,14 @@ PrefabInstance:
       propertyPath: speedChange
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 6491447663655575292, guid: 79198ef068c604f15895e8c5b26d20d3, type: 3}
+      propertyPath: _XSpeedChange
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491447663655575292, guid: 79198ef068c604f15895e8c5b26d20d3, type: 3}
+      propertyPath: _ZSpeedChange
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8637244420920959715, guid: 79198ef068c604f15895e8c5b26d20d3, type: 3}
       propertyPath: m_Name
       value: ZSpeedChangeTrigger 4
@@ -16100,6 +16204,14 @@ PrefabInstance:
     - target: {fileID: 6491447663655575292, guid: 79198ef068c604f15895e8c5b26d20d3, type: 3}
       propertyPath: speedChange
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491447663655575292, guid: 79198ef068c604f15895e8c5b26d20d3, type: 3}
+      propertyPath: _XSpeedChange
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491447663655575292, guid: 79198ef068c604f15895e8c5b26d20d3, type: 3}
+      propertyPath: _ZSpeedChange
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 8637244420920959715, guid: 79198ef068c604f15895e8c5b26d20d3, type: 3}
       propertyPath: m_Name
@@ -17731,6 +17843,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6491447663655575292, guid: 79198ef068c604f15895e8c5b26d20d3, type: 3}
       propertyPath: speedChange
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491447663655575292, guid: 79198ef068c604f15895e8c5b26d20d3, type: 3}
+      propertyPath: _XSpeedChange
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491447663655575292, guid: 79198ef068c604f15895e8c5b26d20d3, type: 3}
+      propertyPath: _ZSpeedChange
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8637244420920959715, guid: 79198ef068c604f15895e8c5b26d20d3, type: 3}
