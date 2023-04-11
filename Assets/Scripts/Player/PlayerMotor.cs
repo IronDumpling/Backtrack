@@ -44,7 +44,21 @@ public class PlayerMotor : MonoBehaviour
     #region 人物属性
     [Header("人物移动属性")]
     [SerializeField] private float Zspeed = 1f;
+
+    public float ZSpeed
+    {
+        get => Zspeed;
+        set => Zspeed = value;
+    }
+
     [SerializeField] private float Xspeed = 1f;
+
+    public float XSpeed
+    {
+        get => Xspeed;
+        set => Xspeed = value;
+    }
+
     // [SerializeField] private float XMaxSpeed = 2f;
     // [SerializeField] private float XAccSpeed = 1f;
     [SerializeField] private float jumpVerticalForce = 2f;

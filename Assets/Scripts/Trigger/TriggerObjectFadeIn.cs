@@ -9,15 +9,23 @@ public class TriggerObjectFadeIn : TriggerBase
     [Header("指定播放的Animator 如果为空则在当前物体搜animator")]
     [SerializeField] private Animator _animator;
     [SerializeField, ReadOnly] private String triggerName = "FadeInTrigger";
+    private List<Transform> _childList;
 
-    private Renderer _renderer;
+    // private Renderer _renderer;
     
     private void Awake()
     {
-        _renderer = GetComponent<Renderer>();
         if (_animator == null) _animator = GetComponent<Animator>();
 
-        _renderer.enabled = false;
+        _childList = new List<Transform>();
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            Transform childObj = transform.GetChild(i).GetComponent<Transform>();
+            if (childObj == null) continue;
+            childObj.gameObject.SetActive(false);
+            _childList.Add(childObj);
+        }
     }
 
     protected override void enterEvent()
@@ -28,7 +36,13 @@ public class TriggerObjectFadeIn : TriggerBase
 
     void FadeIn()
     {
-        _renderer.enabled = true;
+        // _renderer.enabled = true;
+
+        foreach (var child in _childList)
+        {
+            child.gameObject.SetActive(true);
+        }
+
         _animator.SetTrigger(triggerName);
     }
 }
