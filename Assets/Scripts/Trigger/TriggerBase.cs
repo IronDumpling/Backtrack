@@ -42,4 +42,17 @@ public abstract class TriggerBase : MonoBehaviour
 
     }
 
+    protected virtual void OnTriggerStay(Collider collision)//触发器进入事件
+    {
+        if (canWork && targetLayer == (targetLayer | (1 << collision.gameObject.layer)))
+        {
+            stayEvent();
+
+        }
+    }
+
+    protected virtual void stayEvent()
+    {
+
+    }
 }
