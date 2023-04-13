@@ -13,22 +13,36 @@ public class TriggerPathBoundary : TriggerBase
         motor = PlayerController.Instance.GetComponent<PlayerMotor>();
     }
 
-    protected override void enterEvent()
+    //protected override void enterEvent()
+    //{
+    //    Debug.Log("in");
+    //    base.enterEvent();
+    //    if (isDetectingLeft)
+    //    {
+    //        motor.DisableMoveLeft(true);
+    //    }
+    //    else
+    //    {
+    //        motor.DisableMoveRight(true);
+    //    }
+    //}
+
+    protected override void stayEvent()
     {
-        Debug.Log("in");
-        base.enterEvent();
+        Debug.Log("stay");
+        base.stayEvent();
+
         if (isDetectingLeft)
         {
-            
             motor.DisableMoveLeft(true);
-
         }
         else
         {
             motor.DisableMoveRight(true);
         }
+
     }
-    
+
     protected override void exitEvent()
     {
         Debug.Log("out");
@@ -37,7 +51,6 @@ public class TriggerPathBoundary : TriggerBase
         if (isDetectingLeft)
         {
             motor.DisableMoveLeft(false);
-
         }
         else
         {
