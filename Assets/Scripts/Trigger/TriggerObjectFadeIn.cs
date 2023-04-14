@@ -36,6 +36,8 @@ public class TriggerObjectFadeIn : TriggerBase
 
     void FadeIn()
     {
+        // _renderer.enabled = true;
+
         foreach (var child in _childList)
         {
             child.gameObject.SetActive(true);
