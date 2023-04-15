@@ -25,19 +25,12 @@ public class PlayerController : MonoSingleton<PlayerController>
     private PlayerMotor _motor;
     //玩家动画控制器
     private PlayerAnimatorController _animController;
-
-    // TODO: Remove this part to AudioManager later
-    public AudioSource m_AudioSource;
-
+    
     protected override void Init()
     {
         _playerInput = new PlayerInput();
         _motor = GetComponent<PlayerMotor>();
         _animController = GetComponent<PlayerAnimatorController>();
-
-        // TODO: Remove this part to AudioManager later
-        m_AudioSource = GameObject.Find("AudioManager")?.GetComponent<AudioSource>();
-        if (m_AudioSource != null) m_AudioSource.Pause();
     }
 
     private void OnEnable()
@@ -49,9 +42,9 @@ public class PlayerController : MonoSingleton<PlayerController>
         _playerInput.Player.Fire.performed += FireOnperformed;
         _playerInput.Player.Jump.performed += JumpOnperformed;
 
-
-
-
+        
+        
+        
         _playerInput.Enable();
     }
 
@@ -65,12 +58,10 @@ public class PlayerController : MonoSingleton<PlayerController>
     {
         //TODO: 先写成按左键开始游戏，后面设计成完成开始动画开始游戏（玩家移动）
         _motor.MotorStart();
-
-        // TODO: Remove this part to AudioManager later
-        if (m_AudioSource != null) m_AudioSource.Play();
+        
     }
 
-        private void InputXMovementOnperformed(InputAction.CallbackContext obj)
+    private void InputXMovementOnperformed(InputAction.CallbackContext obj)
     {
         //设置Animator
         //obj.ReadValue<Vector2>().x;
