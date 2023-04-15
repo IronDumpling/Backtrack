@@ -36,7 +36,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         _animController = GetComponent<PlayerAnimatorController>();
 
         // TODO: Remove this part to AudioManager later
-        m_AudioSource = GameObject.Find("AudioManager").GetComponent<AudioSource>();
+        m_AudioSource = GameObject.Find("AudioManager")?.GetComponent<AudioSource>();
         if (m_AudioSource != null) m_AudioSource.Pause();
     }
 
