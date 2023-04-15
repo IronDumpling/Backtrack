@@ -6,7 +6,7 @@ using UnityEditor;
 
 public class TriggerSceneChange : TriggerBase
 {
-    [SerializeField] private int _sceneIndex = 1;
+    [SerializeField] private int _sceneIndex = 3;
 
     protected override void enterEvent()
     {
