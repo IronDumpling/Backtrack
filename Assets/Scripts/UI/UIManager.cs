@@ -6,8 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
+    private bool isVideo = true;
     public void GameStart()
     {
+        
         //加载到“UI_Select”场景
         SceneManager.LoadScene("UI_Select");
     }
@@ -19,13 +21,34 @@ public class UIManager : MonoBehaviour
     }
     public void Select_01()
     {
+        if (isVideo)
+        {
+            //加载到“UI_Video”场景
+            SceneManager.LoadScene("Video_UI");
+            isVideo = false;
+        }
+        else
+        {
+            //加载到“UI_Select”场景
+            SceneManager.LoadScene("Level0_DESIGN");
+        }
         //加载到“UI_Select”场景
-        SceneManager.LoadScene("Level0_DESIGN");
+        
 
     }
     public void GameOver()
     {
         //关闭游戏
         Application.Quit();
+    }
+    public void Back_Select()
+    {
+        //加载到“UI_Select”场景
+        SceneManager.LoadScene("UI_Select");
+    }
+    public void Restart()
+    {
+        
+        SceneManager.LoadScene("Level0_DESIGN");
     }
 }
