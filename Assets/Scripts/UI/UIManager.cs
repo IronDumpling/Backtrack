@@ -41,4 +41,14 @@ public class UIManager : MonoBehaviour
         //关闭游戏
         Application.Quit();
     }
+    public void Back_Select()
+    {
+        //加载到“UI_Select”场景
+        SceneManager.LoadScene("UI_Select");
+    }
+    public void Restart()
+    {
+        
+        SceneManager.LoadScene("Level0_DESIGN");
+    }
 }
