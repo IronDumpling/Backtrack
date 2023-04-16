@@ -29,7 +29,7 @@ public class ScoreObject : TriggerBase
       }
 
       //this.gameObject.SetActive(false);
-      Instantiate(scoreEffect, transform.position, Quaternion.identity);
+      Instantiate(scoreEffect,  transform.position, Quaternion.identity, transform);
       Invoke("Disable", 0.3f);//延迟0.1秒后执行Disable方法
    }
    void Disable()

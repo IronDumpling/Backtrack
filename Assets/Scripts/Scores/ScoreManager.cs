@@ -8,9 +8,10 @@ using UnityEngine.SocialPlatforms.Impl;
 public class ScoreManager : MonoSingleton<ScoreManager>
 {
    private List<ScoreObject> _scoreObjects;
-   public int currentScore;
+   [SerializeField] private int currentScore;
 
-   public int leftScoreInLevel
+   private event Action onAfterScoreAnObj;
+   public int RemainScoreInLevel
    {
       get
       {
@@ -23,6 +24,23 @@ public class ScoreManager : MonoSingleton<ScoreManager>
          return total;
       }
    }
+
+   public int CurrentScoreInLevel
+   {
+      get => currentScore;
+   }
+
+   public int TotalScoreInLevel
+   {
+      get => RemainScoreInLevel + currentScore;
+   }
+
+   public int RemainPercentScoreInLevel
+   {
+      get => RemainScoreInLevel / TotalScoreInLevel;
+   }
+   
+   
    protected override void Init()
    {
       base.Init();
@@ -39,5 +57,6 @@ public class ScoreManager : MonoSingleton<ScoreManager>
    {
       currentScore += so.score;
       _scoreObjects.Remove(so);
+      onAfterScoreAnObj?.Invoke();
    }
 }

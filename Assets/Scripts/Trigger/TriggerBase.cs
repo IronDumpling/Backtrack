@@ -15,7 +15,7 @@ public abstract class TriggerBase : MonoBehaviour
         if (canWork &&  targetLayer == (targetLayer | (1 << collision.gameObject.layer)) )
         {
             enterEvent();
-
+            enterEvent(collision);
         }
     }
 
@@ -25,19 +25,24 @@ public abstract class TriggerBase : MonoBehaviour
 
     }
 
+    protected virtual void enterEvent(Collider collision)
+    {
+        
+    }
+
 
     protected virtual void OnTriggerExit(Collider collision)
     {
     
         if (canWork && targetLayer == (targetLayer | (1 << collision.gameObject.layer)))
         {
-            exitEvent();
+            ExitEvent();
             if(isOneTime)
                 canWork = false;
         }
     }
 
-    protected virtual void exitEvent()
+    protected virtual void ExitEvent()
     {
 
     }
@@ -46,13 +51,18 @@ public abstract class TriggerBase : MonoBehaviour
     {
         if (canWork && targetLayer == (targetLayer | (1 << collision.gameObject.layer)))
         {
-            stayEvent();
-
+            StayEvent();
+            StayEvent(collision);
         }
     }
 
-    protected virtual void stayEvent()
+    protected virtual void StayEvent()
     {
+        
+    }
 
+    protected virtual void StayEvent(Collider collision)
+    {
+        
     }
 }

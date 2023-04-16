@@ -1,20 +1,17 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Common;
 using UnityEngine;
 
-public class TriggerPathBoundary : TriggerBase
+public class CollisionPathBoundary : CollisionBase
 {
-    [Header("该物体是左边边界还是右边边界"),SerializeField] private bool isDetectingLeft;
     private PlayerMotor motor;
     private void Start()
     {
         motor = PlayerController.Instance.GetComponent<PlayerMotor>();
     }
 
-
-    protected override void StayEvent(Collider collision)
+    
+    protected override void StayEvent(Collision collision)
     {
         base.StayEvent();
         //找到
@@ -30,15 +27,14 @@ public class TriggerPathBoundary : TriggerBase
             motor.DisableMoveRight(true);
         }
     }
-
+    
     protected override void ExitEvent()
     {
         base.ExitEvent();
- 
+
         motor.DisableMoveLeft(false);
         motor.DisableMoveRight(false);
         
     
     }
-
 }
