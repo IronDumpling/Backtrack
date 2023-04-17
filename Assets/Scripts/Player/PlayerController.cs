@@ -25,12 +25,19 @@ public class PlayerController : MonoSingleton<PlayerController>
     private PlayerMotor _motor;
     //玩家动画控制器
     private PlayerAnimatorController _animController;
+
+    // TODO: Remove this later
+    [SerializeField] private AudioSource _audioSource;
     
     protected override void Init()
     {
         _playerInput = new PlayerInput();
         _motor = GetComponent<PlayerMotor>();
         _animController = GetComponent<PlayerAnimatorController>();
+
+        // TODO: Remove this later
+        _audioSource = GameObject.Find("AudioManager")?.GetComponent<AudioSource>();
+        if(_audioSource != null) _audioSource.Pause();
     }
 
     private void OnEnable()
@@ -40,17 +47,26 @@ public class PlayerController : MonoSingleton<PlayerController>
         _inputXMovement.performed += InputXMovementOnperformed;
         //玩家点击开火按钮
         _playerInput.Player.Fire.performed += FireOnperformed;
+        _playerInput.Player.Jump.performed += JumpOnperformed;
+
         
         
         
         _playerInput.Enable();
     }
 
+    private void JumpOnperformed(InputAction.CallbackContext obj)
+    {
+        Debug.Log("jump");
+        _motor.JumpVertical();
+    }
+
     private void FireOnperformed(InputAction.CallbackContext obj)
     {
         //TODO: 先写成按左键开始游戏，后面设计成完成开始动画开始游戏（玩家移动）
         _motor.MotorStart();
-        
+        // TODO: Remove this later
+        if (_audioSource != null) _audioSource.Play();
     }
 
     private void InputXMovementOnperformed(InputAction.CallbackContext obj)
@@ -65,9 +81,12 @@ public class PlayerController : MonoSingleton<PlayerController>
         _motor.MoveForward();
         _motor.MoveHorizontal(_inputXMovement.ReadValue<Vector2>().x);
         _motor.Move();
-        
-        _animController.SetFloat(_animController.animParam_Speed ,_motor.CurrentSpeed);
-        _animController.SetFloat(_animController.animParam_XSpeed,_motor.CurrentXSpeed);
+
+        if (_animController != null)
+        {
+            _animController.SetFloat(_animController.animParam_Speed ,_motor.CurrentSpeed);
+            _animController.SetFloat(_animController.animParam_XSpeed,_motor.CurrentXSpeed);
+        } 
     }
     
 
