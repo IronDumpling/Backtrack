@@ -11,6 +11,7 @@ public class TriggerObjectFadeIn : TriggerBase
     [SerializeField] private Animator _animator;
     [SerializeField, ReadOnly] private String triggerName = "FadeInTrigger";
     [SerializeField] private bool isUsingAnimator = true;
+    [SerializeField] private bool isUsingFadeOut = true;
     
     private List<Transform> _childList;
     private Renderer _renderer;
@@ -55,7 +56,7 @@ public class TriggerObjectFadeIn : TriggerBase
     protected override void ExitEvent()
     {
         base.ExitEvent();
-        FadeOut();
+        if(isUsingFadeOut) FadeOut();
     }
 
     void FadeOut()
