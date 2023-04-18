@@ -65,7 +65,7 @@ public class PlayerMotor : MonoBehaviour
     #endregion
     #region 碰撞/射线属性
     [Header("碰撞/射线属性")] 
-    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] protected LayerMask groundLayer;
     [SerializeField] private float detectionLength = 0.2f;
     #endregion
     
@@ -84,8 +84,15 @@ public class PlayerMotor : MonoBehaviour
 
         _rigidBody.isKinematic = true;
 
+        Init();
     }
 
+    
+    //子类的Awake
+    protected virtual void Init()
+    {
+        
+    }
     public void MoveForward()
     {
         var dir = transform.InverseTransformDirection(_rigidBody.velocity);
@@ -168,6 +175,8 @@ public class PlayerMotor : MonoBehaviour
 
     void FixedUpdate()
     {
+        CheckPathBoundary();
+        
         var locVel = transform.InverseTransformDirection(_rigidBody.velocity);//转换为本地坐标系
         _currentYSpeed = locVel.y;
         _currentXSpeed = locVel.x;
@@ -319,5 +328,16 @@ public class PlayerMotor : MonoBehaviour
         }
     }
 
-    
+    private void Update()
+    {
+        //检测道路边缘
+        
+    }
+
+    public virtual void CheckPathBoundary()
+    {
+        Debug.Log("当前物体使用PlayerMotor，所以没有边缘检测，请使用PlayerMotorBall");
+    }
+
+
 }
