@@ -115,25 +115,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1386997725386460038, guid: 1f9f067ded5df41d5a97e84d24156982, type: 3}
   m_PrefabInstance: {fileID: 3440278176434930183}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3440278176434930179
-MonoBehaviour:
+--- !u!65 &3440278176434930181
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4359987822598392193}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b679e6b611d98349a60a2962e002a1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 8192
-  canWork: 1
-  isOneTime: 0
-  _animator: {fileID: 0}
-  triggerName: FadeInTrigger
+  serializedVersion: 2
+  m_Size: {x: 6, y: 2, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!95 &3440278176434930178
 Animator:
   serializedVersion: 4
@@ -154,16 +148,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!65 &3440278176434930181
-BoxCollider:
+--- !u!114 &3440278176434930179
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4359987822598392193}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 6, y: 2, z: 1}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b679e6b611d98349a60a2962e002a1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 8192
+  canWork: 1
+  isOneTime: 0
+  _animator: {fileID: 0}
+  triggerName: FadeInTrigger
+  isUsingAnimator: 1
+  isUsingFadeOut: 0

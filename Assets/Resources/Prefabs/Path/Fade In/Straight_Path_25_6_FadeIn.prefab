@@ -106,6 +106,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5375879073546836112, guid: e4cfaad41c115438ab7f25ac93b2d6f2, type: 3}
   m_PrefabInstance: {fileID: 3927821685527636644}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &3782927272318901805
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8942064786481639988}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6, y: 2, z: 1}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!95 &3255159640412111516
 Animator:
   serializedVersion: 4
@@ -126,19 +139,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!65 &3782927272318901805
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8942064786481639988}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 6, y: 2, z: 1}
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &9035243259376397261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,6 +158,8 @@ MonoBehaviour:
   isOneTime: 0
   _animator: {fileID: 0}
   triggerName: FadeInTrigger
+  isUsingAnimator: 1
+  isUsingFadeOut: 0
 --- !u!4 &8942064786481639989 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5375879073546836113, guid: e4cfaad41c115438ab7f25ac93b2d6f2, type: 3}
