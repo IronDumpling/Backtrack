@@ -10,7 +10,7 @@ public class ScoreManager : MonoSingleton<ScoreManager>
    private List<ScoreObject> _scoreObjects;
    [SerializeField] private int currentScore;
 
-   private event Action onAfterScoreAnObj;
+   public event Action onAfterScoreAnObj;
    public int RemainScoreInLevel
    {
       get

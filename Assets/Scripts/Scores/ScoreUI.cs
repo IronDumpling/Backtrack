@@ -7,11 +7,10 @@ public class ScoreUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        ScoreManager.Instance.onAfterScoreAnObj += UpdateScore;
     }
 
-    // Update is called once per frame
-    void Update()
+    void UpdateScore()
     {
         gameObject.GetComponent<TMPro.TMP_Text>().text = $"Score {ScoreManager.Instance.CurrentScoreInLevel}";
     }
