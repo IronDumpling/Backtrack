@@ -7,6 +7,7 @@ public class TriggerSceneSwitch : TriggerBase
     [SerializeField] private string _switchSceneName;
     [SerializeField] private string[] _sceneNames;
 
+#if UNITY_EDITOR
     private void Awake()
     {
         int count = EditorBuildSettings.scenes.Length;
@@ -17,6 +18,7 @@ public class TriggerSceneSwitch : TriggerBase
             _sceneNames[i] = System.IO.Path.GetFileNameWithoutExtension(EditorBuildSettings.scenes[i].path);
         }
     }
+#endif
 
     protected override void enterEvent()
     {
@@ -25,7 +27,9 @@ public class TriggerSceneSwitch : TriggerBase
 
         if(_switchSceneName == null)
         {
+#if UNITY_EDITOR
             SceneManager.LoadScene(_sceneNames[0]);
+#endif
             Debug.Log("The Switch Scene's Name is Missing");
         }  
         else
