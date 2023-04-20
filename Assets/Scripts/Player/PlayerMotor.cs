@@ -1,10 +1,14 @@
 using System;
 using System.Collections;
 using System.Numerics;
+
+#if UNITY_EDITOR
 using TMPro.EditorUtilities;
+using UnityEditor.UIElements;
+#endif
+
 using Unity.VisualScripting;
 using Unity.VisualScripting.Dependencies.NCalc;
-using UnityEditor.UIElements;
 using UnityEngine;
 using Quaternion = System.Numerics.Quaternion;
 using Vector3 = UnityEngine.Vector3;
