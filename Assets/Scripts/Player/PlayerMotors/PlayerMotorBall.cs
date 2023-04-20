@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using UnityEngine.Rendering;
 using Color = UnityEngine.Color;
@@ -9,11 +10,18 @@ public class PlayerMotorBall : PlayerMotor
 {
     private SphereCollider _sphereCollider;
 
-    [SerializeField] private float rayOffset = 0.2f;
+    [SerializeField] private float rayOffset = 0.1f;
     protected override void Init()
     {
         base.Init();
         _sphereCollider = GetComponent<SphereCollider>();
+        
+        
+    }
+    
+    protected override float colliderXExtentsWithOffset()
+    {
+        return _sphereCollider.radius + rayOffset;
     }
 
     public override void Move()

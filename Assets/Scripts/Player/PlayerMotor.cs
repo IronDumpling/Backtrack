@@ -72,7 +72,11 @@ public class PlayerMotor : MonoBehaviour
     [SerializeField] protected LayerMask groundLayer;
     [SerializeField] private float detectionLength = 0.2f;
     #endregion
-    
+    #region 边界属性
+
+    [Header("边界属性")] 
+    [SerializeField] private float deathBoundaryY = -100;
+    #endregion
     #region 布尔变量，motor状态
     protected bool canMove = false; //是否可以移动（包括跳跃） 移动的总控制
     protected bool canMoveRight = true; //是否可以像左移动
@@ -91,7 +95,14 @@ public class PlayerMotor : MonoBehaviour
         Init();
     }
 
-    
+    private void Start()
+    {
+        _rigidBody  = GetComponent<Rigidbody>();
+        if(_rigidBody == null) Debug.LogError("未找到RigidBody");
+
+    }
+
+
     //子类的Awake
     protected virtual void Init()
     {
@@ -180,6 +191,7 @@ public class PlayerMotor : MonoBehaviour
     void FixedUpdate()
     {
         CheckPathBoundary();
+        CheckDeath();
         
         var locVel = transform.InverseTransformDirection(_rigidBody.velocity);//转换为本地坐标系
         _currentYSpeed = locVel.y;
@@ -211,7 +223,7 @@ public class PlayerMotor : MonoBehaviour
         if (!canMove) return;
         if (IsGrounded())
         {
-            _rigidBody.AddForce(Vector3.up * jumpVerticalForce * speedConstant);
+            _rigidBody.AddForce(Vector3.up * jumpVerticalForce);
         }
     }
 
@@ -285,6 +297,7 @@ public class PlayerMotor : MonoBehaviour
         rotate_addUpTime = 0;
         rotate_start = true;
         rotate_curve = curve;
+        //开始自转，关闭跟随道路
         // UnityEngine.Quaternion qt = UnityEngine.Quaternion.Slerp(rotate_StartPos, UnityEngine.Quaternion.Euler(rotate_StartPos.eulerAngles + rotateAngle), 0.1f);
         // transform.Rotate(qt.eulerAngles);
     }
@@ -303,7 +316,11 @@ public class PlayerMotor : MonoBehaviour
         UnityEngine.Quaternion qt =
             UnityEngine.Quaternion.SlerpUnclamped(rotate_StartPos, rotate_EndPos, rotate_curve.Evaluate(rotate_addUpTime));
         transform.Rotate(qt.eulerAngles - transform.rotation.eulerAngles);
-        if (rotate_addUpTime > 1f) rotate_start = false;
+        if (rotate_addUpTime > 1f)
+        {
+            rotate_start = false;
+            //停止自转，打开跟随道路
+        }
 
     }
 
@@ -334,14 +351,37 @@ public class PlayerMotor : MonoBehaviour
 
     private void Update()
     {
-        //检测道路边缘
-        
+
     }
+    
+ 
 
     public virtual void CheckPathBoundary()
     {
         Debug.Log("当前物体使用PlayerMotor，所以没有边缘检测，请使用PlayerMotorBall");
     }
+
+    public void CheckDeath()
+    {
+        if (transform.position.y < deathBoundaryY )
+        {
+            EventManager.Instance.PlayerDeadEventTrigger();
+        }
+    }
+
+    protected virtual float colliderXExtentsWithOffset()
+    {
+        Debug.LogError("didn't implement colliderXExtents");
+        return 0f;
+    }
+
+    public bool RayCastBottom(out RaycastHit hit)
+    {
+        
+        return Physics.Raycast(transform.position, -transform.up,out hit, colliderXExtentsWithOffset(), groundLayer);
+        
+    }
+
 
 
 }

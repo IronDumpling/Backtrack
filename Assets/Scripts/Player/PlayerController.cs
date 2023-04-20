@@ -54,6 +54,15 @@ public class PlayerController : MonoSingleton<PlayerController>
         
         _playerInput.Enable();
     }
+    private void OnDisable()
+    {
+        //玩家移动时
+        _inputXMovement.performed -= InputXMovementOnperformed;
+        //玩家点击开火按钮
+        _playerInput.Player.Fire.performed -= FireOnperformed;
+        _playerInput.Player.Jump.performed -= JumpOnperformed;
+        _playerInput.Disable();
+    }
 
     private void JumpOnperformed(InputAction.CallbackContext obj)
     {
