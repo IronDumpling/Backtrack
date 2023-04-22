@@ -77,6 +77,10 @@ public class CameraController : MonoSingleton<CameraController>
             () => _mixingCamera.GetWeight(1),
             x => _mixingCamera.SetWeight(1, x),
             camUnFocusValue, switchVcamDuration);
+        cam2WeightSwitchTween.onComplete += () =>
+        {
+            vcam2CM.GetCinemachineComponent<CinemachineTrackedDolly>().m_PathPosition = 0;
+        };
     }
 
     // Update is called once per frame
