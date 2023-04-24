@@ -11,10 +11,8 @@ GameObject:
   - component: {fileID: 9067247656786846119}
   - component: {fileID: 7628110258356299457}
   - component: {fileID: 574386636117651483}
-  - component: {fileID: 4269009352560888299}
-  - component: {fileID: 1153139510973184693}
   m_Layer: 0
-  m_Name: Obstacle_2_6 (1)
+  m_Name: Obstacle_2_12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,36 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4269009352560888299
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3627744215599971395}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 0.8, y: 1, z: 0.95}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1153139510973184693
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3627744215599971395}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4238844b2f4ba4291772f002dfc3b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 512
-  canWork: 1
-  isOneTime: 0
 --- !u!1 &7115954811639752615
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,7 +130,7 @@ GameObject:
   - component: {fileID: 8326155844609789879}
   - component: {fileID: 8326155844609789876}
   m_Layer: 0
-  m_Name: Obstacle_2_6
+  m_Name: collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -198,7 +166,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8326155844609789882}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
