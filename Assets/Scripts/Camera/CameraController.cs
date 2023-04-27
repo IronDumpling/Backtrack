@@ -6,7 +6,10 @@ using Common;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UIElements;
-
+/// <summary>
+/// Vcam1 负责跟踪LookAtPoint
+/// Vcam2 负责Dolly Track
+/// </summary>
 public class CameraController : MonoSingleton<CameraController>
 {
     #region CamProperty
@@ -19,6 +22,8 @@ public class CameraController : MonoSingleton<CameraController>
 
     [SerializeField] public bool isFixOnPath = true;
     [SerializeField] private float switchVcamDuration = 0.5f;
+    [SerializeField] private Vector3 defaultLookAtPointPos = Vector3.up;
+    
     [SerializeField] private float camFocusValue = 1f;
     [SerializeField] private float camUnFocusValue = 0.0001f;
 
@@ -35,7 +40,7 @@ public class CameraController : MonoSingleton<CameraController>
         vcam1 = this.transform.Find("CM vcam1");
         vcam2 = this.transform.Find("CM vcam2");
         if(vcam1 == null) Debug.LogError("找不到vcam1");
-        if(vcam2 == null) Debug.LogError("找不到vcam1");
+        if(vcam2 == null) Debug.LogError("找不到vcam2");
 
         vcam1CM = vcam1.GetComponent<CinemachineVirtualCamera>();
         vcam2CM = vcam2.GetComponent<CinemachineVirtualCamera>();//获取vcam2的CinemachineVirtualCamera组件
@@ -92,7 +97,7 @@ public class CameraController : MonoSingleton<CameraController>
         }
         else
         {
-            //use track
+            _lookAtPoint.localPosition = defaultLookAtPointPos;
         }
     }
 
