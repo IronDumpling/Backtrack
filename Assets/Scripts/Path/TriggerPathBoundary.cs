@@ -35,7 +35,7 @@ public class TriggerPathBoundary : TriggerBase
         if (pointInLocalSpace.x < -0.1f)
         {
             motor.DisableMoveLeft(true);
-        }else if (pointInLocalSpace.x > 0.1f);
+        }else if (pointInLocalSpace.x > 0.1f)
         {
             motor.DisableMoveRight(true);
         }
