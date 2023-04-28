@@ -37,16 +37,20 @@ public class TriggerObjectFadeIn : TriggerBase
     protected override void enterEvent()
     {
         base.enterEvent();
-        if (isUsingFadeIn) FadeIn();
+        FadeIn();
     }
 
     void FadeIn()
     {
-        foreach (var child in _childList)
+        if (isUsingFadeIn)
         {
-            child.gameObject.SetActive(true);
+            foreach (var child in _childList)
+            {
+                child.gameObject.SetActive(true);
+            }
+            if (_renderer != null) _renderer.enabled = true;
         }
-        if(_renderer != null) _renderer.enabled = true;
+
         if(_animator != null && isUsingAnimator) _animator.SetTrigger(triggerName);
     }
 
