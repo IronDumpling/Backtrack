@@ -49,10 +49,11 @@ public class PlayerController : MonoSingleton<PlayerController>
         _playerInput.Player.Fire.performed += FireOnperformed;
         _playerInput.Player.Jump.performed += JumpOnperformed;
 
-        
-        
-        
         _playerInput.Enable();
+
+
+
+        ScoreManager.Instance.onAfterScoreAnObj += EatScoreEvent;
     }
     private void OnDisable()
     {
@@ -62,8 +63,10 @@ public class PlayerController : MonoSingleton<PlayerController>
         _playerInput.Player.Fire.performed -= FireOnperformed;
         _playerInput.Player.Jump.performed -= JumpOnperformed;
         _playerInput.Disable();
+        
     }
 
+   
     private void JumpOnperformed(InputAction.CallbackContext obj)
     {
         Debug.Log("jump");
@@ -98,6 +101,13 @@ public class PlayerController : MonoSingleton<PlayerController>
         } 
     }
     
+    private void EatScoreEvent()
+    {
+        if (_animController != null)
+        {
+            _animController.SetTrigger(_animController.animParam_Eat);
 
+        }
+    }
 
 }
