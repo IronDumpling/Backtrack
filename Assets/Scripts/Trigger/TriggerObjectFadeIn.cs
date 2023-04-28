@@ -11,6 +11,7 @@ public class TriggerObjectFadeIn : TriggerBase
     [SerializeField] private Animator _animator;
     [SerializeField, ReadOnly] private String triggerName = "FadeInTrigger";
     [SerializeField] private bool isUsingAnimator = true;
+    [SerializeField] private bool isUsingFadeIn = true;
     [SerializeField] private bool isUsingFadeOut = true;
     
     private List<Transform> _childList;
@@ -22,14 +23,13 @@ public class TriggerObjectFadeIn : TriggerBase
 
         _childList = new List<Transform>();
         _renderer = GetComponent<Renderer>();
-        if (_renderer != null) _renderer.enabled = false;
-        
+        if (isUsingFadeIn && _renderer != null) _renderer.enabled = false;
         
         for (int i = 0; i < transform.childCount; i++)
         {
             Transform childObj = transform.GetChild(i).GetComponent<Transform>();
             if (childObj == null) continue;
-            childObj.gameObject.SetActive(false);
+            if (isUsingFadeIn) childObj.gameObject.SetActive(false);
             _childList.Add(childObj);
         }
     }
@@ -37,7 +37,7 @@ public class TriggerObjectFadeIn : TriggerBase
     protected override void enterEvent()
     {
         base.enterEvent();
-        FadeIn();
+        if (isUsingFadeIn) FadeIn();
     }
 
     void FadeIn()
@@ -48,9 +48,6 @@ public class TriggerObjectFadeIn : TriggerBase
         }
         if(_renderer != null) _renderer.enabled = true;
         if(_animator != null && isUsingAnimator) _animator.SetTrigger(triggerName);
-        
-        
-        
     }
 
     protected override void ExitEvent()
