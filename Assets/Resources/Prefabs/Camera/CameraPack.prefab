@@ -55,6 +55,7 @@ MonoBehaviour:
   curVcam: {fileID: 0}
   isFixOnPath: 1
   switchVcamDuration: 1
+  defaultLookAtPointPos: {x: 0, y: 1, z: 0}
   camFocusValue: 1
   camUnFocusValue: 0.0000001
 --- !u!114 &8606192025514017974
@@ -445,9 +446,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3362112252724447119}
   - component: {fileID: 3362112252724447219}
-  - component: {fileID: 3362112252724447218}
   - component: {fileID: 3362112252724447217}
   - component: {fileID: 3362112252724447216}
+  - component: {fileID: 7459066750008872394}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -513,14 +514,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &3362112252724447218
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3362112252724447118}
-  m_Enabled: 1
 --- !u!114 &3362112252724447217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -588,3 +581,11 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!81 &7459066750008872394
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3362112252724447118}
+  m_Enabled: 1
