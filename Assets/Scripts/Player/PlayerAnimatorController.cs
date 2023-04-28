@@ -13,6 +13,7 @@ public class PlayerAnimatorController : MonoBehaviour
 
     [SerializeField] public string animParam_XSpeed = "xSpeed";
 
+    [SerializeField] public string animParam_Eat = "triggerEat";
     private bool canPlayAnim;
     void Awake()
     {
@@ -24,7 +25,16 @@ public class PlayerAnimatorController : MonoBehaviour
     {
         if (canPlayAnim)
         {
+            
             animator.SetFloat(name,f);
+        }
+    }
+
+    public void SetTrigger(String name)
+    {
+        if (canPlayAnim)
+        {
+            animator.SetTrigger(name);
         }
     }
 
