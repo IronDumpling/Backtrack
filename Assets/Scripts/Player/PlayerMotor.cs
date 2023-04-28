@@ -26,20 +26,20 @@ public class PlayerMotor : MonoBehaviour
     private float _currentSpeed;
     public float CurrentSpeed
     {
-        get => _currentSpeed;
+        get => _rigidBody.velocity.magnitude;
     }
 
     private float _currentXSpeed;
 
     public float CurrentXSpeed
     {
-        get => _currentXSpeed;
+        get => _rigidBody.velocity.x;
     }
 
     private float _currentYSpeed;
     public float CurrentYSpeed
     {
-        get => _currentXSpeed;
+        get => _rigidBody.velocity.y;
     }
 
 
