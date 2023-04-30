@@ -6,10 +6,14 @@ public class TriggerSceneSwitch : TriggerBase
 {
     [SerializeField] private string _switchSceneName;
     [SerializeField] private string[] _sceneNames;
+    [SerializeField] private bool isUsingAsyncLoad = true;
+    [SerializeField] private string asyncObjectPath = "Prefabs/MapObject/AsyncLevelObject";
+    private GameObject asyncLoadObject;
 
-#if UNITY_EDITOR
+
     private void Awake()
     {
+#if UNITY_EDITOR
         int count = EditorBuildSettings.scenes.Length;
         _sceneNames = new string[count];
 
@@ -17,8 +21,9 @@ public class TriggerSceneSwitch : TriggerBase
         {
             _sceneNames[i] = System.IO.Path.GetFileNameWithoutExtension(EditorBuildSettings.scenes[i].path);
         }
-    }
 #endif
+        asyncLoadObject = Instantiate(Resources.Load<GameObject>(asyncObjectPath));
+    }
 
     protected override void enterEvent()
     {
@@ -31,9 +36,24 @@ public class TriggerSceneSwitch : TriggerBase
             SceneManager.LoadScene(_sceneNames[0]);
 #endif
             Debug.Log("The Switch Scene's Name is Missing");
-        }  
+        }
         else
-            SceneManager.LoadScene(_switchSceneName);
+        {
+            if (asyncLoadObject == null || !isUsingAsyncLoad)
+            {
+                SceneManager.LoadScene(_switchSceneName);
+            }
+            else
+            {
+                asyncLoadObject.SetActive(true);
+                asyncLoadObject.GetComponent<AsyncLevelLoader>().StartLoadAsync(_switchSceneName);
+            }
+            
+        }
+        
+        
+        
+        
     }
 
 }
