@@ -74,8 +74,10 @@ public class PlayerMotor : MonoBehaviour
     #endregion
     #region 边界属性
 
-    [Header("边界属性")] 
+    [Header("场景属性")] 
     [SerializeField] private float deathBoundaryY = -100;
+
+    [SerializeField] private bool isAutoStart = false;
     #endregion
     #region 布尔变量，motor状态
     protected bool canMove = false; //是否可以移动（包括跳跃） 移动的总控制
@@ -99,7 +101,7 @@ public class PlayerMotor : MonoBehaviour
     {
         _rigidBody  = GetComponent<Rigidbody>();
         if(_rigidBody == null) Debug.LogError("未找到RigidBody");
-
+        if(isAutoStart) MotorStart();
     }
 
 
