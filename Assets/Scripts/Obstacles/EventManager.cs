@@ -14,6 +14,7 @@ public class EventManager : Singleton<EventManager>
       // 暂时未实现
       
       //重置关卡   可能会变更的点： （展示从新开始UI -》 从新开始）
+      AudioManager.Instance.StopAll();
       SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
    }
