@@ -40,6 +40,9 @@ namespace Common
             Init();
         }
 
+        /// <summary>
+        /// Called During MonoSingleton Awake
+        /// </summary>
         protected virtual void Init()
         {
 
