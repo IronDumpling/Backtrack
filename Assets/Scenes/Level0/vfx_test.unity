@@ -134,7 +134,6 @@ GameObject:
   - component: {fileID: 26666867}
   - component: {fileID: 26666866}
   - component: {fileID: 26666865}
-  - component: {fileID: 26666864}
   - component: {fileID: 26666863}
   m_Layer: 0
   m_Name: Main Camera
@@ -151,40 +150,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 26666862}
   m_Enabled: 1
---- !u!114 &26666864
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 26666862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShowDebugText: 0
-  m_ShowCameraFrustum: 1
-  m_IgnoreTimeScale: 0
-  m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 1
-  m_BlendUpdateMethod: 1
-  m_DefaultBlend:
-    m_Style: 1
-    m_Time: 2
-    m_CustomCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  m_CustomBlends: {fileID: 0}
-  m_CameraCutEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_CameraActivatedEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &26666865
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,14 +233,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 26666862}
-  m_LocalRotation: {x: 0.57477325, y: -0.07816278, z: 0.055277783, w: 0.81269354}
-  m_LocalPosition: {x: 12.566116, y: 15.036686, z: -46.075645}
+  m_LocalRotation: {x: 0.0000008426129, y: -0.09574151, z: -0.000008760486, w: 0.99540627}
+  m_LocalPosition: {x: 1.64, y: -0.02, z: -54.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -10.988, z: -0.001}
 --- !u!4 &95631641 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2807204512661978363, guid: 89ee8e68823dd45d49487c625c8fcf0d, type: 3}
@@ -726,7 +691,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &842439737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -999,7 +964,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1022528518}
-  - component: {fileID: 1022528517}
   m_Layer: 0
   m_Name: Disslove
   m_TagString: Untagged
@@ -1007,21 +971,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1022528517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1022528516}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c36235ee9f229354d99fc6ed4fd72d83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skinnedMesh: {fileID: 0}
-  dissolveRate: 0.0125
-  refreshRate: 0.025
 --- !u!4 &1022528518
 Transform:
   m_ObjectHideFlags: 0
@@ -1311,7 +1260,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1340674366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1926,6 +1875,7 @@ GameObject:
   - component: {fileID: 2438656852409250235}
   - component: {fileID: 4438501006376440675}
   - component: {fileID: 4636069368993636809}
+  - component: {fileID: 4636069368993636810}
   m_Layer: 0
   m_Name: Icosphere.001
   m_TagString: Untagged
@@ -2062,6 +2012,7 @@ GameObject:
   - component: {fileID: 1148002008264988762}
   - component: {fileID: 143499113762178402}
   - component: {fileID: 1410497989232056479}
+  - component: {fileID: 1410497989232056480}
   m_Layer: 0
   m_Name: ke_8
   m_TagString: Untagged
@@ -2135,6 +2086,7 @@ GameObject:
   - component: {fileID: 7630472863991798173}
   - component: {fileID: 2604135305998924271}
   - component: {fileID: 7800924783537575880}
+  - component: {fileID: 7800924783537575881}
   m_Layer: 0
   m_Name: ke_7
   m_TagString: Untagged
@@ -2199,6 +2151,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1410497989232056480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539970845205161821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c36235ee9f229354d99fc6ed4fd72d83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinnedMesh: {fileID: 0}
+  skinnedMaterials: {fileID: 0}
+  dissolveRate: 0.0125
+  refreshRate: 0.025
 --- !u!33 &1492741753727048174
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2226,6 +2194,7 @@ GameObject:
   - component: {fileID: 236203620245551110}
   - component: {fileID: 3115603202518455552}
   - component: {fileID: 6839646967605390779}
+  - component: {fileID: 6839646967605390780}
   m_Layer: 0
   m_Name: ke_1
   m_TagString: Untagged
@@ -2491,6 +2460,7 @@ GameObject:
   - component: {fileID: 3159138024212702814}
   - component: {fileID: 7225254917209245959}
   - component: {fileID: 7885921951167024384}
+  - component: {fileID: 7885921951167024385}
   m_Layer: 0
   m_Name: ke_3
   m_TagString: Untagged
@@ -2525,6 +2495,7 @@ GameObject:
   - component: {fileID: 243158232679839491}
   - component: {fileID: 5588962014465364015}
   - component: {fileID: 7000661032442909984}
+  - component: {fileID: 7000661032442909985}
   m_Layer: 0
   m_Name: sui_3
   m_TagString: Untagged
@@ -2574,6 +2545,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4636069368993636810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117214286993947708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c36235ee9f229354d99fc6ed4fd72d83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinnedMesh: {fileID: 0}
+  skinnedMaterials: {fileID: 0}
+  dissolveRate: 0.0125
+  refreshRate: 0.025
 --- !u!1 &4658494185895510066
 GameObject:
   m_ObjectHideFlags: 0
@@ -2585,6 +2572,7 @@ GameObject:
   - component: {fileID: 442300733754445731}
   - component: {fileID: 1509621599884039804}
   - component: {fileID: 5240001866253950536}
+  - component: {fileID: 5240001866253950537}
   m_Layer: 0
   m_Name: ke_4
   m_TagString: Untagged
@@ -2603,6 +2591,7 @@ GameObject:
   - component: {fileID: 2470133424448845999}
   - component: {fileID: 5038838795363194463}
   - component: {fileID: 252581484222013599}
+  - component: {fileID: 5038838795363194464}
   m_Layer: 0
   m_Name: sui_4
   m_TagString: Untagged
@@ -2618,6 +2607,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4874826202190221658}
   m_Mesh: {fileID: -2889719353116645300, guid: b666e42a4b78d4df0abc1a47a932140f, type: 3}
+--- !u!114 &5038838795363194464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4874826202190221658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c36235ee9f229354d99fc6ed4fd72d83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinnedMesh: {fileID: 0}
+  skinnedMaterials: {fileID: 0}
+  dissolveRate: 0.0125
+  refreshRate: 0.025
 --- !u!23 &5240001866253950536
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2660,6 +2665,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5240001866253950537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4658494185895510066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c36235ee9f229354d99fc6ed4fd72d83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinnedMesh: {fileID: 0}
+  skinnedMaterials: {fileID: 0}
+  dissolveRate: 0.0125
+  refreshRate: 0.025
 --- !u!23 &5403777154891561921
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2786,6 +2807,7 @@ GameObject:
   - component: {fileID: 8472065605417760277}
   - component: {fileID: 319902300483586425}
   - component: {fileID: 2744351877793240750}
+  - component: {fileID: 8472065605417760278}
   m_Layer: 0
   m_Name: sui_2
   m_TagString: Untagged
@@ -2812,6 +2834,7 @@ GameObject:
   - component: {fileID: 5979862299673851322}
   - component: {fileID: 6376544861469712984}
   - component: {fileID: 2803249366890378139}
+  - component: {fileID: 6649286930000751224}
   m_Layer: 0
   m_Name: ke_2
   m_TagString: Untagged
@@ -2819,6 +2842,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6649286930000751224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6649286930000751223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c36235ee9f229354d99fc6ed4fd72d83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinnedMesh: {fileID: 0}
+  skinnedMaterials: {fileID: 0}
+  dissolveRate: 0.0125
+  refreshRate: 0.025
 --- !u!23 &6839646967605390779
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2861,6 +2900,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6839646967605390780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928908010349841544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c36235ee9f229354d99fc6ed4fd72d83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinnedMesh: {fileID: 0}
+  skinnedMaterials: {fileID: 0}
+  dissolveRate: 0.0125
+  refreshRate: 0.025
 --- !u!23 &7000661032442909984
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2903,6 +2958,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7000661032442909985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4629501553000216933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c36235ee9f229354d99fc6ed4fd72d83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinnedMesh: {fileID: 0}
+  skinnedMaterials: {fileID: 0}
+  dissolveRate: 0.0125
+  refreshRate: 0.025
 --- !u!33 &7225254917209245959
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3157,6 +3228,7 @@ GameObject:
   - component: {fileID: 1955687525176554825}
   - component: {fileID: 91206082063585138}
   - component: {fileID: 5805842597267010563}
+  - component: {fileID: 7600452636331610268}
   m_Layer: 0
   m_Name: sui_1
   m_TagString: Untagged
@@ -3164,6 +3236,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7600452636331610268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7600452636331610267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c36235ee9f229354d99fc6ed4fd72d83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinnedMesh: {fileID: 0}
+  skinnedMaterials: {fileID: 0}
+  dissolveRate: 0.0125
+  refreshRate: 0.025
 --- !u!4 &7630472863991798173
 Transform:
   m_ObjectHideFlags: 0
@@ -3221,6 +3309,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7800924783537575881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1113442675235909424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c36235ee9f229354d99fc6ed4fd72d83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinnedMesh: {fileID: 0}
+  skinnedMaterials: {fileID: 0}
+  dissolveRate: 0.0125
+  refreshRate: 0.025
 --- !u!1 &7824638178386926596
 GameObject:
   m_ObjectHideFlags: 0
@@ -3250,6 +3354,7 @@ GameObject:
   - component: {fileID: 337493060177784589}
   - component: {fileID: 1492741753727048174}
   - component: {fileID: 7999884439804633034}
+  - component: {fileID: 7999884439804633035}
   m_Layer: 0
   m_Name: ke_6
   m_TagString: Untagged
@@ -3299,6 +3404,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7885921951167024385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3827279069829931211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c36235ee9f229354d99fc6ed4fd72d83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinnedMesh: {fileID: 0}
+  skinnedMaterials: {fileID: 0}
+  dissolveRate: 0.0125
+  refreshRate: 0.025
 --- !u!23 &7999884439804633034
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3341,6 +3462,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7999884439804633035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7842877384419061843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c36235ee9f229354d99fc6ed4fd72d83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinnedMesh: {fileID: 0}
+  skinnedMaterials: {fileID: 0}
+  dissolveRate: 0.0125
+  refreshRate: 0.025
 --- !u!95 &8057159665860239831
 Animator:
   serializedVersion: 4
@@ -3376,6 +3513,22 @@ Transform:
   m_Father: {fileID: 543450653174661690}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8472065605417760278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6069336883683748792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c36235ee9f229354d99fc6ed4fd72d83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinnedMesh: {fileID: 0}
+  skinnedMaterials: {fileID: 0}
+  dissolveRate: 0.0125
+  refreshRate: 0.025
 --- !u!23 &8487685939137741493
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3429,6 +3582,7 @@ GameObject:
   - component: {fileID: 2389932687196536940}
   - component: {fileID: 6023780114148907878}
   - component: {fileID: 5403777154891561921}
+  - component: {fileID: 8991364080542174660}
   m_Layer: 0
   m_Name: ke_5
   m_TagString: Untagged
@@ -3436,6 +3590,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8991364080542174660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8991364080542174659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c36235ee9f229354d99fc6ed4fd72d83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinnedMesh: {fileID: 0}
+  skinnedMaterials: {fileID: 0}
+  dissolveRate: 0.0125
+  refreshRate: 0.025
 --- !u!1 &9215394463158212219
 GameObject:
   m_ObjectHideFlags: 0
@@ -3447,6 +3617,7 @@ GameObject:
   - component: {fileID: 2116842600225919962}
   - component: {fileID: 3835406903782448740}
   - component: {fileID: 3573797565680656845}
+  - component: {fileID: 9215394463158212220}
   m_Layer: 0
   m_Name: "\u68F1\u89D2\u7403"
   m_TagString: Untagged
@@ -3454,3 +3625,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &9215394463158212220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9215394463158212219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c36235ee9f229354d99fc6ed4fd72d83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skinnedMesh: {fileID: 0}
+  skinnedMaterials: {fileID: 0}
+  dissolveRate: 0.0125
+  refreshRate: 0.025

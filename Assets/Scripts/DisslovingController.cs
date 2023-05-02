@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class DisslovingController : MonoBehaviour
 {
-    public SkinnedMeshRenderer skinnedMesh;
+    public MeshRenderer skinnedMesh;
 
-    private Material[] skinnedMaterials;
+    [SerializeField]
+    private Material skinnedMaterials;
 
     public float dissolveRate = 0.0125f; 
     
@@ -17,9 +18,10 @@ public class DisslovingController : MonoBehaviour
 
     void Start()
     {
+        skinnedMesh = GetComponent<MeshRenderer>();
         if (skinnedMesh != null)
         
-            skinnedMaterials = skinnedMesh.materials;
+            skinnedMaterials = skinnedMesh.material;
     }
 
     // Update is called once per frame
@@ -33,21 +35,20 @@ public class DisslovingController : MonoBehaviour
 
     IEnumerator DissolveCo()
     {
-        if (skinnedMaterials.Length > 0)
-        {
+        
             float counter = 0;
 
-            while (skinnedMaterials[0].GetFloat("_DissloveAmount") < 1)
+            while (skinnedMaterials.GetFloat("_DissloveAmount") < 1)
             {
+                
                 counter += dissolveRate;
-                for (int i = 0; i < skinnedMaterials.Length; i++)
-                {
-                    skinnedMaterials[i].SetFloat("_DissolveAmount", counter);
-                }
+                skinnedMaterials.SetFloat("_DissloveAmount", counter);
+                Debug.Log(skinnedMaterials.GetFloat("_DissloveAmount"));
+
                 yield return new WaitForSeconds(refreshRate);
 
             }
-        }
+        
     }
 
 
