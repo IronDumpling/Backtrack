@@ -26,8 +26,7 @@ public class PlayerController : MonoSingleton<PlayerController>
     //玩家动画控制器
     private PlayerAnimatorController _animController;
 
-    // TODO: Remove this later
-    [SerializeField] private AudioSource _audioSource;
+    
     
     protected override void Init()
     {
@@ -35,9 +34,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         _motor = GetComponent<PlayerMotor>();
         _animController = GetComponent<PlayerAnimatorController>();
 
-        // TODO: Remove this later
-        _audioSource = GameObject.Find("AudioManager")?.GetComponent<AudioSource>();
-        if(_audioSource != null) _audioSource.Pause();
+        
     }
 
     private void OnEnable()
@@ -77,8 +74,8 @@ public class PlayerController : MonoSingleton<PlayerController>
     {
         //TODO: 先写成按左键开始游戏，后面设计成完成开始动画开始游戏（玩家移动）
         _motor.MotorStart();
-        // TODO: Remove this later
-        if (_audioSource != null) _audioSource.Play();
+        
+        AudioManager.Instance.Play("Level0BGM");
     }
 
     private void InputXMovementOnperformed(InputAction.CallbackContext obj)
@@ -97,6 +94,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         if (_animController != null)
         {
             _animController.SetFloat(_animController.animParam_Speed ,_motor.CurrentSpeed);
+            _animController.SetFloat(_animController.animParam_ZSpeed, _motor.CurrentZSpeed);
             _animController.SetFloat(_animController.animParam_XSpeed,_motor.CurrentXSpeed);
         } 
     }
