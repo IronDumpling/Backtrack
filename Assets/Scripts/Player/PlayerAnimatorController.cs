@@ -10,6 +10,7 @@ public class PlayerAnimatorController : MonoBehaviour
 
     [Header("动画Param，与Animator中参数配套")]
     [SerializeField] public string animParam_Speed = "speed";
+    [SerializeField] public string animParam_ZSpeed = "zSpeed";
     [SerializeField] public string animParam_XSpeed = "xSpeed";
     [SerializeField] public string animParam_Eat = "triggerEat";
 

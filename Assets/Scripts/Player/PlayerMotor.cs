@@ -29,17 +29,23 @@ public class PlayerMotor : MonoBehaviour
         get => _rigidBody.velocity.magnitude;
     }
 
+    private float _currentZSpeed;
+    public float CurrentZSpeed
+    {
+        get => transform.InverseTransformDirection(_rigidBody.velocity).z;
+    }
+
     private float _currentXSpeed;
 
     public float CurrentXSpeed
     {
-        get => _rigidBody.velocity.x;
+        get => transform.InverseTransformDirection(_rigidBody.velocity).x;
     }
 
     private float _currentYSpeed;
     public float CurrentYSpeed
     {
-        get => _rigidBody.velocity.y;
+        get => transform.InverseTransformDirection(_rigidBody.velocity).y;
     }
 
 

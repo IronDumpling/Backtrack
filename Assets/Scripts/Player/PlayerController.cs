@@ -94,6 +94,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         if (_animController != null)
         {
             _animController.SetFloat(_animController.animParam_Speed ,_motor.CurrentSpeed);
+            _animController.SetFloat(_animController.animParam_ZSpeed, _motor.CurrentZSpeed);
             _animController.SetFloat(_animController.animParam_XSpeed,_motor.CurrentXSpeed);
         } 
     }
