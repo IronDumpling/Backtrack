@@ -33,7 +33,13 @@ namespace Level3_Track {
 
             _playerDollyCart.m_Speed = curTrack._SpeedOffset + curTrack._SpeedAmplitude * curTrack._SpeedCurve.Evaluate(t);
         }
-
+        /// <summary>
+        /// 1. Enable Virtual Camera on Track<br/>
+        /// 2. TODO: lerp player position to the starting point of next Track Starting Point<br/>
+        /// 3. Use TrackInfo to Set Player's DollyCart<br/>
+        /// 4. Switch back to TrackNormal Update<br/>
+        /// 5. Use TrackInfo to Set PlayerMotor Input Mapping
+        /// </summary>
         private void TrackSwitch() {
             if(_CurrentTrackIdx >= _TrackList.Length) {
                 Debug.Log("All Track Played successfully");
@@ -44,14 +50,18 @@ namespace Level3_Track {
             Track curTrack = _TrackList[_CurrentTrackIdx];
 
             // TODO: use to lerp to TrackStarting point
+            // _playerDollyCart.m_Path = null;
             // move _playerTransform.position -> curTrack._PlayerTrack.m_Waypoints[0].position;
 
 
             curTrack._TrackVirtualCamera.m_Priority = (_CurrentTrackIdx+1);
+            
             _playerDollyCart.m_Path = curTrack._PlayerTrack;
             _playerDollyCart.m_Position = 0;
-            /* Update TrackNormal */
+
+
             A_TrackUpdate = TrackNormal;
+            PlayerController_L3.Instance.SwitchMoveMapping(curTrack._InputMapping);
         }
 
 
