@@ -2,19 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Common;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class AudioManager : MonoSingleton<AudioManager>
+public class AudioManager : NoDestroyMonoSingleton<AudioManager>
 {
     public List<AudioType> audioList;
 
     protected override void Init()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
-
-    private void Start()
     {
         foreach (AudioType type in audioList)
         {
@@ -29,10 +25,10 @@ public class AudioManager : MonoSingleton<AudioManager>
             {
                 type.source.outputAudioMixerGroup = type.group;
             }
-
-        }
         
+        }
     }
+
 
     public void Play(string audioName)
     {
@@ -81,8 +77,55 @@ public class AudioManager : MonoSingleton<AudioManager>
         }
 
     }
-    
-    
+
+    public string GetMusicIsPlaying()
+    {
+        foreach (var type in audioList)
+        {
+            if (type.source.isPlaying)
+            {
+                return type.name;
+            }
+        }
+
+        return null;
+    }
+    public float GetMusicTime(string aName)
+    {
+        foreach (var type in audioList)
+        {
+            if (type.name == aName)
+            {
+                return type.source.time;
+            }
+        }
+
+        return 0f;
+    }
+
+    public void SetMusicTime(string mname, float mtime)
+    {
+        foreach (var type in audioList)
+        {
+            if (type.name == mname)
+            {
+                type.source.time = mtime;
+            }
+        }
+    }
+
+    public void PlayMusicAtStart()
+    {
+        if (SavePointManager.Instance.isSave)
+        {
+           
+        }
+        else
+        {
+            Play(PlayerController.Instance.levelBGM);
+        }
+    }
+
 }
 [System.Serializable]
 public class AudioType
