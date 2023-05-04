@@ -99,6 +99,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         _motor.MotorStop();
         _motor.GetComponent<Collider>().enabled = false;
         _motor.enabled = false;
+        _animController.SetPlayerDissolve();
     }
     private void InputXMovementOnperformed(InputAction.CallbackContext obj)
     {

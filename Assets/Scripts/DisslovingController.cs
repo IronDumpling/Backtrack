@@ -27,10 +27,15 @@ public class DisslovingController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartCoroutine(DissolveCo());
-        }
+        // if (Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     StartCoroutine(DissolveCo());
+        // }
+    }
+
+    public void DissolveGameObject()
+    {
+        StartCoroutine(DissolveCo());
     }
 
     IEnumerator DissolveCo()
