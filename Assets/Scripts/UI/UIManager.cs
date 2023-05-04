@@ -21,7 +21,7 @@ public class UIManager : MonoSingleton<UIManager>
     // UI Pause
     public void PausePreform(InputAction.CallbackContext obj)
     {
-        if(_pauseUI.activeSelf) _pauseUI?.SetActive(false);
+        if(_pauseUI && _pauseUI.activeSelf) _pauseUI?.SetActive(false);
         else _pauseUI?.SetActive(true);
     }
 
