@@ -9,6 +9,7 @@ public class AsyncLevelLoader : MonoBehaviour
 { 
     [SerializeField] private Animator animator;
     private string _targetSceneName;
+    public event Action onAfterFinishLoad;
 
     private void Awake()
     {
@@ -36,8 +37,10 @@ public class AsyncLevelLoader : MonoBehaviour
 
         
         //场景加载完毕
+        onAfterFinishLoad?.Invoke();
+        onAfterFinishLoad = null;
         FadeOut();
-        Invoke(nameof(Destroy), 10f);
+        Invoke(nameof(Destroy), 3f);
     }
 
     void FadeIn()

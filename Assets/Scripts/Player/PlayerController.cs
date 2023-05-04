@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
@@ -8,9 +9,9 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoSingleton<PlayerController>
 {
 
-    
-    
-    
+    public string levelBGM = "Level0BGM";
+    public bool isFirstLevelScene = true;
+    [SerializeField] private bool isAutoStart = false;
     
     
     
@@ -33,8 +34,12 @@ public class PlayerController : MonoSingleton<PlayerController>
         _playerInput = new PlayerInput();
         _motor = GetComponent<PlayerMotor>();
         _animController = GetComponent<PlayerAnimatorController>();
-
         
+    }
+
+    private void Start()
+    {
+        if(isAutoStart) GameStart();
     }
 
     private void OnEnable()
@@ -66,18 +71,31 @@ public class PlayerController : MonoSingleton<PlayerController>
    
     private void JumpOnperformed(InputAction.CallbackContext obj)
     {
-        Debug.Log("jump");
-        _motor.JumpVertical();
+        Debug.Log("PlayerDead");
+        // _motor.JumpVertical();
+        
+        EventManager.Instance.PlayerDeadEventTrigger();
     }
 
     private void FireOnperformed(InputAction.CallbackContext obj)
     {
         //TODO: 先写成按左键开始游戏，后面设计成完成开始动画开始游戏（玩家移动）
-        _motor.MotorStart();
-        
-        AudioManager.Instance.Play("Level0BGM");
+        GameStart();
     }
 
+    //TODO: game start
+    public void GameStart()
+    {
+        _motor.MotorStart();
+        if(isFirstLevelScene && !SavePointManager.Instance.isSave) AudioManager.Instance.Play(levelBGM);
+
+    }
+    public void GameEnd()
+    {
+        _motor.MotorStop();
+        _motor.GetComponent<Collider>().enabled = false;
+        _motor.enabled = false;
+    }
     private void InputXMovementOnperformed(InputAction.CallbackContext obj)
     {
         //设置Animator
