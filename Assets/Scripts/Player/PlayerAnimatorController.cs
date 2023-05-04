@@ -10,22 +10,22 @@ public class PlayerAnimatorController : MonoBehaviour
 
     [Header("动画Param，与Animator中参数配套")]
     [SerializeField] public string animParam_Speed = "speed";
-
+    [SerializeField] public string animParam_ZSpeed = "zSpeed";
     [SerializeField] public string animParam_XSpeed = "xSpeed";
-
     [SerializeField] public string animParam_Eat = "triggerEat";
-    private bool canPlayAnim;
+
+    private bool canPlayAnim = false;
+
     void Awake()
     {
         animator = GetComponentInChildren<Animator>();
-        canPlayAnim = true;
+        if (animator) canPlayAnim = true;
     }
 
     public void SetFloat(String name, float f)
     {
         if (canPlayAnim)
         {
-            
             animator.SetFloat(name,f);
         }
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
@@ -8,9 +9,9 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoSingleton<PlayerController>
 {
 
-    
-    
-    
+    public string levelBGM = "Level0BGM";
+    public bool isFirstLevelScene = true;
+    [SerializeField] private bool isAutoStart = false;
     
     
     
@@ -26,18 +27,19 @@ public class PlayerController : MonoSingleton<PlayerController>
     //玩家动画控制器
     private PlayerAnimatorController _animController;
 
-    // TODO: Remove this later
-    [SerializeField] private AudioSource _audioSource;
+    
     
     protected override void Init()
     {
         _playerInput = new PlayerInput();
         _motor = GetComponent<PlayerMotor>();
         _animController = GetComponent<PlayerAnimatorController>();
+        
+    }
 
-        // TODO: Remove this later
-        _audioSource = GameObject.Find("AudioManager")?.GetComponent<AudioSource>();
-        if(_audioSource != null) _audioSource.Pause();
+    private void Start()
+    {
+        if(isAutoStart) GameStart();
     }
 
     private void OnEnable()
@@ -48,6 +50,8 @@ public class PlayerController : MonoSingleton<PlayerController>
         //玩家点击开火按钮
         _playerInput.Player.Fire.performed += FireOnperformed;
         _playerInput.Player.Jump.performed += JumpOnperformed;
+        //Pause
+        _playerInput.UI.Pause.performed += UIManager.Instance.PausePreform;
 
         _playerInput.Enable();
 
@@ -55,6 +59,7 @@ public class PlayerController : MonoSingleton<PlayerController>
 
         ScoreManager.Instance.onAfterScoreAnObj += EatScoreEvent;
     }
+
     private void OnDisable()
     {
         //玩家移动时
@@ -69,18 +74,32 @@ public class PlayerController : MonoSingleton<PlayerController>
    
     private void JumpOnperformed(InputAction.CallbackContext obj)
     {
-        Debug.Log("jump");
-        _motor.JumpVertical();
+        Debug.Log("PlayerDead");
+        // _motor.JumpVertical();
+        
+        EventManager.Instance.PlayerDeadEventTrigger();
     }
 
     private void FireOnperformed(InputAction.CallbackContext obj)
     {
         //TODO: 先写成按左键开始游戏，后面设计成完成开始动画开始游戏（玩家移动）
-        _motor.MotorStart();
-        // TODO: Remove this later
-        if (_audioSource != null) _audioSource.Play();
+        GameStart();
     }
 
+    //TODO: game start
+    public void GameStart()
+    {
+        _motor.MotorStart();
+        if(isFirstLevelScene && !SavePointManager.Instance.isSave) AudioManager.Instance.Play(levelBGM);
+
+    }
+
+    public void GameEnd()
+    {
+        _motor.MotorStop();
+        _motor.GetComponent<Collider>().enabled = false;
+        _motor.enabled = false;
+    }
     private void InputXMovementOnperformed(InputAction.CallbackContext obj)
     {
         //设置Animator
@@ -97,6 +116,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         if (_animController != null)
         {
             _animController.SetFloat(_animController.animParam_Speed ,_motor.CurrentSpeed);
+            _animController.SetFloat(_animController.animParam_ZSpeed, _motor.CurrentZSpeed);
             _animController.SetFloat(_animController.animParam_XSpeed,_motor.CurrentXSpeed);
         } 
     }

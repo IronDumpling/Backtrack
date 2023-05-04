@@ -28,6 +28,7 @@ public class ScoreManager : MonoSingleton<ScoreManager>
    public int CurrentScoreInLevel
    {
       get => currentScore;
+      set => currentScore = value;
    }
 
    public int TotalScoreInLevel
