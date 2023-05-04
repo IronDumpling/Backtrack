@@ -50,6 +50,8 @@ public class PlayerController : MonoSingleton<PlayerController>
         //玩家点击开火按钮
         _playerInput.Player.Fire.performed += FireOnperformed;
         _playerInput.Player.Jump.performed += JumpOnperformed;
+        //Pause
+        _playerInput.UI.Pause.performed += UIManager.Instance.PausePreform;
 
         _playerInput.Enable();
 
@@ -57,6 +59,7 @@ public class PlayerController : MonoSingleton<PlayerController>
 
         ScoreManager.Instance.onAfterScoreAnObj += EatScoreEvent;
     }
+
     private void OnDisable()
     {
         //玩家移动时
@@ -90,6 +93,7 @@ public class PlayerController : MonoSingleton<PlayerController>
         if(isFirstLevelScene && !SavePointManager.Instance.isSave) AudioManager.Instance.Play(levelBGM);
 
     }
+
     public void GameEnd()
     {
         _motor.MotorStop();
