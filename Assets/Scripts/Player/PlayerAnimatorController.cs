@@ -38,6 +38,16 @@ public class PlayerAnimatorController : MonoBehaviour
         }
     }
 
+    public void SetPlayerDissolve()
+    {
+        Transform[] myTransforms = GetComponentsInChildren<Transform>();
+        foreach (var child in myTransforms)
+        {
+            DisslovingController dc = child.GetComponent<DisslovingController>();
+            if(dc != null) dc.DissolveGameObject();
+        }
+    }
+
 
 }
 

@@ -29,7 +29,6 @@ public class AudioManager : NoDestroyMonoSingleton<AudioManager>
         }
     }
 
-
     public void Play(string audioName)
     {
         foreach (var type in audioList)
@@ -40,7 +39,8 @@ public class AudioManager : NoDestroyMonoSingleton<AudioManager>
                 return;
             }
         }
-        Debug.LogWarning("没有找到" + name + " 音频");
+        
+        Debug.LogWarning("没有找到" + audioName + " 音频");
     }
     
     public void Pause(string audioName)
@@ -68,12 +68,32 @@ public class AudioManager : NoDestroyMonoSingleton<AudioManager>
         }
         Debug.LogWarning("没有找到" + name + " 音频");
     }
+
+    public void PlayAll()
+    {
+        foreach (var type in audioList)
+        {
+            type.source.Play();
+        }
+    }
+
+    public void PauseAll()
+    {
+        foreach (var type in audioList)
+        {
+            type.source.Pause();
+        }
+    }
     
     public void StopAll()
     {
         foreach (var type in audioList)
         {
+           
             type.source.Stop();
+            type.source.time = 0;
+         
+
         }
 
     }
