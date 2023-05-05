@@ -14,14 +14,14 @@ public class UIManager : MonoSingleton<UIManager>
 
     protected override void Init()
     {
-        _pauseUI = GameObject.Find("PauseUI");
-        _pauseUI?.SetActive(false);
+        _pauseUI = transform.Find("PauseUI")?.gameObject;
+        if(_pauseUI && _pauseUI.activeSelf) _pauseUI?.SetActive(false);
     }
 
     // UI Pause
     public void PausePreform(InputAction.CallbackContext obj)
     {
-        if(_pauseUI.activeSelf) _pauseUI?.SetActive(false);
+        if(_pauseUI && _pauseUI.activeSelf) _pauseUI?.SetActive(false);
         else _pauseUI?.SetActive(true);
     }
 

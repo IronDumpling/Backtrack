@@ -40,7 +40,7 @@ public class AsyncLevelLoader : MonoBehaviour
         onAfterFinishLoad?.Invoke();
         onAfterFinishLoad = null;
         FadeOut();
-        Invoke(nameof(Destroy), 3f);
+        Invoke(nameof(Destroy), 1f);
     }
 
     void FadeIn()
