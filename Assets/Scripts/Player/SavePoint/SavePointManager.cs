@@ -35,12 +35,17 @@ public class SavePointManager : Singleton<SavePointManager>
     public void LoadSavePoint()
     {
         
-        //如果没有则不load
         if (!isSave)
         {
             Debug.Log("没有存档");
+            GameObject a2 = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/MapObject/AsyncLevelObject"));
+            a2.SetActive(true);
+            a2.GetComponent<AsyncLevelLoader>().StartLoadAsync(SceneManager.GetActiveScene().name);
+
             return;
         }
+        
+        
         GameObject asyncLoadObject = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/MapObject/AsyncLevelObject"));
         asyncLoadObject.SetActive(true);
         asyncLoadObject.GetComponent<AsyncLevelLoader>().StartLoadAsync(saveSceneName);
@@ -59,5 +64,6 @@ public class SavePointManager : Singleton<SavePointManager>
         PlayerController.Instance.GetComponent<PlayerMotor>().ZSpeed = speed;
         PlayerController.Instance.GetComponent<PlayerMotor>().XSpeed = xspeed;
         
+
     }
 }

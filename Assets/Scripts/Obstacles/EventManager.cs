@@ -24,6 +24,18 @@ public class EventManager : Singleton<EventManager>
       
    }
 
+   public void PlayerRestartEventTrigger()
+   {
+      Debug.Log("玩家重新开始游戏");
+      AudioManager.Instance.StopAll();
+      DOTween.Clear();
+      PlayerController.Instance.GameEnd();
+
+      SavePointManager.Instance.isSave = false;
+      SavePointManager.Instance.saveBGMTime = 0f;
+      SavePointManager.Instance.LoadSavePoint();
+   }
+
    public void PlayerEnterNewSceneEventTrigger(string switchSceneName)
    {
       Debug.Log("进入新场景");
