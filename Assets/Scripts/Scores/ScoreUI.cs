@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class ScoreUI : MonoBehaviour
 {
@@ -13,5 +15,10 @@ public class ScoreUI : MonoBehaviour
     void UpdateScore()
     {
         gameObject.GetComponent<TMPro.TMP_Text>().text = $"Score {ScoreManager.Instance.CurrentScoreInLevel}";
+    }
+
+    private void OnDisable()
+    {
+        if(ScoreManager.Instance != null) ScoreManager.Instance.onAfterScoreAnObj -= UpdateScore;
     }
 }
