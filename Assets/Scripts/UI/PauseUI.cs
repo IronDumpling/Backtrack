@@ -11,14 +11,14 @@ public class PauseUI : MonoBehaviour
     {
         Time.timeScale = 0f;
         // TODO: Audio Pause
-        //AudioManager.Instance.PauseAll();
+        AudioManager.Instance.PauseAll();
     }
 
     public void OnDisable()
     {
         Time.timeScale = 1f;
         // TODO: Audio Resume
-        //AudioManager.Instance.PlayAll();
+        AudioManager.Instance.PlayAll();
     }
 
     // UI Pause
