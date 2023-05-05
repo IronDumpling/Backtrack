@@ -48,7 +48,6 @@ public class DisslovingController : MonoBehaviour
                 
                 counter += dissolveRate;
                 skinnedMaterials.SetFloat("_DissloveAmount", counter);
-                Debug.Log(skinnedMaterials.GetFloat("_DissloveAmount"));
 
                 yield return new WaitForSeconds(refreshRate);
 

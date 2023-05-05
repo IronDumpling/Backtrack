@@ -29,9 +29,8 @@ public class PauseUI : MonoBehaviour
 
     public void Restart()
     {
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
-        AudioManager.Instance.StopAll();
+        Time.timeScale = 1f;
+        EventManager.Instance.PlayerRestartEventTrigger();
     }
 
     public void Select()

@@ -90,12 +90,16 @@ public class PlayerController : MonoSingleton<PlayerController>
     public void GameStart()
     {
         _motor.MotorStart();
-        if(isFirstLevelScene && !SavePointManager.Instance.isSave) AudioManager.Instance.Play(levelBGM);
+        if (isFirstLevelScene && !SavePointManager.Instance.isSave)
+        {
+            AudioManager.Instance.Play(levelBGM);
+        }
 
     }
 
     public void GameEnd()
     {
+        _playerInput.UI.Pause.performed -= UIManager.Instance.PausePreform;
         _motor.MotorStop();
         _motor.GetComponent<Collider>().enabled = false;
         _motor.enabled = false;

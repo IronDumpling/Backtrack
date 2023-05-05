@@ -39,7 +39,8 @@ public class AudioManager : NoDestroyMonoSingleton<AudioManager>
                 return;
             }
         }
-        Debug.LogWarning("没有找到" + name + " 音频");
+        
+        Debug.LogWarning("没有找到" + audioName + " 音频");
     }
     
     public void Pause(string audioName)
@@ -88,7 +89,11 @@ public class AudioManager : NoDestroyMonoSingleton<AudioManager>
     {
         foreach (var type in audioList)
         {
+           
             type.source.Stop();
+            type.source.time = 0;
+         
+
         }
 
     }
