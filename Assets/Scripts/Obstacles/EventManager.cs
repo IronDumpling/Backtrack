@@ -51,6 +51,9 @@ public class EventManager : Singleton<EventManager>
    public void PlayerVictoryEventTrigger()
    {
       //savepoint manager clean all
+      MonoPlayerData.Instance.Level0Score = ScoreManager.Instance.CurrentScoreInLevel;
+      ScoreManager.Instance.CurrentScoreInLevel = 0;
+      AudioManager.Instance.StopAll();
    }
    //触发音效
    //给音效一个混响效果
