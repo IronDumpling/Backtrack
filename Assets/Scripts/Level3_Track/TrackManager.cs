@@ -15,6 +15,9 @@ namespace Level3_Track {
         public Track[] _TrackList;
         public int _CurrentTrackIdx = 0;
 
+        private CinemachineBrain _cmbrain;
+
+        private PlayerController_L3 _playerController;
         private CinemachineDollyCart _playerDollyCart;
         private Transform _playerTransform;
 
@@ -33,6 +36,7 @@ namespace Level3_Track {
 
             _playerDollyCart.m_Speed = curTrack._SpeedOffset + curTrack._SpeedAmplitude * curTrack._SpeedCurve.Evaluate(t);
         }
+
         /// <summary>
         /// 1. Enable Virtual Camera on Track<br/>
         /// 2. TODO: lerp player position to the starting point of next Track Starting Point<br/>
@@ -52,16 +56,25 @@ namespace Level3_Track {
             // TODO: use to lerp to TrackStarting point
             // _playerDollyCart.m_Path = null;
             // move _playerTransform.position -> curTrack._PlayerTrack.m_Waypoints[0].position;
-
-
             curTrack._TrackVirtualCamera.m_Priority = (_CurrentTrackIdx+1);
-            
+
             _playerDollyCart.m_Path = curTrack._PlayerTrack;
             _playerDollyCart.m_Position = 0;
 
 
+            _playerController.SwitchMoveMapping(curTrack._InputMapping);
+
+            StartCoroutine(CamBlendWait());
+        }
+
+        private IEnumerator CamBlendWait() {
+            
+            _playerController.enabled = false;
+            while(_cmbrain.IsBlending)
+                yield return null;
+
+            _playerController.enabled = true;
             A_TrackUpdate = TrackNormal;
-            PlayerController_L3.Instance.SwitchMoveMapping(curTrack._InputMapping);
         }
 
 
@@ -75,19 +88,28 @@ namespace Level3_Track {
         }
 
         private void Start() {
-            _playerDollyCart = PlayerController_L3.Instance.GetComponent<CinemachineDollyCart>();
-            _playerTransform = PlayerController_L3.Instance.GetComponent<Transform>();
+            _playerController = FindObjectOfType<PlayerController_L3>();
+            if (_playerController == null) {
+                DebugLogger.Error(this.name, "_playerController not Found!");
+            }
+
+            _playerDollyCart = _playerController.GetComponent<CinemachineDollyCart>();
             if (_playerDollyCart == null) {
                 DebugLogger.Error(this.name, "_playerDollyCart not Found!");
             }
-            if (_playerTransform == null) {
-                DebugLogger.Error(this.name, "_playerTransform not Found!");
+
+            _cmbrain = FindObjectOfType<CinemachineBrain>();
+            if (_cmbrain == null) {
+                Debug.LogError("CinemachineBrain not found in scene");
             }
 
             A_TrackUpdate = TrackSwitch;
         }
 
+        public CinemachineBrain brain;
+
         private void Update() {
+            
             A_TrackUpdate?.Invoke();
         }
     }
