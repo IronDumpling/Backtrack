@@ -12,6 +12,10 @@ public class AudioManager : NoDestroyMonoSingleton<AudioManager>
 
     protected override void Init()
     {
+        if (audioList == null)
+        {
+            audioList = new List<AudioType>();  
+        }
         foreach (AudioType type in audioList)
         {
             type.source = gameObject.AddComponent<AudioSource>();

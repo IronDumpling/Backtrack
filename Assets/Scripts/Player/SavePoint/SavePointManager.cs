@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Common;
@@ -17,6 +18,8 @@ public class SavePointManager : Singleton<SavePointManager>
     public float speed;
     public float xspeed;
 
+    
+    
     public void SetSavePoint(string sceneName, Vector3 pointVector,Vector3 rotation,  string bgmName, float bgmTime,int scores,
         float speed, float xspeed)
     {
