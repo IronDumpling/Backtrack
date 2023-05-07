@@ -4,6 +4,8 @@ using UnityEngine;
 using Cinemachine;
 using Common;
 using System;
+using DG.Tweening;
+
 namespace Level3_Track {
     /// <summary>
     /// By using Current Track's setted Curve and Speed limitation, TrackManager controls
@@ -19,7 +21,6 @@ namespace Level3_Track {
 
         private PlayerController_L3 _playerController;
         private CinemachineDollyCart _playerDollyCart;
-        private Transform _playerTransform;
 
         private Action A_TrackUpdate;
 
@@ -53,16 +54,29 @@ namespace Level3_Track {
 
             Track curTrack = _TrackList[_CurrentTrackIdx];
 
-            // TODO: use to lerp to TrackStarting point
-            // _playerDollyCart.m_Path = null;
-            // move _playerTransform.position -> curTrack._PlayerTrack.m_Waypoints[0].position;
             curTrack._TrackVirtualCamera.m_Priority = (_CurrentTrackIdx+1);
 
+            // TODO: use to lerp to Transform Player Position to TrackStarting point
+            //Vector3 fromPos = _playerController.transform.position;
+            //Vector3 toPos = curTrack._PlayerTrack.m_Waypoints[0].position;
+            //_playerDollyCart.m_Path = null;
+            //DOTween.To(
+            //    () => fromPos,
+            //    x => _playerController.transform.position = fromPos = x,
+            //    toPos,
+            //    1f
+            //).SetEase(DOTween.defaultEaseType)
+            //.onComplete += () => {
+            //    _playerDollyCart.m_Path = curTrack._PlayerTrack;
+            //    _playerDollyCart.m_Position = 0;
+            //};
             _playerDollyCart.m_Path = curTrack._PlayerTrack;
             _playerDollyCart.m_Position = 0;
 
 
+
             _playerController.SwitchMoveMapping(curTrack._InputMapping);
+            A_TrackUpdate = TrackNormal;
 
             StartCoroutine(CamBlendWait());
         }
@@ -70,11 +84,12 @@ namespace Level3_Track {
         private IEnumerator CamBlendWait() {
             
             _playerController.enabled = false;
-            while(_cmbrain.IsBlending)
+            yield return new WaitForSeconds(0.1f);
+            while (_cmbrain.IsBlending) {
                 yield return null;
+            }
 
             _playerController.enabled = true;
-            A_TrackUpdate = TrackNormal;
         }
 
 
@@ -106,10 +121,8 @@ namespace Level3_Track {
             A_TrackUpdate = TrackSwitch;
         }
 
-        public CinemachineBrain brain;
 
         private void Update() {
-            
             A_TrackUpdate?.Invoke();
         }
     }

@@ -34,16 +34,27 @@ public class PlayerController_L3: MonoSingleton<PlayerController_L3>
     #endregion
 
     private void OnEnable() {
-        _inputMove = _playerInput.Player.Move;
-        _playerInput.Enable();
-
-        _playerMotor = GetComponent<PlayerMotor_L3>();
+        GameStart();
     }
     private void OnDisable() {
-        _playerInput.Disable();
+        GameEnd();
     }
+
+    public void GameStart() {
+        _inputMove.Enable();
+    }
+
+    public void GameEnd() {
+        _inputMove.Disable();
+        _playerMotor.MotorReset();
+    }
+
     protected override void Init() {
         _playerInput = new PlayerInput();
+        _playerInput.Enable();
+        _inputMove = _playerInput.Player.Move;
+
+        _playerMotor = GetComponent<PlayerMotor_L3>();
     }
 
     private void Update() {
