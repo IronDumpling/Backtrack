@@ -27,19 +27,15 @@ public class PlayerMotor_L3 : MonoBehaviour
 
         if (ScreenPos.x > cam.pixelWidth - EdgeBoundaryOffsetXPixel) {
             input.x = Mathf.Clamp(input.x, Mathf.NegativeInfinity, 0f);
-            Debug.Log("Right");
         }
         else if (ScreenPos.x <= 0f) {
-            Debug.Log("Left");
             input.x = Mathf.Clamp(input.x, 0f, Mathf.Infinity);
         }
 
         if (ScreenPos.y > cam.pixelHeight - EdgeBoundaryOffsetYPixel) {
-            Debug.Log("Up");
             input.y = Mathf.Clamp(input.y, Mathf.NegativeInfinity, 0f);
         }
         else if (ScreenPos.y <= 0f) {
-            Debug.Log("Down");
             input.y = Mathf.Clamp(input.y, 0f, Mathf.Infinity);
         }
     }
@@ -105,7 +101,7 @@ public class PlayerMotor_L3 : MonoBehaviour
 
     public void MotorReset() {
         _rigidBody.velocity = new Vector3(0, 0, 0);
-        this.transform.position = new Vector3(0, 0, 0);
+        _rigidBody.transform.localPosition = new Vector3(0, 0, 0);
     }
 
     private void Awake()

@@ -53,7 +53,6 @@ namespace Level3_Track {
             }
 
             Track curTrack = _TrackList[_CurrentTrackIdx];
-
             curTrack._TrackVirtualCamera.m_Priority = (_CurrentTrackIdx+1);
 
             // TODO: use to lerp to Transform Player Position to TrackStarting point
@@ -70,23 +69,21 @@ namespace Level3_Track {
             //    _playerDollyCart.m_Path = curTrack._PlayerTrack;
             //    _playerDollyCart.m_Position = 0;
             //};
-            _playerDollyCart.m_Path = curTrack._PlayerTrack;
             _playerDollyCart.m_Position = 0;
+            _playerDollyCart.m_Path = curTrack._PlayerTrack;
+            
 
             A_TrackUpdate = TrackNormal;
             StartCoroutine(CamBlendYieldPlyControl(curTrack));
         }
 
         private IEnumerator CamBlendYieldPlyControl(Track curTrack) {
-
-            _playerController.SwitchMoveMapping(EInputMapping.DISABLE);
-            _playerController.enabled = false;
-
+            _playerController.GameEnd();
             do {
                 yield return null;
             } while (_cmbrain.IsBlending);
 
-            _playerController.enabled = true;
+            _playerController.GameStart();
             _playerController.SwitchMoveMapping(curTrack._InputMapping);
         }
 

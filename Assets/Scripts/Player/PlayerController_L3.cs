@@ -40,11 +40,11 @@ public class PlayerController_L3: MonoSingleton<PlayerController_L3>
     }
 
     public void GameStart() {
-        _inputMove.Enable();
+        
     }
 
     public void GameEnd() {
-        _inputMove.Disable();
+        A_planeMoveUpdate = null;
         _playerMotor.MotorReset();
     }
 
