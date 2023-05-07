@@ -73,23 +73,21 @@ namespace Level3_Track {
             _playerDollyCart.m_Path = curTrack._PlayerTrack;
             _playerDollyCart.m_Position = 0;
 
-
-
-            _playerController.SwitchMoveMapping(curTrack._InputMapping);
             A_TrackUpdate = TrackNormal;
-
-            StartCoroutine(CamBlendWait());
+            StartCoroutine(CamBlendYieldPlyControl(curTrack));
         }
 
-        private IEnumerator CamBlendWait() {
-            
+        private IEnumerator CamBlendYieldPlyControl(Track curTrack) {
+
+            _playerController.SwitchMoveMapping(EInputMapping.DISABLE);
             _playerController.enabled = false;
-            yield return new WaitForSeconds(0.1f);
-            while (_cmbrain.IsBlending) {
+
+            do {
                 yield return null;
-            }
+            } while (_cmbrain.IsBlending);
 
             _playerController.enabled = true;
+            _playerController.SwitchMoveMapping(curTrack._InputMapping);
         }
 
 
