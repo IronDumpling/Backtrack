@@ -14,12 +14,11 @@ public class PlayerController_L3: MonoSingleton<PlayerController_L3>
 
     #region Controll Motor Public Funcs
     public void SwitchMoveMapping(EInputMapping changeToMapping) {
-        _playerMotor.MotorReset();
 
         switch (changeToMapping) {
             case EInputMapping.DISABLE:
                 A_planeMoveUpdate = null;
-                break;
+                return;
             case EInputMapping.TOPDOWN:
                 A_planeMoveUpdate = _playerMotor.TopDownMove;
                 break;
