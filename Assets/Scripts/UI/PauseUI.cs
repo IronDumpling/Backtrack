@@ -7,15 +7,30 @@ using DG.Tweening;
 
 public class PauseUI : MonoBehaviour
 {
+    private Transform _pausePanel;
+    private GameObject _pauseButton;
+    private GameObject _closeButton;
+
+    private void Awake()
+    {
+        _pausePanel = transform.parent;
+        _pauseButton = _pausePanel.Find("PauseButton")?.gameObject;
+        _closeButton = _pausePanel.Find("CloseButton")?.gameObject;
+    }
+
     public void OnEnable()
     {
         Time.timeScale = 0f;
+        _pauseButton.SetActive(false);
+        _closeButton.SetActive(true);
         AudioManager.Instance.PauseAll();
     }
 
     public void OnDisable()
     {
         Time.timeScale = 1f;
+        _pauseButton.SetActive(true);
+        _closeButton.SetActive(false);
         AudioManager.Instance.PlayAll();
     }
 
