@@ -10,19 +10,19 @@ public class UIManager : MonoSingleton<UIManager>
 {
     private bool isVideo = true;
 
-    private GameObject _pauseUI;
+    private GameObject _pausePanel;
 
     protected override void Init()
     {
-        _pauseUI = transform.Find("PauseUI")?.gameObject;
-        if(_pauseUI && _pauseUI.activeSelf) _pauseUI?.SetActive(false);
+        _pausePanel = transform.Find("PauseUI")?.Find("PausePanel")?.gameObject;
+        _pausePanel?.SetActive(false);
     }
 
     // UI Pause
     public void PausePreform(InputAction.CallbackContext obj)
     {
-        if(_pauseUI && _pauseUI.activeSelf) _pauseUI?.SetActive(false);
-        else _pauseUI?.SetActive(true);
+        if ((bool)(_pausePanel?.activeSelf)) _pausePanel?.SetActive(false);
+        else _pausePanel?.SetActive(true);
     }
 
     // UI Main

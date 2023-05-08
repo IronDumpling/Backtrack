@@ -4,6 +4,8 @@ using UnityEngine;
 using Cinemachine;
 using Common;
 using System;
+using DG.Tweening;
+
 namespace Level3_Track {
     /// <summary>
     /// By using Current Track's setted Curve and Speed limitation, TrackManager controls
@@ -15,8 +17,10 @@ namespace Level3_Track {
         public Track[] _TrackList;
         public int _CurrentTrackIdx = 0;
 
+        private CinemachineBrain _cmbrain;
+
+        private PlayerController_L3 _playerController;
         private CinemachineDollyCart _playerDollyCart;
-        private Transform _playerTransform;
 
         private Action A_TrackUpdate;
 
@@ -33,6 +37,7 @@ namespace Level3_Track {
 
             _playerDollyCart.m_Speed = curTrack._SpeedOffset + curTrack._SpeedAmplitude * curTrack._SpeedCurve.Evaluate(t);
         }
+
         /// <summary>
         /// 1. Enable Virtual Camera on Track<br/>
         /// 2. TODO: lerp player position to the starting point of next Track Starting Point<br/>
@@ -48,20 +53,38 @@ namespace Level3_Track {
             }
 
             Track curTrack = _TrackList[_CurrentTrackIdx];
-
-            // TODO: use to lerp to TrackStarting point
-            // _playerDollyCart.m_Path = null;
-            // move _playerTransform.position -> curTrack._PlayerTrack.m_Waypoints[0].position;
-
-
             curTrack._TrackVirtualCamera.m_Priority = (_CurrentTrackIdx+1);
-            
-            _playerDollyCart.m_Path = curTrack._PlayerTrack;
-            _playerDollyCart.m_Position = 0;
 
+            // TODO: use to lerp to Transform Player Position to TrackStarting point
+            //Vector3 fromPos = _playerController.transform.position;
+            //Vector3 toPos = curTrack._PlayerTrack.m_Waypoints[0].position;
+            //_playerDollyCart.m_Path = null;
+            //DOTween.To(
+            //    () => fromPos,
+            //    x => _playerController.transform.position = fromPos = x,
+            //    toPos,
+            //    1f
+            //).SetEase(DOTween.defaultEaseType)
+            //.onComplete += () => {
+            //    _playerDollyCart.m_Path = curTrack._PlayerTrack;
+            //    _playerDollyCart.m_Position = 0;
+            //};
+            _playerDollyCart.m_Position = 0;
+            _playerDollyCart.m_Path = curTrack._PlayerTrack;
+            
 
             A_TrackUpdate = TrackNormal;
-            PlayerController_L3.Instance.SwitchMoveMapping(curTrack._InputMapping);
+            StartCoroutine(CamBlendYieldPlyControl(curTrack));
+        }
+
+        private IEnumerator CamBlendYieldPlyControl(Track curTrack) {
+            _playerController.GameEnd();
+            do {
+                yield return null;
+            } while (_cmbrain.IsBlending);
+
+            _playerController.GameStart();
+            _playerController.SwitchMoveMapping(curTrack._InputMapping);
         }
 
 
@@ -75,17 +98,24 @@ namespace Level3_Track {
         }
 
         private void Start() {
-            _playerDollyCart = PlayerController_L3.Instance.GetComponent<CinemachineDollyCart>();
-            _playerTransform = PlayerController_L3.Instance.GetComponent<Transform>();
+            _playerController = FindObjectOfType<PlayerController_L3>();
+            if (_playerController == null) {
+                DebugLogger.Error(this.name, "_playerController not Found!");
+            }
+
+            _playerDollyCart = _playerController.GetComponent<CinemachineDollyCart>();
             if (_playerDollyCart == null) {
                 DebugLogger.Error(this.name, "_playerDollyCart not Found!");
             }
-            if (_playerTransform == null) {
-                DebugLogger.Error(this.name, "_playerTransform not Found!");
+
+            _cmbrain = FindObjectOfType<CinemachineBrain>();
+            if (_cmbrain == null) {
+                Debug.LogError("CinemachineBrain not found in scene");
             }
 
             A_TrackUpdate = TrackSwitch;
         }
+
 
         private void Update() {
             A_TrackUpdate?.Invoke();

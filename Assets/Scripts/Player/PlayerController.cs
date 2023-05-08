@@ -6,21 +6,10 @@ using Common;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoSingleton<PlayerController>
+public class PlayerController : PlayerControllerBase
 {
-
-    public string levelBGM = "Level0BGM";
-    public bool isFirstLevelScene = true;
-    [SerializeField] private bool isAutoStart = false;
-    
-    
-    
-    
-    
-    
     
     //玩家输入
-    private PlayerInput _playerInput;
     private InputAction _inputXMovement; //玩家AD左右输入
     //玩家引擎(控制移动)
     private PlayerMotor _motor;
@@ -31,27 +20,24 @@ public class PlayerController : MonoSingleton<PlayerController>
     
     protected override void Init()
     {
-        _playerInput = new PlayerInput();
+        base.Init();
         _motor = GetComponent<PlayerMotor>();
         _animController = GetComponent<PlayerAnimatorController>();
         
     }
 
-    private void Start()
-    {
-        if(isAutoStart) GameStart();
-    }
 
-    private void OnEnable()
+
+    protected override void  OnEnable()
     {
         //玩家移动时
+        base.OnEnable();
         _inputXMovement = _playerInput.Player.Move;
         _inputXMovement.performed += InputXMovementOnperformed;
         //玩家点击开火按钮
         _playerInput.Player.Fire.performed += FireOnperformed;
         _playerInput.Player.Jump.performed += JumpOnperformed;
         //Pause
-        _playerInput.UI.Pause.performed += UIManager.Instance.PausePreform;
 
         _playerInput.Enable();
 
@@ -87,19 +73,16 @@ public class PlayerController : MonoSingleton<PlayerController>
     }
 
     //TODO: game start
-    public void GameStart()
+    public override void GameStart()
     {
+        base.GameStart();
         _motor.MotorStart();
-        if (isFirstLevelScene && !SavePointManager.Instance.isSave)
-        {
-            AudioManager.Instance.Play(levelBGM);
-        }
 
     }
 
-    public void GameEnd()
+    public override void GameEnd()
     {
-        _playerInput.UI.Pause.performed -= UIManager.Instance.PausePreform;
+        base.GameEnd();
         _motor.MotorStop();
         _motor.GetComponent<Collider>().enabled = false;
         _motor.enabled = false;

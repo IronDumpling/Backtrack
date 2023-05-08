@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEditor.Build.Player;
 using UnityEditor.SearchService;
+#endif
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

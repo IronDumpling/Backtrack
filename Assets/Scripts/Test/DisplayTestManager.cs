@@ -12,10 +12,10 @@ public class DisplayTestManager : MonoSingleton<DisplayTestManager>
 
     
     
-    void Update()
-    {
-        remainScore = ScoreManager.Instance.RemainScoreInLevel;
-        currentScore = ScoreManager.Instance.CurrentScoreInLevel;
-        totalScore = ScoreManager.Instance.TotalScoreInLevel;
-    }
+    //void Update()
+    //{
+    //     remainScore = ScoreManager.Instance.RemainScoreInLevel;
+    //     currentScore = ScoreManager.Instance.CurrentScoreInLevel;
+    //     totalScore = ScoreManager.Instance.TotalScoreInLevel;
+    // }
 }
