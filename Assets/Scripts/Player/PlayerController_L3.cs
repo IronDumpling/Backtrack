@@ -4,9 +4,8 @@ using UnityEngine.InputSystem;
 using System;
 
 
-public class PlayerController_L3: MonoSingleton<PlayerController_L3>
+public class PlayerController_L3: PlayerControllerBase
 {
-    private PlayerInput _playerInput;
     private InputAction _inputMove;
     private PlayerMotor_L3 _playerMotor;
 
@@ -32,25 +31,25 @@ public class PlayerController_L3: MonoSingleton<PlayerController_L3>
     }
     #endregion
 
-    private void OnEnable() {
-        GameStart();
-    }
+    // private void OnEnable() {
+    //     GameStart();
+    // }
     private void OnDisable() {
         GameEnd();
     }
 
-    public void GameStart() {
-        
-    }
+    // public void GameStart() {
+    //     
+    // }
 
-    public void GameEnd() {
+    public override void GameEnd() {
+        base.GameEnd();
         A_planeMoveUpdate = null;
         _playerMotor.MotorReset();
     }
 
     protected override void Init() {
-        _playerInput = new PlayerInput();
-        _playerInput.Enable();
+        base.Init();
         _inputMove = _playerInput.Player.Move;
 
         _playerMotor = GetComponent<PlayerMotor_L3>();
