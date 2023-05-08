@@ -6,14 +6,18 @@ Shader "VFX/PandaShaderSampleURPV1.0"
 	{
 		[HideInInspector] _EmissionColor("Emission Color", Color) = (1,1,1,1)
 		[HideInInspector] _AlphaCutoff("Alpha Cutoff ", Range(0, 1)) = 0.5
-		[ASEBegin][Enum(UnityEngine.Rendering.BlendMode)]_Scr("Scr", Float) = 5
+		[Enum(UnityEngine.Rendering.BlendMode)]_Scr("Scr", Float) = 5
 		[Enum(UnityEngine.Rendering.BlendMode)]_Dst("Dst", Float) = 10
 		[Enum(UnityEngine.Rendering.CullMode)]_CullMode("CullMode", Float) = 0
 		_MainTex("MainTex", 2D) = "white" {}
+		_VTOTex("VTOTex", 2D) = "black" {}
+		[Toggle]_VTOTexAR("VTOTexAR", Float) = 1
 		[Toggle]_MainTexAR("MainTexAR", Float) = 0
 		[HDR]_MainColor("MainColor", Color) = (1,1,1,1)
+		_VTOTexUSpeed("VTOTexUSpeed", Float) = 0
 		_MainTexUSpeed("MainTexUSpeed", Float) = 0
 		_MainTexVSpeed("MainTexVSpeed", Float) = 0
+		_VTOTexVSpeed("VTOTexVSpeed", Float) = 0
 		[Toggle]_CustomMainTex("CustomMainTex", Float) = 0
 		[Toggle(_FMASKTEX_ON)] _FMaskTex("FMaskTex", Float) = 0
 		_MaskTex("MaskTex", 2D) = "white" {}
@@ -47,7 +51,11 @@ Shader "VFX/PandaShaderSampleURPV1.0"
 		_FnlPower("FnlPower", Range( 1 , 10)) = 1
 		[Toggle]_ReFnl("ReFnl", Float) = 0
 		[Enum(Alpha,0,Add,1)]_BlendMode("BlendMode", Float) = 0
-		[ASEEnd]_DepthFade("DepthFade", Range( 0 , 10)) = 1
+		[Enum(UnityEngine.Rendering.CompareFunction)]_ZTest("ZTest", Float) = 4
+		_DepthFade("DepthFade", Range( 0 , 10)) = 1
+		[Toggle(_IFVTO_ON)] _IfVTO("IfVTO", Float) = 0
+		[Toggle]_CustomVTO("CustomVTO", Float) = 0
+		[ASEEnd]_VTOScale("VTOScale", Float) = 1
 
 		//_TessPhongStrength( "Tess Phong Strength", Range( 0, 1 ) ) = 0.5
 		//_TessValue( "Tess Max Tessellation", Range( 1, 32 ) ) = 16
@@ -186,7 +194,7 @@ Shader "VFX/PandaShaderSampleURPV1.0"
 			
 			Blend [_Scr] [_Dst], One OneMinusSrcAlpha
 			ZWrite Off
-			ZTest LEqual
+			ZTest [_ZTest]
 			Offset 0 , 0
 			ColorMask RGBA
 			
@@ -211,9 +219,10 @@ Shader "VFX/PandaShaderSampleURPV1.0"
 			#define REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR
 			#endif
 
-			#define ASE_NEEDS_FRAG_WORLD_POSITION
 			#define ASE_NEEDS_VERT_NORMAL
+			#define ASE_NEEDS_FRAG_WORLD_POSITION
 			#define ASE_NEEDS_FRAG_COLOR
+			#pragma shader_feature_local _IFVTO_ON
 			#pragma shader_feature_local _FDISSOLVETEX_ON
 			#pragma shader_feature_local _FDISTORTTEX_ON
 			#pragma shader_feature_local _FFNL_ON
@@ -225,9 +234,9 @@ Shader "VFX/PandaShaderSampleURPV1.0"
 			{
 				float4 vertex : POSITION;
 				float3 ase_normal : NORMAL;
-				half4 ase_color : COLOR;
 				float4 ase_texcoord : TEXCOORD0;
 				float4 ase_texcoord1 : TEXCOORD1;
+				float4 ase_color : COLOR;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -253,43 +262,50 @@ Shader "VFX/PandaShaderSampleURPV1.0"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			half4 _MaskTex_ST;
-			half4 _DissolveTex_ST;
 			half4 _MainColor;
-			half4 _DissolveColor;
-			half4 _DistortTex_ST;
-			half4 _MainTex_ST;
+			float4 _MaskTex_ST;
+			float4 _DistortTex_ST;
+			float4 _VTOTex_ST;
 			half4 _FnlColor;
-			half _CullMode;
-			half _DissolveTexVSpeed;
-			half _DistortDissolveTex;
-			half _MainAlpha;
-			half _FnlScale;
+			float4 _MainTex_ST;
+			half4 _DissolveColor;
+			float4 _DissolveTex_ST;
+			half _DissolveWide;
+			half _DissolveSoft;
+			half _DissolveTexAR;
 			half _DissolveTexUSpeed;
+			half _DissolveTexVSpeed;
+			half _Dst;
+			float _MainAlpha;
+			half _ReFnl;
+			half _FnlScale;
 			half _FnlPower;
 			half _MainTexAR;
 			half _MaskTexAR;
 			half _MaskTexUSpeed;
 			half _MaskTexVSpeed;
-			half _ReFnl;
-			half _DissolveTexAR;
-			half _DissolveWide;
-			half _DistortMaskTex;
+			half _DistortDissolveTex;
 			half _DissolveFactor;
-			half _CustomDissolve;
 			half _DistortFactor;
-			half _DistortTexVSpeed;
-			half _DistortTexUSpeed;
-			half _DistortTexAR;
-			half _DistortMainTex;
-			half _CustomMainTex;
-			half _MainTexVSpeed;
-			half _MainTexUSpeed;
-			half _Scr;
+			half _DistortMaskTex;
+			half _CullMode;
 			half _BlendMode;
-			half _Dst;
-			half _DissolveSoft;
-			half _DepthFade;
+			half _ZTest;
+			half _VTOTexAR;
+			half _VTOTexUSpeed;
+			half _VTOTexVSpeed;
+			float _CustomVTO;
+			float _CustomDissolve;
+			float _VTOScale;
+			half _MainTexUSpeed;
+			half _MainTexVSpeed;
+			float _CustomMainTex;
+			half _DistortMainTex;
+			half _DistortTexAR;
+			half _DistortTexUSpeed;
+			half _DistortTexVSpeed;
+			half _Scr;
+			float _DepthFade;
 			#ifdef TESSELLATION_ON
 				float _TessPhongStrength;
 				float _TessValue;
@@ -299,6 +315,7 @@ Shader "VFX/PandaShaderSampleURPV1.0"
 				float _TessMaxDisp;
 			#endif
 			CBUFFER_END
+			sampler2D _VTOTex;
 			sampler2D _MainTex;
 			sampler2D _DistortTex;
 			sampler2D _DissolveTex;
@@ -314,7 +331,21 @@ Shader "VFX/PandaShaderSampleURPV1.0"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
-				half3 ase_worldNormal = TransformObjectToWorldNormal(v.ase_normal);
+				float3 temp_cast_0 = (0.0).xxx;
+				float2 appendResult4_g16 = (float2(_VTOTexUSpeed , _VTOTexVSpeed));
+				float2 uv_VTOTex = v.ase_texcoord.xy * _VTOTex_ST.xy + _VTOTex_ST.zw;
+				float2 panner5_g16 = ( 1.0 * _Time.y * appendResult4_g16 + uv_VTOTex);
+				float4 tex2DNode7_g16 = tex2Dlod( _VTOTex, float4( panner5_g16, 0, 0.0) );
+				float4 texCoord393 = v.ase_texcoord1;
+				texCoord393.xy = v.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
+				float3 VTO387 = ( v.ase_normal * ( _VTOTexAR == 0.0 ? tex2DNode7_g16.a : tex2DNode7_g16.r ) * (( _CustomVTO )?( texCoord393.w ):( _VTOScale )) );
+				#ifdef _IFVTO_ON
+				float3 staticSwitch390 = VTO387;
+				#else
+				float3 staticSwitch390 = temp_cast_0;
+				#endif
+				
+				float3 ase_worldNormal = TransformObjectToWorldNormal(v.ase_normal);
 				o.ase_texcoord5.xyz = ase_worldNormal;
 				float4 ase_clipPos = TransformObjectToHClip((v.vertex).xyz);
 				float4 screenPos = ComputeScreenPos(ase_clipPos);
@@ -332,7 +363,7 @@ Shader "VFX/PandaShaderSampleURPV1.0"
 				#else
 					float3 defaultVertexValue = float3(0, 0, 0);
 				#endif
-				float3 vertexValue = defaultVertexValue;
+				float3 vertexValue = staticSwitch390;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					v.vertex.xyz = vertexValue;
 				#else
@@ -364,9 +395,9 @@ Shader "VFX/PandaShaderSampleURPV1.0"
 			{
 				float4 vertex : INTERNALTESSPOS;
 				float3 ase_normal : NORMAL;
-				half4 ase_color : COLOR;
 				float4 ase_texcoord : TEXCOORD0;
 				float4 ase_texcoord1 : TEXCOORD1;
+				float4 ase_color : COLOR;
 
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
@@ -384,9 +415,9 @@ Shader "VFX/PandaShaderSampleURPV1.0"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				o.vertex = v.vertex;
 				o.ase_normal = v.ase_normal;
-				o.ase_color = v.ase_color;
 				o.ase_texcoord = v.ase_texcoord;
 				o.ase_texcoord1 = v.ase_texcoord1;
+				o.ase_color = v.ase_color;
 				return o;
 			}
 
@@ -425,9 +456,9 @@ Shader "VFX/PandaShaderSampleURPV1.0"
 				VertexInput o = (VertexInput) 0;
 				o.vertex = patch[0].vertex * bary.x + patch[1].vertex * bary.y + patch[2].vertex * bary.z;
 				o.ase_normal = patch[0].ase_normal * bary.x + patch[1].ase_normal * bary.y + patch[2].ase_normal * bary.z;
-				o.ase_color = patch[0].ase_color * bary.x + patch[1].ase_color * bary.y + patch[2].ase_color * bary.z;
 				o.ase_texcoord = patch[0].ase_texcoord * bary.x + patch[1].ase_texcoord * bary.y + patch[2].ase_texcoord * bary.z;
 				o.ase_texcoord1 = patch[0].ase_texcoord1 * bary.x + patch[1].ase_texcoord1 * bary.y + patch[2].ase_texcoord1 * bary.z;
+				o.ase_color = patch[0].ase_color * bary.x + patch[1].ase_color * bary.y + patch[2].ase_color * bary.z;
 				#if defined(ASE_PHONG_TESSELLATION)
 				float3 pp[3];
 				for (int i = 0; i < 3; ++i)
@@ -463,104 +494,104 @@ Shader "VFX/PandaShaderSampleURPV1.0"
 					#endif
 				#endif
 				float Scr106 = _Scr;
-				half2 appendResult4_g13 = (half2(_MainTexUSpeed , _MainTexVSpeed));
-				half2 uv_MainTex = IN.ase_texcoord3.xy * _MainTex_ST.xy + _MainTex_ST.zw;
-				half2 temp_output_3_0_g8 = uv_MainTex;
-				half2 appendResult4_g7 = (half2(_DistortTexUSpeed , _DistortTexVSpeed));
-				half2 uv_DistortTex = IN.ase_texcoord3.xy * _DistortTex_ST.xy + _DistortTex_ST.zw;
-				half2 panner5_g7 = ( 1.0 * _Time.y * appendResult4_g7 + uv_DistortTex);
-				half4 tex2DNode7_g7 = tex2D( _DistortTex, panner5_g7 );
-				half Distort148 = ( ( _DistortTexAR == 0.0 ? tex2DNode7_g7.a : tex2DNode7_g7.r ) * _DistortFactor );
+				float2 appendResult4_g13 = (float2(_MainTexUSpeed , _MainTexVSpeed));
+				float2 uv_MainTex = IN.ase_texcoord3.xy * _MainTex_ST.xy + _MainTex_ST.zw;
+				float2 temp_output_3_0_g8 = uv_MainTex;
+				float2 appendResult4_g7 = (float2(_DistortTexUSpeed , _DistortTexVSpeed));
+				float2 uv_DistortTex = IN.ase_texcoord3.xy * _DistortTex_ST.xy + _DistortTex_ST.zw;
+				float2 panner5_g7 = ( 1.0 * _Time.y * appendResult4_g7 + uv_DistortTex);
+				float4 tex2DNode7_g7 = tex2D( _DistortTex, panner5_g7 );
+				float Distort148 = ( ( _DistortTexAR == 0.0 ? tex2DNode7_g7.a : tex2DNode7_g7.r ) * _DistortFactor );
 				#ifdef _FDISTORTTEX_ON
-				half2 staticSwitch316 = ( _DistortMainTex == 0.0 ? temp_output_3_0_g8 : ( temp_output_3_0_g8 + Distort148 ) );
+				float2 staticSwitch316 = ( _DistortMainTex == 0.0 ? temp_output_3_0_g8 : ( temp_output_3_0_g8 + Distort148 ) );
 				#else
-				half2 staticSwitch316 = uv_MainTex;
+				float2 staticSwitch316 = uv_MainTex;
 				#endif
-				half4 texCoord328 = IN.ase_texcoord4;
+				float4 texCoord328 = IN.ase_texcoord4;
 				texCoord328.xy = IN.ase_texcoord4.xy * float2( 1,1 ) + float2( 0,0 );
-				half2 appendResult330 = (half2(texCoord328.x , texCoord328.y));
-				half2 panner5_g13 = ( 1.0 * _Time.y * appendResult4_g13 + (( _CustomMainTex )?( ( staticSwitch316 + appendResult330 ) ):( staticSwitch316 )));
-				half4 tex2DNode7_g13 = tex2D( _MainTex, panner5_g13 );
-				half4 MainTexColor215 = ( _MainColor * tex2DNode7_g13 );
-				half4 texCoord333 = IN.ase_texcoord4;
+				float2 appendResult330 = (float2(texCoord328.x , texCoord328.y));
+				float2 panner5_g13 = ( 1.0 * _Time.y * appendResult4_g13 + (( _CustomMainTex )?( ( staticSwitch316 + appendResult330 ) ):( staticSwitch316 )));
+				float4 tex2DNode7_g13 = tex2D( _MainTex, panner5_g13 );
+				float4 MainTexColor215 = ( _MainColor * tex2DNode7_g13 );
+				float4 texCoord333 = IN.ase_texcoord4;
 				texCoord333.xy = IN.ase_texcoord4.xy * float2( 1,1 ) + float2( 0,0 );
-				half temp_output_275_0 = (-_DissolveWide + ((( _CustomDissolve )?( texCoord333.z ):( _DissolveFactor )) - 0.0) * (1.0 - -_DissolveWide) / (1.0 - 0.0));
-				half temp_output_277_0 = ( _DissolveSoft + 0.0001 );
-				half temp_output_272_0 = (-temp_output_277_0 + (( temp_output_275_0 + _DissolveWide ) - 0.0) * (1.0 - -temp_output_277_0) / (1.0 - 0.0));
-				half2 appendResult4_g10 = (half2(_DissolveTexUSpeed , _DissolveTexVSpeed));
-				half2 uv_DissolveTex = IN.ase_texcoord3.xy * _DissolveTex_ST.xy + _DissolveTex_ST.zw;
-				half2 temp_output_3_0_g9 = uv_DissolveTex;
+				float temp_output_275_0 = (-_DissolveWide + ((( _CustomDissolve )?( texCoord333.z ):( _DissolveFactor )) - 0.0) * (1.0 - -_DissolveWide) / (1.0 - 0.0));
+				float temp_output_277_0 = ( _DissolveSoft + 0.0001 );
+				float temp_output_272_0 = (-temp_output_277_0 + (( temp_output_275_0 + _DissolveWide ) - 0.0) * (1.0 - -temp_output_277_0) / (1.0 - 0.0));
+				float2 appendResult4_g10 = (float2(_DissolveTexUSpeed , _DissolveTexVSpeed));
+				float2 uv_DissolveTex = IN.ase_texcoord3.xy * _DissolveTex_ST.xy + _DissolveTex_ST.zw;
+				float2 temp_output_3_0_g9 = uv_DissolveTex;
 				#ifdef _FDISTORTTEX_ON
-				half2 staticSwitch314 = ( _DistortDissolveTex == 0.0 ? temp_output_3_0_g9 : ( temp_output_3_0_g9 + Distort148 ) );
+				float2 staticSwitch314 = ( _DistortDissolveTex == 0.0 ? temp_output_3_0_g9 : ( temp_output_3_0_g9 + Distort148 ) );
 				#else
-				half2 staticSwitch314 = uv_DissolveTex;
+				float2 staticSwitch314 = uv_DissolveTex;
 				#endif
-				half2 panner5_g10 = ( 1.0 * _Time.y * appendResult4_g10 + staticSwitch314);
-				half4 tex2DNode7_g10 = tex2D( _DissolveTex, panner5_g10 );
-				half temp_output_351_20 = ( _DissolveTexAR == 0.0 ? tex2DNode7_g10.a : tex2DNode7_g10.r );
-				half smoothstepResult264 = smoothstep( temp_output_272_0 , ( temp_output_272_0 + temp_output_277_0 ) , temp_output_351_20);
-				half Alpha337 = _MainAlpha;
-				half4 lerpResult223 = lerp( MainTexColor215 , _DissolveColor , ( _DissolveColor.a * ( 1.0 - smoothstepResult264 ) * Alpha337 ));
+				float2 panner5_g10 = ( 1.0 * _Time.y * appendResult4_g10 + staticSwitch314);
+				float4 tex2DNode7_g10 = tex2D( _DissolveTex, panner5_g10 );
+				float temp_output_351_20 = ( _DissolveTexAR == 0.0 ? tex2DNode7_g10.a : tex2DNode7_g10.r );
+				float smoothstepResult264 = smoothstep( temp_output_272_0 , ( temp_output_272_0 + temp_output_277_0 ) , temp_output_351_20);
+				float Alpha337 = _MainAlpha;
+				float4 lerpResult223 = lerp( MainTexColor215 , _DissolveColor , ( _DissolveColor.a * ( 1.0 - smoothstepResult264 ) * Alpha337 ));
 				#ifdef _FDISSOLVETEX_ON
-				half4 staticSwitch298 = lerpResult223;
+				float4 staticSwitch298 = lerpResult223;
 				#else
-				half4 staticSwitch298 = MainTexColor215;
+				float4 staticSwitch298 = MainTexColor215;
 				#endif
-				half4 temp_cast_0 = (0.0).xxxx;
-				half Refnl339 = _ReFnl;
+				float4 temp_cast_0 = (0.0).xxxx;
+				float Refnl339 = _ReFnl;
 				float3 ase_worldViewDir = ( _WorldSpaceCameraPos.xyz - WorldPosition );
 				ase_worldViewDir = normalize(ase_worldViewDir);
-				half3 ase_worldNormal = IN.ase_texcoord5.xyz;
-				half fresnelNdotV279 = dot( ase_worldNormal, ase_worldViewDir );
-				half fresnelNode279 = ( 0.0 + _FnlScale * pow( 1.0 - fresnelNdotV279, _FnlPower ) );
-				half temp_output_283_0 = saturate( fresnelNode279 );
-				half4 FnlMainColor286 = ( _FnlColor * temp_output_283_0 * _FnlColor.a );
-				half4 temp_cast_1 = (0.0).xxxx;
+				float3 ase_worldNormal = IN.ase_texcoord5.xyz;
+				float fresnelNdotV279 = dot( ase_worldNormal, ase_worldViewDir );
+				float fresnelNode279 = ( 0.0 + _FnlScale * pow( 1.0 - fresnelNdotV279, _FnlPower ) );
+				float temp_output_283_0 = saturate( fresnelNode279 );
+				float4 FnlMainColor286 = ( _FnlColor * temp_output_283_0 * _FnlColor.a );
+				float4 temp_cast_1 = (0.0).xxxx;
 				#ifdef _FFNL_ON
-				half4 staticSwitch300 = ( Refnl339 == 0.0 ? FnlMainColor286 : temp_cast_1 );
+				float4 staticSwitch300 = ( Refnl339 == 0.0 ? FnlMainColor286 : temp_cast_1 );
 				#else
-				half4 staticSwitch300 = temp_cast_0;
+				float4 staticSwitch300 = temp_cast_0;
 				#endif
 				float4 MainColor98 = ( IN.ase_color * ( staticSwitch298 + staticSwitch300 ) );
 				float MainTexAlpha138 = ( _MainColor.a * ( _MainTexAR == 0.0 ? tex2DNode7_g13.a : tex2DNode7_g13.r ) );
-				half2 appendResult4_g14 = (half2(_MaskTexUSpeed , _MaskTexVSpeed));
-				half2 uv_MaskTex = IN.ase_texcoord3.xy * _MaskTex_ST.xy + _MaskTex_ST.zw;
-				half2 temp_output_3_0_g12 = uv_MaskTex;
+				float2 appendResult4_g15 = (float2(_MaskTexUSpeed , _MaskTexVSpeed));
+				float2 uv_MaskTex = IN.ase_texcoord3.xy * _MaskTex_ST.xy + _MaskTex_ST.zw;
+				float2 temp_output_3_0_g14 = uv_MaskTex;
 				#ifdef _FDISTORTTEX_ON
-				half2 staticSwitch312 = ( _DistortMaskTex == 0.0 ? temp_output_3_0_g12 : ( temp_output_3_0_g12 + Distort148 ) );
+				float2 staticSwitch312 = ( _DistortMaskTex == 0.0 ? temp_output_3_0_g14 : ( temp_output_3_0_g14 + Distort148 ) );
 				#else
-				half2 staticSwitch312 = uv_MaskTex;
+				float2 staticSwitch312 = uv_MaskTex;
 				#endif
-				half2 panner5_g14 = ( 1.0 * _Time.y * appendResult4_g14 + staticSwitch312);
-				half4 tex2DNode7_g14 = tex2D( _MaskTex, panner5_g14 );
+				float2 panner5_g15 = ( 1.0 * _Time.y * appendResult4_g15 + staticSwitch312);
+				float4 tex2DNode7_g15 = tex2D( _MaskTex, panner5_g15 );
 				#ifdef _FMASKTEX_ON
-				half staticSwitch291 = ( _MaskTexAR == 0.0 ? tex2DNode7_g14.a : tex2DNode7_g14.r );
+				float staticSwitch291 = ( _MaskTexAR == 0.0 ? tex2DNode7_g15.a : tex2DNode7_g15.r );
 				#else
-				half staticSwitch291 = 1.0;
+				float staticSwitch291 = 1.0;
 				#endif
-				half temp_output_270_0 = (-temp_output_277_0 + (temp_output_275_0 - 0.0) * (1.0 - -temp_output_277_0) / (1.0 - 0.0));
-				half smoothstepResult256 = smoothstep( temp_output_270_0 , ( temp_output_270_0 + temp_output_277_0 ) , temp_output_351_20);
-				half DissolveAlpha212 = smoothstepResult256;
+				float temp_output_270_0 = (-temp_output_277_0 + (temp_output_275_0 - 0.0) * (1.0 - -temp_output_277_0) / (1.0 - 0.0));
+				float smoothstepResult256 = smoothstep( temp_output_270_0 , ( temp_output_270_0 + temp_output_277_0 ) , temp_output_351_20);
+				float DissolveAlpha212 = smoothstepResult256;
 				#ifdef _FDISSOLVETEX_ON
-				half staticSwitch299 = DissolveAlpha212;
+				float staticSwitch299 = DissolveAlpha212;
 				#else
-				half staticSwitch299 = 1.0;
+				float staticSwitch299 = 1.0;
 				#endif
-				half ReFnlAlpha318 = ( 1.0 - temp_output_283_0 );
+				float ReFnlAlpha318 = ( 1.0 - temp_output_283_0 );
 				#ifdef _FFNL_ON
-				half staticSwitch319 = ( Refnl339 == 0.0 ? 1.0 : ReFnlAlpha318 );
+				float staticSwitch319 = ( Refnl339 == 0.0 ? 1.0 : ReFnlAlpha318 );
 				#else
-				half staticSwitch319 = 1.0;
+				float staticSwitch319 = 1.0;
 				#endif
 				float4 screenPos = IN.ase_texcoord6;
-				half4 ase_screenPosNorm = screenPos / screenPos.w;
+				float4 ase_screenPosNorm = screenPos / screenPos.w;
 				ase_screenPosNorm.z = ( UNITY_NEAR_CLIP_VALUE >= 0 ) ? ase_screenPosNorm.z : ase_screenPosNorm.z * 0.5 + 0.5;
 				float screenDepth375 = LinearEyeDepth(SHADERGRAPH_SAMPLE_SCENE_DEPTH( ase_screenPosNorm.xy ),_ZBufferParams);
-				half distanceDepth375 = abs( ( screenDepth375 - LinearEyeDepth( ase_screenPosNorm.z,_ZBufferParams ) ) / ( _DepthFade ) );
+				float distanceDepth375 = abs( ( screenDepth375 - LinearEyeDepth( ase_screenPosNorm.z,_ZBufferParams ) ) / ( _DepthFade ) );
 				#ifdef _FDEPTH_ON
-				half staticSwitch378 = saturate( distanceDepth375 );
+				float staticSwitch378 = saturate( distanceDepth375 );
 				#else
-				half staticSwitch378 = 1.0;
+				float staticSwitch378 = 1.0;
 				#endif
 				float MainAlpha97 = saturate( ( MainTexAlpha138 * staticSwitch291 * IN.ase_color.a * Alpha337 * staticSwitch299 * staticSwitch319 * staticSwitch378 ) );
 				
@@ -615,8 +646,9 @@ Shader "VFX/PandaShaderSampleURPV1.0"
 			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderGraphFunctions.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
 
-			#define ASE_NEEDS_FRAG_WORLD_POSITION
 			#define ASE_NEEDS_VERT_NORMAL
+			#define ASE_NEEDS_FRAG_WORLD_POSITION
+			#pragma shader_feature_local _IFVTO_ON
 			#pragma shader_feature_local _FDISTORTTEX_ON
 			#pragma shader_feature_local _FMASKTEX_ON
 			#pragma shader_feature_local _FDISSOLVETEX_ON
@@ -630,7 +662,7 @@ Shader "VFX/PandaShaderSampleURPV1.0"
 				float3 ase_normal : NORMAL;
 				float4 ase_texcoord : TEXCOORD0;
 				float4 ase_texcoord1 : TEXCOORD1;
-				half4 ase_color : COLOR;
+				float4 ase_color : COLOR;
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
@@ -653,43 +685,50 @@ Shader "VFX/PandaShaderSampleURPV1.0"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			half4 _MaskTex_ST;
-			half4 _DissolveTex_ST;
 			half4 _MainColor;
-			half4 _DissolveColor;
-			half4 _DistortTex_ST;
-			half4 _MainTex_ST;
+			float4 _MaskTex_ST;
+			float4 _DistortTex_ST;
+			float4 _VTOTex_ST;
 			half4 _FnlColor;
-			half _CullMode;
-			half _DissolveTexVSpeed;
-			half _DistortDissolveTex;
-			half _MainAlpha;
-			half _FnlScale;
+			float4 _MainTex_ST;
+			half4 _DissolveColor;
+			float4 _DissolveTex_ST;
+			half _DissolveWide;
+			half _DissolveSoft;
+			half _DissolveTexAR;
 			half _DissolveTexUSpeed;
+			half _DissolveTexVSpeed;
+			half _Dst;
+			float _MainAlpha;
+			half _ReFnl;
+			half _FnlScale;
 			half _FnlPower;
 			half _MainTexAR;
 			half _MaskTexAR;
 			half _MaskTexUSpeed;
 			half _MaskTexVSpeed;
-			half _ReFnl;
-			half _DissolveTexAR;
-			half _DissolveWide;
-			half _DistortMaskTex;
+			half _DistortDissolveTex;
 			half _DissolveFactor;
-			half _CustomDissolve;
 			half _DistortFactor;
-			half _DistortTexVSpeed;
-			half _DistortTexUSpeed;
-			half _DistortTexAR;
-			half _DistortMainTex;
-			half _CustomMainTex;
-			half _MainTexVSpeed;
-			half _MainTexUSpeed;
-			half _Scr;
+			half _DistortMaskTex;
+			half _CullMode;
 			half _BlendMode;
-			half _Dst;
-			half _DissolveSoft;
-			half _DepthFade;
+			half _ZTest;
+			half _VTOTexAR;
+			half _VTOTexUSpeed;
+			half _VTOTexVSpeed;
+			float _CustomVTO;
+			float _CustomDissolve;
+			float _VTOScale;
+			half _MainTexUSpeed;
+			half _MainTexVSpeed;
+			float _CustomMainTex;
+			half _DistortMainTex;
+			half _DistortTexAR;
+			half _DistortTexUSpeed;
+			half _DistortTexVSpeed;
+			half _Scr;
+			float _DepthFade;
 			#ifdef TESSELLATION_ON
 				float _TessPhongStrength;
 				float _TessValue;
@@ -699,6 +738,7 @@ Shader "VFX/PandaShaderSampleURPV1.0"
 				float _TessMaxDisp;
 			#endif
 			CBUFFER_END
+			sampler2D _VTOTex;
 			sampler2D _MainTex;
 			sampler2D _DistortTex;
 			sampler2D _MaskTex;
@@ -714,7 +754,21 @@ Shader "VFX/PandaShaderSampleURPV1.0"
 				UNITY_TRANSFER_INSTANCE_ID(v, o);
 				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
-				half3 ase_worldNormal = TransformObjectToWorldNormal(v.ase_normal);
+				float3 temp_cast_0 = (0.0).xxx;
+				float2 appendResult4_g16 = (float2(_VTOTexUSpeed , _VTOTexVSpeed));
+				float2 uv_VTOTex = v.ase_texcoord.xy * _VTOTex_ST.xy + _VTOTex_ST.zw;
+				float2 panner5_g16 = ( 1.0 * _Time.y * appendResult4_g16 + uv_VTOTex);
+				float4 tex2DNode7_g16 = tex2Dlod( _VTOTex, float4( panner5_g16, 0, 0.0) );
+				float4 texCoord393 = v.ase_texcoord1;
+				texCoord393.xy = v.ase_texcoord1.xy * float2( 1,1 ) + float2( 0,0 );
+				float3 VTO387 = ( v.ase_normal * ( _VTOTexAR == 0.0 ? tex2DNode7_g16.a : tex2DNode7_g16.r ) * (( _CustomVTO )?( texCoord393.w ):( _VTOScale )) );
+				#ifdef _IFVTO_ON
+				float3 staticSwitch390 = VTO387;
+				#else
+				float3 staticSwitch390 = temp_cast_0;
+				#endif
+				
+				float3 ase_worldNormal = TransformObjectToWorldNormal(v.ase_normal);
 				o.ase_texcoord4.xyz = ase_worldNormal;
 				float4 ase_clipPos = TransformObjectToHClip((v.vertex).xyz);
 				float4 screenPos = ComputeScreenPos(ase_clipPos);
@@ -732,7 +786,7 @@ Shader "VFX/PandaShaderSampleURPV1.0"
 				#else
 					float3 defaultVertexValue = float3(0, 0, 0);
 				#endif
-				float3 vertexValue = defaultVertexValue;
+				float3 vertexValue = staticSwitch390;
 				#ifdef ASE_ABSOLUTE_VERTEX_POS
 					v.vertex.xyz = vertexValue;
 				#else
@@ -764,7 +818,7 @@ Shader "VFX/PandaShaderSampleURPV1.0"
 				float3 ase_normal : NORMAL;
 				float4 ase_texcoord : TEXCOORD0;
 				float4 ase_texcoord1 : TEXCOORD1;
-				half4 ase_color : COLOR;
+				float4 ase_color : COLOR;
 
 				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
@@ -861,86 +915,86 @@ Shader "VFX/PandaShaderSampleURPV1.0"
 					#endif
 				#endif
 
-				half2 appendResult4_g13 = (half2(_MainTexUSpeed , _MainTexVSpeed));
-				half2 uv_MainTex = IN.ase_texcoord2.xy * _MainTex_ST.xy + _MainTex_ST.zw;
-				half2 temp_output_3_0_g8 = uv_MainTex;
-				half2 appendResult4_g7 = (half2(_DistortTexUSpeed , _DistortTexVSpeed));
-				half2 uv_DistortTex = IN.ase_texcoord2.xy * _DistortTex_ST.xy + _DistortTex_ST.zw;
-				half2 panner5_g7 = ( 1.0 * _Time.y * appendResult4_g7 + uv_DistortTex);
-				half4 tex2DNode7_g7 = tex2D( _DistortTex, panner5_g7 );
-				half Distort148 = ( ( _DistortTexAR == 0.0 ? tex2DNode7_g7.a : tex2DNode7_g7.r ) * _DistortFactor );
+				float2 appendResult4_g13 = (float2(_MainTexUSpeed , _MainTexVSpeed));
+				float2 uv_MainTex = IN.ase_texcoord2.xy * _MainTex_ST.xy + _MainTex_ST.zw;
+				float2 temp_output_3_0_g8 = uv_MainTex;
+				float2 appendResult4_g7 = (float2(_DistortTexUSpeed , _DistortTexVSpeed));
+				float2 uv_DistortTex = IN.ase_texcoord2.xy * _DistortTex_ST.xy + _DistortTex_ST.zw;
+				float2 panner5_g7 = ( 1.0 * _Time.y * appendResult4_g7 + uv_DistortTex);
+				float4 tex2DNode7_g7 = tex2D( _DistortTex, panner5_g7 );
+				float Distort148 = ( ( _DistortTexAR == 0.0 ? tex2DNode7_g7.a : tex2DNode7_g7.r ) * _DistortFactor );
 				#ifdef _FDISTORTTEX_ON
-				half2 staticSwitch316 = ( _DistortMainTex == 0.0 ? temp_output_3_0_g8 : ( temp_output_3_0_g8 + Distort148 ) );
+				float2 staticSwitch316 = ( _DistortMainTex == 0.0 ? temp_output_3_0_g8 : ( temp_output_3_0_g8 + Distort148 ) );
 				#else
-				half2 staticSwitch316 = uv_MainTex;
+				float2 staticSwitch316 = uv_MainTex;
 				#endif
-				half4 texCoord328 = IN.ase_texcoord3;
+				float4 texCoord328 = IN.ase_texcoord3;
 				texCoord328.xy = IN.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
-				half2 appendResult330 = (half2(texCoord328.x , texCoord328.y));
-				half2 panner5_g13 = ( 1.0 * _Time.y * appendResult4_g13 + (( _CustomMainTex )?( ( staticSwitch316 + appendResult330 ) ):( staticSwitch316 )));
-				half4 tex2DNode7_g13 = tex2D( _MainTex, panner5_g13 );
+				float2 appendResult330 = (float2(texCoord328.x , texCoord328.y));
+				float2 panner5_g13 = ( 1.0 * _Time.y * appendResult4_g13 + (( _CustomMainTex )?( ( staticSwitch316 + appendResult330 ) ):( staticSwitch316 )));
+				float4 tex2DNode7_g13 = tex2D( _MainTex, panner5_g13 );
 				float MainTexAlpha138 = ( _MainColor.a * ( _MainTexAR == 0.0 ? tex2DNode7_g13.a : tex2DNode7_g13.r ) );
-				half2 appendResult4_g14 = (half2(_MaskTexUSpeed , _MaskTexVSpeed));
-				half2 uv_MaskTex = IN.ase_texcoord2.xy * _MaskTex_ST.xy + _MaskTex_ST.zw;
-				half2 temp_output_3_0_g12 = uv_MaskTex;
+				float2 appendResult4_g15 = (float2(_MaskTexUSpeed , _MaskTexVSpeed));
+				float2 uv_MaskTex = IN.ase_texcoord2.xy * _MaskTex_ST.xy + _MaskTex_ST.zw;
+				float2 temp_output_3_0_g14 = uv_MaskTex;
 				#ifdef _FDISTORTTEX_ON
-				half2 staticSwitch312 = ( _DistortMaskTex == 0.0 ? temp_output_3_0_g12 : ( temp_output_3_0_g12 + Distort148 ) );
+				float2 staticSwitch312 = ( _DistortMaskTex == 0.0 ? temp_output_3_0_g14 : ( temp_output_3_0_g14 + Distort148 ) );
 				#else
-				half2 staticSwitch312 = uv_MaskTex;
+				float2 staticSwitch312 = uv_MaskTex;
 				#endif
-				half2 panner5_g14 = ( 1.0 * _Time.y * appendResult4_g14 + staticSwitch312);
-				half4 tex2DNode7_g14 = tex2D( _MaskTex, panner5_g14 );
+				float2 panner5_g15 = ( 1.0 * _Time.y * appendResult4_g15 + staticSwitch312);
+				float4 tex2DNode7_g15 = tex2D( _MaskTex, panner5_g15 );
 				#ifdef _FMASKTEX_ON
-				half staticSwitch291 = ( _MaskTexAR == 0.0 ? tex2DNode7_g14.a : tex2DNode7_g14.r );
+				float staticSwitch291 = ( _MaskTexAR == 0.0 ? tex2DNode7_g15.a : tex2DNode7_g15.r );
 				#else
-				half staticSwitch291 = 1.0;
+				float staticSwitch291 = 1.0;
 				#endif
-				half Alpha337 = _MainAlpha;
-				half4 texCoord333 = IN.ase_texcoord3;
+				float Alpha337 = _MainAlpha;
+				float4 texCoord333 = IN.ase_texcoord3;
 				texCoord333.xy = IN.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
-				half temp_output_275_0 = (-_DissolveWide + ((( _CustomDissolve )?( texCoord333.z ):( _DissolveFactor )) - 0.0) * (1.0 - -_DissolveWide) / (1.0 - 0.0));
-				half temp_output_277_0 = ( _DissolveSoft + 0.0001 );
-				half temp_output_270_0 = (-temp_output_277_0 + (temp_output_275_0 - 0.0) * (1.0 - -temp_output_277_0) / (1.0 - 0.0));
-				half2 appendResult4_g10 = (half2(_DissolveTexUSpeed , _DissolveTexVSpeed));
-				half2 uv_DissolveTex = IN.ase_texcoord2.xy * _DissolveTex_ST.xy + _DissolveTex_ST.zw;
-				half2 temp_output_3_0_g9 = uv_DissolveTex;
+				float temp_output_275_0 = (-_DissolveWide + ((( _CustomDissolve )?( texCoord333.z ):( _DissolveFactor )) - 0.0) * (1.0 - -_DissolveWide) / (1.0 - 0.0));
+				float temp_output_277_0 = ( _DissolveSoft + 0.0001 );
+				float temp_output_270_0 = (-temp_output_277_0 + (temp_output_275_0 - 0.0) * (1.0 - -temp_output_277_0) / (1.0 - 0.0));
+				float2 appendResult4_g10 = (float2(_DissolveTexUSpeed , _DissolveTexVSpeed));
+				float2 uv_DissolveTex = IN.ase_texcoord2.xy * _DissolveTex_ST.xy + _DissolveTex_ST.zw;
+				float2 temp_output_3_0_g9 = uv_DissolveTex;
 				#ifdef _FDISTORTTEX_ON
-				half2 staticSwitch314 = ( _DistortDissolveTex == 0.0 ? temp_output_3_0_g9 : ( temp_output_3_0_g9 + Distort148 ) );
+				float2 staticSwitch314 = ( _DistortDissolveTex == 0.0 ? temp_output_3_0_g9 : ( temp_output_3_0_g9 + Distort148 ) );
 				#else
-				half2 staticSwitch314 = uv_DissolveTex;
+				float2 staticSwitch314 = uv_DissolveTex;
 				#endif
-				half2 panner5_g10 = ( 1.0 * _Time.y * appendResult4_g10 + staticSwitch314);
-				half4 tex2DNode7_g10 = tex2D( _DissolveTex, panner5_g10 );
-				half temp_output_351_20 = ( _DissolveTexAR == 0.0 ? tex2DNode7_g10.a : tex2DNode7_g10.r );
-				half smoothstepResult256 = smoothstep( temp_output_270_0 , ( temp_output_270_0 + temp_output_277_0 ) , temp_output_351_20);
-				half DissolveAlpha212 = smoothstepResult256;
+				float2 panner5_g10 = ( 1.0 * _Time.y * appendResult4_g10 + staticSwitch314);
+				float4 tex2DNode7_g10 = tex2D( _DissolveTex, panner5_g10 );
+				float temp_output_351_20 = ( _DissolveTexAR == 0.0 ? tex2DNode7_g10.a : tex2DNode7_g10.r );
+				float smoothstepResult256 = smoothstep( temp_output_270_0 , ( temp_output_270_0 + temp_output_277_0 ) , temp_output_351_20);
+				float DissolveAlpha212 = smoothstepResult256;
 				#ifdef _FDISSOLVETEX_ON
-				half staticSwitch299 = DissolveAlpha212;
+				float staticSwitch299 = DissolveAlpha212;
 				#else
-				half staticSwitch299 = 1.0;
+				float staticSwitch299 = 1.0;
 				#endif
-				half Refnl339 = _ReFnl;
+				float Refnl339 = _ReFnl;
 				float3 ase_worldViewDir = ( _WorldSpaceCameraPos.xyz - WorldPosition );
 				ase_worldViewDir = normalize(ase_worldViewDir);
-				half3 ase_worldNormal = IN.ase_texcoord4.xyz;
-				half fresnelNdotV279 = dot( ase_worldNormal, ase_worldViewDir );
-				half fresnelNode279 = ( 0.0 + _FnlScale * pow( 1.0 - fresnelNdotV279, _FnlPower ) );
-				half temp_output_283_0 = saturate( fresnelNode279 );
-				half ReFnlAlpha318 = ( 1.0 - temp_output_283_0 );
+				float3 ase_worldNormal = IN.ase_texcoord4.xyz;
+				float fresnelNdotV279 = dot( ase_worldNormal, ase_worldViewDir );
+				float fresnelNode279 = ( 0.0 + _FnlScale * pow( 1.0 - fresnelNdotV279, _FnlPower ) );
+				float temp_output_283_0 = saturate( fresnelNode279 );
+				float ReFnlAlpha318 = ( 1.0 - temp_output_283_0 );
 				#ifdef _FFNL_ON
-				half staticSwitch319 = ( Refnl339 == 0.0 ? 1.0 : ReFnlAlpha318 );
+				float staticSwitch319 = ( Refnl339 == 0.0 ? 1.0 : ReFnlAlpha318 );
 				#else
-				half staticSwitch319 = 1.0;
+				float staticSwitch319 = 1.0;
 				#endif
 				float4 screenPos = IN.ase_texcoord5;
-				half4 ase_screenPosNorm = screenPos / screenPos.w;
+				float4 ase_screenPosNorm = screenPos / screenPos.w;
 				ase_screenPosNorm.z = ( UNITY_NEAR_CLIP_VALUE >= 0 ) ? ase_screenPosNorm.z : ase_screenPosNorm.z * 0.5 + 0.5;
 				float screenDepth375 = LinearEyeDepth(SHADERGRAPH_SAMPLE_SCENE_DEPTH( ase_screenPosNorm.xy ),_ZBufferParams);
-				half distanceDepth375 = abs( ( screenDepth375 - LinearEyeDepth( ase_screenPosNorm.z,_ZBufferParams ) ) / ( _DepthFade ) );
+				float distanceDepth375 = abs( ( screenDepth375 - LinearEyeDepth( ase_screenPosNorm.z,_ZBufferParams ) ) / ( _DepthFade ) );
 				#ifdef _FDEPTH_ON
-				half staticSwitch378 = saturate( distanceDepth375 );
+				float staticSwitch378 = saturate( distanceDepth375 );
 				#else
-				half staticSwitch378 = 1.0;
+				float staticSwitch378 = 1.0;
 				#endif
 				float MainAlpha97 = saturate( ( MainTexAlpha138 * staticSwitch291 * IN.ase_color.a * Alpha337 * staticSwitch299 * staticSwitch319 * staticSwitch378 ) );
 				

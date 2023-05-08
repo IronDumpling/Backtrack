@@ -12,6 +12,10 @@ public class AudioManager : NoDestroyMonoSingleton<AudioManager>
 
     protected override void Init()
     {
+        if (audioList == null)
+        {
+            audioList = new List<AudioType>();  
+        }
         foreach (AudioType type in audioList)
         {
             type.source = gameObject.AddComponent<AudioSource>();
@@ -136,14 +140,12 @@ public class AudioManager : NoDestroyMonoSingleton<AudioManager>
 
     public void PlayMusicAtStart()
     {
-        if (SavePointManager.Instance.isSave)
+        //&& first scene
+        if (!SavePointManager.Instance.isSave && MonoLevelInfo.Instance.LevelSceneNum == 1)
         {
-           
+            Play(MonoLevelInfo.Instance.LevelBGM);
         }
-        else
-        {
-            Play(PlayerController.Instance.levelBGM);
-        }
+ 
     }
 
 }

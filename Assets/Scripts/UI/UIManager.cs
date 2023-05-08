@@ -10,19 +10,36 @@ public class UIManager : MonoSingleton<UIManager>
 {
     private bool isVideo = true;
 
-    private GameObject _pauseUI;
+    private Transform _pauseUI;
 
     protected override void Init()
     {
-        _pauseUI = transform.Find("PauseUI")?.gameObject;
-        if(_pauseUI && _pauseUI.activeSelf) _pauseUI?.SetActive(false);
+        _pauseUI = transform.Find("PauseUI");
+        if (_pauseUI)
+        {
+            _pauseUI.Find("PausePanel")?.gameObject.SetActive(false);
+            _pauseUI.Find("PauseButton")?.gameObject.SetActive(true);
+            _pauseUI.Find("CloseButton")?.gameObject.SetActive(false);
+        }
     }
 
     // UI Pause
     public void PausePreform(InputAction.CallbackContext obj)
     {
-        if(_pauseUI && _pauseUI.activeSelf) _pauseUI?.SetActive(false);
-        else _pauseUI?.SetActive(true);
+        if (_pauseUI &&
+            (bool)(_pauseUI.Find("PausePanel")?.gameObject.activeSelf))
+        {
+            _pauseUI.Find("PausePanel")?.gameObject.SetActive(false);
+            _pauseUI.Find("PauseButton")?.gameObject.SetActive(true);
+            _pauseUI.Find("CloseButton")?.gameObject.SetActive(false);
+        }
+        else
+        {
+            _pauseUI?.Find("PausePanel")?.gameObject.SetActive(true);
+            _pauseUI?.Find("PauseButton")?.gameObject.SetActive(false);
+            _pauseUI?.Find("CloseButton")?.gameObject.SetActive(true);
+        }
+         
     }
 
     // UI Main
