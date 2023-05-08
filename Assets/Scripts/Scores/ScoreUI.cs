@@ -14,7 +14,7 @@ public class ScoreUI : MonoBehaviour
 
     void UpdateScore()
     {
-        gameObject.GetComponent<TMPro.TMP_Text>().text = $"积分数 {ScoreManager.Instance.CurrentScoreInLevel}";
+        gameObject.GetComponent<TMPro.TMP_Text>().text = $"{ScoreManager.Instance.CurrentScoreInLevel}";
     }
 
     private void OnDisable()
