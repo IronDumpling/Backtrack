@@ -140,14 +140,12 @@ public class AudioManager : NoDestroyMonoSingleton<AudioManager>
 
     public void PlayMusicAtStart()
     {
-        if (SavePointManager.Instance.isSave)
+        //&& first scene
+        if (!SavePointManager.Instance.isSave && MonoLevelInfo.Instance.LevelSceneNum == 1)
         {
-           
+            Play(MonoLevelInfo.Instance.LevelBGM);
         }
-        else
-        {
-            Play(PlayerController.Instance.levelBGM);
-        }
+ 
     }
 
 }

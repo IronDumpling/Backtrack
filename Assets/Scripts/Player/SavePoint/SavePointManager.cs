@@ -44,7 +44,6 @@ public class SavePointManager : Singleton<SavePointManager>
             GameObject a2 = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/MapObject/AsyncLevelObject"));
             a2.SetActive(true);
             a2.GetComponent<AsyncLevelLoader>().StartLoadAsync(SceneManager.GetActiveScene().name);
-
             return;
         }
         

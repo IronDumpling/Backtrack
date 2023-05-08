@@ -58,6 +58,7 @@ public class ScoreManager : NoDestroyMonoSingleton<ScoreManager>
 
    public void ScoreScoreObj(ScoreObject so)
    {
+      //this.transform.position = so.transform.position;
       currentScore += so.score;
       _scoreObjects.Remove(so);
       onAfterScoreAnObj?.Invoke();
