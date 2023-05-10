@@ -65,7 +65,7 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void SelectL3()
     {
-        SceneManager.LoadScene("LEVEL3_PLAYGROUND 1");
+        SceneManager.LoadScene("test_P1 LZ");
     }
 
     // UI End
@@ -84,6 +84,6 @@ public class UIManager : MonoSingleton<UIManager>
     public void RestartL3()
     {
 
-        SceneManager.LoadScene("LEVEL3_PLAYGROUND 1");
+        SceneManager.LoadScene("test_P1 LZ");
     }
 }
