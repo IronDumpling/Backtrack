@@ -1,24 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using System.Collections.Generic;
 
 public class WordCombineUI : MonoBehaviour
 {
-    public TextAsset displayText;
+    public string displayText;
+    [SerializeField] List<GameObject> canvasList;
 
     private void Start()
     {
-        TextAsset[] textAssets = Resources.LoadAll<TextAsset>("Text/Level1/level_1_p2_word");
-
-        string allText = "";
-
-        foreach (TextAsset textAsset in textAssets)
-        {
-            allText += textAsset.text + "\n";
-        }
-
         
     }
-
-
 }
