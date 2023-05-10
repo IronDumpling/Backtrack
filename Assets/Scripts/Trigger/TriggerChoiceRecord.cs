@@ -4,7 +4,7 @@ using UnityEngine;
 //using UnityEditor;
 using System.IO;
 
-public class TriggerWordRecord : TriggerBase
+public class TriggerChoiceRecord : TriggerBase
 {
     public string word;
 
