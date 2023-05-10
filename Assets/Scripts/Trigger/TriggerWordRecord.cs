@@ -7,19 +7,19 @@ using System.IO;
 public class TriggerWordRecord : TriggerBase
 {
     public string word;
-    private bool isTriggered = false;
+    //private bool isTriggered = false;
 
     protected override void enterEvent()
     {
         base.enterEvent();
 
-        isTriggered = true;
+        //isTriggered = true;
 
-        string fileName = "level_1_p2_word.txt";
+        //string fileName = "level_1_p2_word.txt";
 
-        string filePath = Path.Combine(Application.dataPath, "Resources/Text/Level1/" + fileName);
+        //string filePath = Path.Combine(Application.dataPath, "Resources/Text/Level1/" + fileName);
 
-        File.WriteAllText(filePath, word);
+        //File.WriteAllText(filePath, word);
     }
 }
 
