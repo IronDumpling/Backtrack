@@ -10,16 +10,19 @@ public class PauseUI : MonoBehaviour
     private Transform _pausePanel;
     private GameObject _pauseButton;
     private GameObject _closeButton;
+    private float _prevTimeScale;
 
     private void Awake()
     {
         _pausePanel = transform.parent;
         _pauseButton = _pausePanel.Find("PauseButton")?.gameObject;
         _closeButton = _pausePanel.Find("CloseButton")?.gameObject;
+        _prevTimeScale = Time.timeScale;
     }
 
     public void OnEnable()
     {
+        _prevTimeScale = Time.timeScale;
         Time.timeScale = 0f;
         _pauseButton.SetActive(false);
         _closeButton.SetActive(true);
@@ -28,7 +31,7 @@ public class PauseUI : MonoBehaviour
 
     public void OnDisable()
     {
-        Time.timeScale = 1f;
+        Time.timeScale = _prevTimeScale;
         _pauseButton.SetActive(true);
         _closeButton.SetActive(false);
         AudioManager.Instance.PlayAll();
