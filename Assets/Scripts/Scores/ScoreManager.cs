@@ -8,10 +8,9 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class ScoreManager : NoDestroyMonoSingleton<ScoreManager>
 {
-   private List<ScoreObject> _scoreObjects;
-   [SerializeField] private int currentScore;
+    private List<ScoreObject> _scoreObjects;
+    [SerializeField] private int currentScore;
 
-   [SerializeField] private int level0TotalScores;
    public event Action onAfterScoreAnObj;
    public int RemainScoreInLevel
    {

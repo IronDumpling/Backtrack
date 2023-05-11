@@ -14,7 +14,7 @@ public class EventManager : Singleton<EventManager>
       //重置关卡   可能会变更的点： （展示从新开始UI -》 从新开始）
       AudioManager.Instance.StopAll();
       DOTween.Clear();
-      PlayerController.Instance.GameEnd();
+      PlayerControllerBase.Instance.GameEnd();
       ScoreManager.Instance.CurrentScoreInLevel = 0;
       SavePointManager.Instance.LoadSavePoint();
       
@@ -25,7 +25,7 @@ public class EventManager : Singleton<EventManager>
       Debug.Log("玩家重新开始游戏");
       AudioManager.Instance.StopAll();
       DOTween.Clear();
-      PlayerController.Instance.GameEnd();
+      PlayerControllerBase.Instance.GameEnd();
       ScoreManager.Instance.CurrentScoreInLevel = 0;
 
       SavePointManager.Instance.isSave = false;

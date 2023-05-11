@@ -17,9 +17,9 @@ public class TriggerWordRecord : TriggerBase
 
         string fileName = "level_1_p2_word.txt";
 
-        string filePath = Path.Combine(Application.dataPath, "Resources/Text/Level1/" + fileName);
+        //string filePath = Path.Combine(Application.dataPath, "Resources/Text/Level1/" + fileName);
 
-        File.WriteAllText(filePath, word);
+        //File.WriteAllText(filePath, word);
     }
 }
 
