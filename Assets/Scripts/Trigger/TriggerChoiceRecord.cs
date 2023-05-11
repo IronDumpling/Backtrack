@@ -11,6 +11,8 @@ public class TriggerChoiceRecord : TriggerBase
     protected override void enterEvent()
     {
         base.enterEvent();
-
+        ChoiceManager.Instance.displayText += word;
+        ChoiceManager.Instance.DisplayChoices();
+        Debug.Log($"{ChoiceManager.Instance.displayText}");
     }
 }

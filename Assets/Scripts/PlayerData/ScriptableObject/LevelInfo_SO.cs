@@ -9,6 +9,5 @@ public class LevelInfo_SO : ScriptableObject
     public int levelSceneNum;
     public int levelTotalScore;
     public string levelBGM;
-    public string choices;
 }
 
