@@ -3,8 +3,8 @@ using Cinemachine;
 
 public class TriggerCamera : TriggerBase {
 
-    [SerializeField] protected int CommonCamIdx = -1;
-    [SerializeField] protected CinemachineVirtualCamera _CustomVC;
+    [SerializeField] protected int _CommonCamIdx = -1;
+    [SerializeField] protected CinemachineVirtualCamera _SelectVC;
 
     [SerializeField] protected bool _SetCustomBlend;
     [SerializeField] protected CinemachineBlendDefinition _CustomBlend;
@@ -14,26 +14,23 @@ public class TriggerCamera : TriggerBase {
     protected override void enterEvent() {
         base.enterEvent();
 
-        if (_SetCustomBlend) {
-            _camManager.SetCustomBlend(_CustomBlend);
-        }
+        if (_SetCustomBlend) _camManager.SetCustomBlend(_CustomBlend);
         else _camManager.SetDefaultBlend();
 
-        if (_CustomVC != null) {
-            _camManager.SetCustomCamera(_CustomVC);
-        }
-        else _camManager.SetCommonCamera(CommonCamIdx);
+        _camManager.SetCamera(_SelectVC);
     }
 
     protected virtual void _awake() { }
 
     private void Awake() {
-        if (CommonCamIdx >= CameraManager.Instance.CommonCameraList.Length) {
+        var camList = CameraManager.Instance.CommonCameraList;
+        if (_CommonCamIdx >= camList.Length) {
             DebugLogger.Error(this.name, "Selected CmmonCamera from list out of Bound.");
         }
-        if(CommonCamIdx < 0 && _CustomVC == null) {
+        if(_CommonCamIdx < 0 && _SelectVC == null) {
             DebugLogger.Error(this.name, "CustomCamera not set.");
         }
+        if (_SelectVC == null) _SelectVC = camList[_CommonCamIdx];
         _awake();
     }
 
