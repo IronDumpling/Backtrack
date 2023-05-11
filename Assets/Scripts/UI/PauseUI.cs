@@ -26,7 +26,7 @@ public class PauseUI : MonoBehaviour
         Time.timeScale = 0f;
         _pauseButton.SetActive(false);
         _closeButton.SetActive(true);
-        AudioManager.Instance.PauseAll();
+        AudioManager.Instance?.PauseAll();
     }
 
     public void OnDisable()
@@ -34,7 +34,7 @@ public class PauseUI : MonoBehaviour
         Time.timeScale = _prevTimeScale;
         _pauseButton.SetActive(true);
         _closeButton.SetActive(false);
-        AudioManager.Instance.PlayAll();
+        AudioManager.Instance?.PlayAll();
     }
 
     // UI Pause

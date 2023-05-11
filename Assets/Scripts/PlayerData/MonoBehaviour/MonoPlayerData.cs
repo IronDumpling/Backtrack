@@ -15,16 +15,18 @@ public class MonoPlayerData : NoDestroyMonoSingleton<MonoPlayerData>
     public int Level0Score
     {
         get => _dataSo.level0Score;
-        set
-        {
-            _dataSo.level0Score = value;
-            Debug.Log("level0 score : " + _dataSo.level0Score);
-        }
+        set => _dataSo.level0Score = value;
     }
 
     public int Level3Score
     {
         get => _dataSo.level3Score;
         set => _dataSo.level3Score = value;
+    }
+
+    public string Level0Choices
+    {
+        get => _dataSo.level0Choices;
+        set => _dataSo.level0Choices = value;
     }
 }
