@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Common;
-using PlayerData.ScriptableObject;
 using UnityEngine;
 
 public class MonoLevelInfo : MonoSingleton<MonoLevelInfo>
@@ -13,6 +12,12 @@ public class MonoLevelInfo : MonoSingleton<MonoLevelInfo>
         base.Init();
         if (_dataSo == null) Debug.LogError("没有levelinfo");
     }
+
+    private void Start()
+    {
+        _dataSo.levelTotalScore = ScoreManager.Instance.RemainScoreInLevel;
+    }
+
     public int levelNum
     {
         get => _dataSo.levelNum;
@@ -29,5 +34,10 @@ public class MonoLevelInfo : MonoSingleton<MonoLevelInfo>
     {
         get => _dataSo.levelBGM;
         set => _dataSo.levelBGM = value;
+    }
+
+    public int LevelTotalScore
+    {
+        get => _dataSo.levelTotalScore;
     }
 }

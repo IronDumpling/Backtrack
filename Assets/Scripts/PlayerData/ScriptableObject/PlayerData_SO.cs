@@ -8,6 +8,6 @@ public class PlayerData_SO : ScriptableObject
 
     [Header("Level Data")] 
     public int level0Score;
-
+    public string level0Choices;
     public int level3Score;
 }
