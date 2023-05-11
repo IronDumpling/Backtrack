@@ -48,11 +48,21 @@ public class CameraManager : MonoSingleton<CameraManager> {
         /* DollyTrackVC */
         CommonCameraList[2].LookAt = follow;
         CommonCameraList[2].Follow = follow;
+
+
+        if (_curActiveCamera == null) {
+            DebugLogger.Error(this.name, "First Camera not set!");
+        }
+
+        foreach (CinemachineVirtualCamera virtualCamera in FindObjectsOfType<CinemachineVirtualCamera>()) {
+            if (virtualCamera.m_Priority > 0 && _curActiveCamera != virtualCamera) {
+                DebugLogger.Error(virtualCamera.name, "Default Main Camera not Set in CameraManager. Set VC Priority > 0, and _curActiveCamera = this VC");
+            }
+        }
+
     }
 
     void Start() {
-        _curActiveCamera = CommonCameraList[0];
-
         _brain = FindObjectOfType<CinemachineBrain>();
     }
 }
