@@ -7,14 +7,19 @@ using UnityEngine;
 public class TriggerGenerateObstacle : TriggerBase
 {
     
-    [SerializeField] private GameObject GenerateObj;
+    [SerializeField] private List<GameObject> GenerateObj;
 
 
 
     protected override void enterEvent(Collider collision)
     {
         base.enterEvent(collision);
-        Instantiate(GenerateObj,  PlayerControllerBase.Instance.transform.Find("ArrowGeneratePlace"));
+
+        foreach (var obj in GenerateObj)
+        {
+            Instantiate(obj,  PlayerControllerBase.Instance.transform.Find("ArrowGeneratePlace"));
+
+        }
         
         
     }
