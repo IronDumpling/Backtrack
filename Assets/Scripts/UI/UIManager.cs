@@ -26,9 +26,31 @@ public class UIManager : MonoSingleton<UIManager>
     }
 
     // UI Main
+    public void LogoStart()
+    {
+
+        //加载到“UI_Main”场景
+        SceneManager.LoadScene("UI_Main");
+    }
+
+    // UI Main
+    public void NewGame()
+    {
+        //TODO: 清除所有游戏数据
+        transform.Find("SpecialUI")?.gameObject.SetActive(true);
+        transform.Find("NormalUI")?.gameObject.SetActive(false);
+    }
+
     public void GameStart()
     {
         
+        //加载到“UI_Select”场景
+        SceneManager.LoadScene("UI_Select");
+    }
+
+    public void GameContinue()
+    {
+
         //加载到“UI_Select”场景
         SceneManager.LoadScene("UI_Select");
     }
