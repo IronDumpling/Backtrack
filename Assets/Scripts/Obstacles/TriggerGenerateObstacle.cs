@@ -17,6 +17,7 @@ public class TriggerGenerateObstacle : TriggerBase
 
         foreach (var obj in GenerateObj)
         {
+            Debug.Log("生成飞箭");
             Instantiate(obj,  PlayerControllerBase.Instance.transform.Find("ArrowGeneratePlace"));
 
         }

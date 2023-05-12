@@ -10,4 +10,5 @@ public class FriendClose : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    
 }
