@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Linq;
 using DG.Tweening;
+using DG.Tweening.Plugins.Core.PathCore;
 using Unity.VisualScripting;
 using UnityEngine;
 using Quaternion = System.Numerics.Quaternion;
@@ -19,7 +20,9 @@ using Quaternion = System.Numerics.Quaternion;
         [SerializeField] private bool AppearAfterTrigger;
         [SerializeField] private bool isMoveOnStart = false;
         [SerializeField] private bool isLocalMove = false;
-        
+        [Header("只在isLocalMove的时候,false才有效")]
+        [SerializeField] private bool isLookAtPath = true;
+
         [SerializeField] private bool isStopAtMid = false;
         [SerializeField] private float beforePauseTime = 1f;
         [SerializeField] private float pauseTime = 5f;
@@ -56,21 +59,39 @@ using Quaternion = System.Numerics.Quaternion;
             
             if (isLocalMove)
             {
-                tw = moveObjTransform.DOLocalPath(pointPos, duration, type).SetLookAt(0.01f).SetEase(easeType);
+                if (isLookAtPath)
+                {
+                    tw = moveObjTransform.DOLocalPath(pointPos, duration, type).SetEase(easeType);
 
+                }
+                else
+                {
+                    tw = moveObjTransform.DOLocalPath(pointPos, duration, type).SetLookAt(0.01f).SetEase(easeType);
+
+                }
+                    
+        
             }
             else
             {
                 tw = moveObjTransform.DOPath(pointPos, duration, type).SetLookAt(0.01f).SetEase(easeType);
 
             }
+            
             //moveObjTransform.DOPath(pointPos,duration
 
             if (isStopAtMid)
             {
                 StartCoroutine(StopCount());
             }
+
+            tw.onComplete += () =>
+            {
+                this.transform.parent.gameObject.SetActive(false);
+            };
             
+            
+
         }
         IEnumerator StopCount()
         {
