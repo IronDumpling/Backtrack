@@ -29,6 +29,7 @@ public class PlayerControllerBase : MonoSingleton<PlayerControllerBase>
 
     public virtual void GameStart()
     {
+        // TODO: Error when player dead
         AudioManager.Instance.PlayMusicAtStart();
     }
 
