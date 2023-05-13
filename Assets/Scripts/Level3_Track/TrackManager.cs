@@ -45,7 +45,7 @@ namespace Level3_Track {
         /// 4. Switch back to TrackNormal Update<br/>
         /// 5. Use TrackInfo to Set PlayerMotor Input Mapping
         /// </summary>
-        private void TrackSwitch() {
+        public void TrackSwitch() {
             if(_CurrentTrackIdx >= _TrackList.Length) {
                 Debug.Log("All Track Played successfully");
                 Debug.Break();

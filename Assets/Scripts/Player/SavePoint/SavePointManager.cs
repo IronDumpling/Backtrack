@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Common;
+using Level3_Track;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,6 +19,8 @@ public class SavePointManager : Singleton<SavePointManager>
     public float speed;
     public float xspeed;
 
+    public int levelNum;
+    public int saveTrackId;
     
     
     public void SetSavePoint(string sceneName, Vector3 pointVector,Vector3 rotation,  string bgmName, float bgmTime,int scores,
@@ -33,8 +36,27 @@ public class SavePointManager : Singleton<SavePointManager>
         saveScores = scores;
         this.speed = speed;
         this.xspeed = xspeed;
+        // TODO: Add Camaera Info
+        // TODO: Add choice info
+        levelNum = 0;
     }
 
+    public void SetSavePointLevel3(string sceneName, string bgmName, float bgmTime,int scores, 
+        int trackId)
+    {
+        isSave = true;
+        levelNum = 3;
+        saveSceneName = sceneName;
+        saveTrackId = trackId;
+        saveBGMName = bgmName;
+        saveBGMTime = bgmTime;
+        saveScores = scores;
+        
+        Debug.Log("set level3 save success");
+        
+
+
+    }
     public void LoadSavePoint()
     {
         
@@ -46,6 +68,8 @@ public class SavePointManager : Singleton<SavePointManager>
             a2.GetComponent<AsyncLevelLoader>().StartLoadAsync(SceneManager.GetActiveScene().name);
             return;
         }
+
+     
         
         
         GameObject asyncLoadObject = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/MapObject/AsyncLevelObject"));
@@ -57,14 +81,25 @@ public class SavePointManager : Singleton<SavePointManager>
 
     private void LoadAfterScene()
     {
-        PlayerController.Instance.transform.position = savePointVector3;
-        PlayerController.Instance.transform.rotation = Quaternion.Euler(saveRotationVector3);
+        if (levelNum == 3)
+        {
+            TrackManager.Instance._CurrentTrackIdx = saveTrackId;
+            TrackManager.Instance.TrackSwitch();
+
+            
+        }
+        else
+        {
+            PlayerController.Instance.transform.position = savePointVector3;
+            PlayerController.Instance.transform.rotation = Quaternion.Euler(saveRotationVector3);
+            PlayerController.Instance.GetComponent<PlayerMotor>().ZSpeed = speed;
+            PlayerController.Instance.GetComponent<PlayerMotor>().XSpeed = xspeed;
+
+
+        }
         ScoreManager.Instance.CurrentScoreInLevel = saveScores;
         AudioManager.Instance.SetMusicTime(saveBGMName, saveBGMTime);
         AudioManager.Instance.Play(saveBGMName);
-        
-        PlayerController.Instance.GetComponent<PlayerMotor>().ZSpeed = speed;
-        PlayerController.Instance.GetComponent<PlayerMotor>().XSpeed = xspeed;
         
 
     }

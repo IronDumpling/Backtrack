@@ -13,6 +13,7 @@ namespace Level1
 
         protected override void enterEvent()
         {
+            Debug.Log("collide player");
             EventManager.Instance.PlayerDeadEventTrigger();
 
         }
