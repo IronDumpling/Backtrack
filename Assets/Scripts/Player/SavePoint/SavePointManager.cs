@@ -36,6 +36,8 @@ public class SavePointManager : Singleton<SavePointManager>
         saveScores = scores;
         this.speed = speed;
         this.xspeed = xspeed;
+        // TODO: Add Camaera Info
+        // TODO: Add choice info
         levelNum = 0;
     }
 
