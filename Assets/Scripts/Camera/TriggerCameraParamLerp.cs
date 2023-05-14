@@ -77,7 +77,7 @@ public class TriggerCameraParamLerp : TriggerBase {
     }
 
     private void Awake() {
-        cam = CameraManager.Instance._curActiveCamera;
+        if (cam == null) cam = CameraManager.Instance._curActiveCamera;
         transposer = cam.GetCinemachineComponent<CinemachineTransposer>();
         if (transposer == null) {
             DebugLogger.Warning(this.name, "Didn't find Composer on CurrentVirtualCamera, FollowAtOffset Disabled.");
