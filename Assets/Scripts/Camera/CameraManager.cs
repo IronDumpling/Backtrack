@@ -53,13 +53,18 @@ public class CameraManager : MonoSingleton<CameraManager> {
         if (_curActiveCamera == null) {
             DebugLogger.Error(this.name, "First Camera not set!");
         }
-
+        CinemachineVirtualCamera curhigh = null;
         foreach (CinemachineVirtualCamera virtualCamera in FindObjectsOfType<CinemachineVirtualCamera>()) {
-            if (virtualCamera.m_Priority > 0 && _curActiveCamera != virtualCamera) {
-                DebugLogger.Error(virtualCamera.name, "Default Main Camera not Set in CameraManager. Set VC Priority > 0, and _curActiveCamera = this VC");
+            if (curhigh == null) {
+                curhigh = virtualCamera;
+                continue;
             }
+            if (virtualCamera.m_Priority > curhigh.m_Priority)
+                curhigh = virtualCamera;
         }
-
+        if(_curActiveCamera != curhigh) {
+            DebugLogger.Error(this.name, "Default Main Camera not Set in CameraManager. Set _curActiveCamera to " + curhigh.name);
+        }
     }
 
     void Start() {
