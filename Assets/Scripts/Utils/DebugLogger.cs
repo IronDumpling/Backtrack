@@ -14,4 +14,10 @@ public static class DebugLogger {
         Debug.Log("[" + objectName + "]: " + message);
 #endif
     }
+
+    public static void Warning(string objectName, string message) {
+#if UNITY_EDITOR
+        Debug.LogWarning("[" + objectName + "]: " + message);
+#endif
+    }
 }
