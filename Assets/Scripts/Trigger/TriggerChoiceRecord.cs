@@ -6,13 +6,13 @@ using System.IO;
 
 public class TriggerChoiceRecord : TriggerBase
 {
-    public string word;
+    public int index = 1;
+    public string choice = "";
 
     protected override void enterEvent()
     {
         base.enterEvent();
-        ChoiceManager.Instance.displayText += word;
+        ChoiceManager.Instance.choices[index-1] = choice;
         ChoiceManager.Instance.DisplayChoices();
-        Debug.Log($"{ChoiceManager.Instance.displayText}");
     }
 }
