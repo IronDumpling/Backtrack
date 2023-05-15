@@ -19,7 +19,6 @@ public class TriggerSavePoint : TriggerBase
         }
         else
         {
-            Debug.Log("save at save point");
             saveLevel0(c);
         }
     }
