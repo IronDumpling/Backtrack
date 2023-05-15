@@ -8,17 +8,16 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Path-transparant
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  m_ValidKeywords:
-  - _SURFACE_TYPE_TRANSPARENT
+  m_Shader: {fileID: 4800000, guid: a33b90f636e7fec4d94bd8d15cc6d083, type: 3}
+  m_ValidKeywords: []
   m_InvalidKeywords:
   - _ALPHAMODULATE_ON
+  - _SURFACE_TYPE_TRANSPARENT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 1
-  m_CustomRenderQueue: 3000
-  stringTagMap:
-    RenderType: Transparent
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses:
   - DepthOnly
   - SHADOWCASTER
@@ -31,6 +30,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CubeMap:
+        m_Texture: {fileID: 8900000, guid: 5bd3dde6ef6012d4fabbbeddb40d6a4b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -84,8 +87,14 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0
+    - _AlphaCutoff: 0.5
+    - _AoIntensity: 0
     - _Blend: 3
+    - _BlurReflection: 0
+    - _Brightness: 1
     - _BumpScale: 1
+    - _BumpScaleDecal: 0.1
+    - _BumpScaleDecal1: 0
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 0
@@ -93,25 +102,64 @@ Material:
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _EmissionIntensity: 1
+    - _EmissiveIntensity: 1
     - _EnvironmentReflections: 1
+    - _Fade: 0.2
+    - _FalloffFade: 0
+    - _FalloffFade1: 0
+    - _FalloffOpacity: 0
+    - _FalloffOpacityIntensity: 1
+    - _FresnelStrength: 0
     - _GlossMapScale: 0
     - _Glossiness: 0
+    - _GlossinessDecal: 0.5
     - _GlossyReflections: 0
+    - _GradientFade: 1
+    - _IndexofRefraction: 1.3
+    - _Intensity: 1
+    - _Invert: 0
+    - _InvertAlbedoA: 0
+    - _InvertAlbedoA1: 0
+    - _InvertFresnelFade: 0
     - _Metallic: 0
+    - _MetallicDecal: 0.2
     - _OcclusionStrength: 1
+    - _OffsetX: 0
+    - _OffsetY: 0
+    - _Opacity: 1
     - _Parallax: 0.005
+    - _PowerFalloffFade: 1
+    - _PowerFalloffOpacity: 1
+    - _PowerFresnel: 1
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _ReflectionDecal: 0
+    - _ReflectionIntensity: 1
+    - _Refraction: 1.1
+    - _Rotation: 0
+    - _Saturation: 0
+    - _SaturationDecal: 0
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 2
     - _Surface: 1
+    - _TilingX: 1
+    - _TilingY: 1
+    - _UseAlbedoA: 0
+    - _UseAlbedoA1: 0
+    - _UseCubemap: 1
+    - _UseSmoothness: 0
     - _WorkflowMode: 1
     - _ZWrite: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorCubemap: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorDecal: {r: 1, g: 1, b: 1, a: 1}
+    - _ColorFresnel: {r: 1, g: 1, b: 1, a: 0}
+    - _ColorFresnel1: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
