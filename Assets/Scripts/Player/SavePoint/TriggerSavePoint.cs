@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using Level3_Track;
 #if UNITY_EDITOR
 using UnityEditor.Build.Player;
@@ -35,6 +36,19 @@ public class TriggerSavePoint : TriggerBase
         float speed = PlayerController.Instance.GetComponent<PlayerMotor>().ZSpeed;
         float xspeed = PlayerController.Instance.GetComponent<PlayerMotor>().XSpeed;
 
+        CinemachineVirtualCamera cam = CameraManager.Instance._curActiveCamera;
+        int curNum = -1;
+        for (int i = 0; i < CameraManager.Instance.CommonCameraList.Length; i++)
+        {
+            if(CameraManager.Instance.CommonCameraList[i].name == cam.name)
+            {
+                curNum = i;
+                break;
+            }
+
+        }
+        if(curNum == -1)Debug.LogError("cant find camera in savelevel");
+        
         SavePointManager.Instance.SetSavePoint(sceneName,
             point,
             rotation,
@@ -42,7 +56,8 @@ public class TriggerSavePoint : TriggerBase
             time,
             scores,
             speed,
-            xspeed);
+            xspeed,
+            curNum);
     }
 
     private void saveLevel3()
