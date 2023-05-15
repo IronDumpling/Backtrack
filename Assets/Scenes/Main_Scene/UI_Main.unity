@@ -544,7 +544,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 694868933}
+    m_TransformParent: {fileID: 803288786}
     m_Modifications:
     - target: {fileID: 561513000205707301, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_SizeDelta.x
@@ -556,7 +556,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7239348585554169992, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_Name
-      value: Circle
+      value: Settings
       objectReference: {fileID: 0}
     - target: {fileID: 7715453101127965777, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_Pivot.x
@@ -624,11 +624,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7715453101127965777, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -650
+      value: -210
       objectReference: {fileID: 0}
     - target: {fileID: 7715453101127965777, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -260
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7715453101127965777, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -643,11 +643,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7813779583271745331, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813779583271745331, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813779583271745331, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 650
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
+--- !u!224 &236817061 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7715453101127965777, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
+  m_PrefabInstance: {fileID: 236817060}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &236817062 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7905854506279250085, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
+  m_PrefabInstance: {fileID: 236817060}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &258110254
 GameObject:
   m_ObjectHideFlags: 0
@@ -758,11 +776,35 @@ MonoBehaviour:
             m_StringArgument: PointerEnter
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 378380592}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: PointerEnter
+            m_BoolArgument: 0
+          m_CallState: 2
   - eventID: 1
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1912404403}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: PointerExit
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 378380592}
           m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
           m_MethodName: SetTrigger
           m_Mode: 5
@@ -952,13 +994,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 587772559}
-  m_RootOrder: 1
+  m_Father: {fileID: 803288786}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &374391114
 MonoBehaviour:
@@ -1003,7 +1045,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1767358884}
+    m_TransformParent: {fileID: 803288786}
     m_Modifications:
     - target: {fileID: 561513000205707301, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1015,7 +1057,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7239348585554169992, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_Name
-      value: Circle
+      value: Quit
       objectReference: {fileID: 0}
     - target: {fileID: 7715453101127965777, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_Pivot.x
@@ -1027,7 +1069,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7715453101127965777, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7715453101127965777, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1083,11 +1125,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7715453101127965777, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -800
+      value: -60
       objectReference: {fileID: 0}
     - target: {fileID: 7715453101127965777, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -260
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7715453101127965777, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1102,11 +1144,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7813779583271745331, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813779583271745331, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7813779583271745331, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 800
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
+--- !u!224 &378380591 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7715453101127965777, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
+  m_PrefabInstance: {fileID: 378380590}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &378380592 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7905854506279250085, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
+  m_PrefabInstance: {fileID: 378380590}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &390610182
 GameObject:
   m_ObjectHideFlags: 0
@@ -1475,7 +1535,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 550692081}
-  - {fileID: 374391113}
+  - {fileID: 803288786}
   - {fileID: 1018906272}
   m_Father: {fileID: 777802423}
   m_RootOrder: 0
@@ -1622,6 +1682,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8466fb7c39ae2674990b83b3dee9967f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &803288785
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 803288786}
+  m_Layer: 5
+  m_Name: Circles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &803288786
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803288785}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 374391113}
+  - {fileID: 378380591}
+  - {fileID: 236817061}
+  - {fileID: 1596713940}
+  - {fileID: 8543285025195435173}
+  m_Father: {fileID: 587772559}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &856619184
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2499,11 +2600,35 @@ MonoBehaviour:
             m_StringArgument: PointerEnter
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1596713941}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: PointerEnter
+            m_BoolArgument: 0
+          m_CallState: 2
   - eventID: 1
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1981998316}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: PointerExit
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1596713941}
           m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
           m_MethodName: SetTrigger
           m_Mode: 5
@@ -2535,7 +2660,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1981998313}
+    m_TransformParent: {fileID: 803288786}
     m_Modifications:
     - target: {fileID: 561513000205707301, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2547,7 +2672,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7239348585554169992, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_Name
-      value: Circle
+      value: NewGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 7239348585554169992, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7715453101127965777, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_Pivot.x
@@ -2559,7 +2688,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7715453101127965777, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7715453101127965777, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2615,11 +2744,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7715453101127965777, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -500
+      value: -360
       objectReference: {fileID: 0}
     - target: {fileID: 7715453101127965777, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -260
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7715453101127965777, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2639,6 +2768,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
+--- !u!224 &1596713940 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7715453101127965777, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
+  m_PrefabInstance: {fileID: 1596713939}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1596713941 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7905854506279250085, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
+  m_PrefabInstance: {fileID: 1596713939}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1744719821
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2791,6 +2930,10 @@ PrefabInstance:
       value: "\u9000\u51FA"
       objectReference: {fileID: 0}
     - target: {fileID: 3861593038778707784, guid: 4e90b2e65080a49948f228e4f2e8f18a, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 3003121663
+      objectReference: {fileID: 0}
+    - target: {fileID: 3861593038778707784, guid: 4e90b2e65080a49948f228e4f2e8f18a, type: 3}
       propertyPath: m_VerticalAlignment
       value: 1024
       objectReference: {fileID: 0}
@@ -2932,11 +3075,35 @@ MonoBehaviour:
             m_StringArgument: PointerEnter
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 8543285025195435174}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: PointerEnter
+            m_BoolArgument: 0
+          m_CallState: 2
   - eventID: 1
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1588261601}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: PointerExit
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 8543285025195435174}
           m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
           m_MethodName: SetTrigger
           m_Mode: 5
@@ -3664,11 +3831,35 @@ MonoBehaviour:
             m_StringArgument: PointerEnter
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 236817062}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: PointerEnter
+            m_BoolArgument: 0
+          m_CallState: 2
   - eventID: 1
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1024243999}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: SetTrigger
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: PointerExit
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 236817062}
           m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
           m_MethodName: SetTrigger
           m_Mode: 5
@@ -3724,7 +3915,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1588261596}
+    m_TransformParent: {fileID: 803288786}
     m_Modifications:
     - target: {fileID: 561513000205707301, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_SizeDelta.x
@@ -3736,7 +3927,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7239348585554169992, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_Name
-      value: Circle
+      value: Continue
       objectReference: {fileID: 0}
     - target: {fileID: 7715453101127965777, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_Pivot.x
@@ -3748,7 +3939,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7715453101127965777, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7715453101127965777, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_AnchorMax.x
@@ -3804,11 +3995,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7715453101127965777, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -350
+      value: -510
       objectReference: {fileID: 0}
     - target: {fileID: 7715453101127965777, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -260
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7715453101127965777, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3828,3 +4019,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
+--- !u!224 &8543285025195435173 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7715453101127965777, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
+  m_PrefabInstance: {fileID: 8543285025195435172}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &8543285025195435174 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7905854506279250085, guid: 35fdf7692ca744bbd9b8007e682ff056, type: 3}
+  m_PrefabInstance: {fileID: 8543285025195435172}
+  m_PrefabAsset: {fileID: 0}
