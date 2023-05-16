@@ -2,13 +2,16 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: FirstLayerOpaque_CubeDamaged_01
   m_Shader: {fileID: 4800000, guid: 1520655ed6b9d00459a3519837ccf9c8, type: 3}
-  m_ShaderKeywords: 
+  m_ValidKeywords:
+  - _FINALOPACITYDITHERENABLED_ON
+  m_InvalidKeywords: []
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -30,6 +33,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: f064b075d97853246adfeb6483ef3a9e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _OpacityTexture:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Ramp:
         m_Texture: {fileID: 2800000, guid: 05fe7fed5ba24c3bb33b818c03091cb1, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -46,10 +53,13 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
+    - _AlphaCutoff: 0.5
     - _Cutoff: 0.5
     - _FinalAlpha: 1
     - _FinalOpacity: 1
+    - _FinalOpacityDitherEnabled: 1
     - _FinalPower: 1
     - _Float1: 0.95
     - _MaskGlowAmount: 0
@@ -57,8 +67,23 @@ Material:
     - _MatCapAlpha: 1
     - _MatCapRotation: 0
     - _MatCapScale: 0.95
+    - _RampTilingExp: 1
     - _Rotation: 0
     - _SingleLayerColoringEnabled: 0
+    - _TessEdgeLength: 16
+    - _TessMax: 25
+    - _TessMaxDisp: 25
+    - _TessMin: 10
+    - _TessPhongStrength: 0.5
+    - _TessValue: 16
+    - _WireframeEnabled: 0
+    - _WireframeFresnelExp: 1
+    - _WireframeGlowAmount: 0
+    - _WireframePower: 10
+    - _WireframeThickness: 10.92
     - __dirty: 0
     m_Colors:
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _OpacityTextureChannel: {r: 0, g: 0, b: 0, a: 1}
     - _RampColorTint: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
