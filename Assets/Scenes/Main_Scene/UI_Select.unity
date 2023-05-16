@@ -535,7 +535,7 @@ PrefabInstance:
     - target: {fileID: 7453467694568146306, guid: 0f8d67c89f2b24efc8d870288eb952f2, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: dfe7d7467efea4177bb796c61978198d, type: 2}
+      objectReference: {fileID: 9100000, guid: dc31220e6fa4f534e899e3dc461594e8, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f8d67c89f2b24efc8d870288eb952f2, type: 3}
 --- !u!224 &136254380 stripped
@@ -1323,7 +1323,7 @@ PrefabInstance:
     - target: {fileID: 7453467694568146306, guid: 0f8d67c89f2b24efc8d870288eb952f2, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: dfe7d7467efea4177bb796c61978198d, type: 2}
+      objectReference: {fileID: 9100000, guid: dc31220e6fa4f534e899e3dc461594e8, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f8d67c89f2b24efc8d870288eb952f2, type: 3}
 --- !u!224 &562435259 stripped
@@ -1699,12 +1699,10 @@ MonoBehaviour:
   - "\u8FDE\u63A5"
   - "\u6E38\u79BB"
   - "\u82CF\u9192"
-  - 
   _levelDescriptions:
   - "\u9ED1\u767D\u4E4B\u5730"
   - "\u6C5F\u6CB3\u6D77\u5CE1"
   - "\u65E0\u57A0\u6DF1\u7A7A"
-  - 
 --- !u!1001 &1135260949
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2064,6 +2062,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1530478714}
+  - component: {fileID: 1530478715}
   m_Layer: 5
   m_Name: LevelButtons
   m_TagString: Untagged
@@ -2094,6 +2093,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1530478715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530478713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c53a664b9c519454e978f4cc7889e06d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unlockLevel: Animation/Animator/UnlockLevelIconController
+  _lockedLevel: Animation/Animator/LockedLevelIconController
+  _levelList: []
 --- !u!1001 &1777899807
 PrefabInstance:
   m_ObjectHideFlags: 0
