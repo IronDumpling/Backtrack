@@ -7,7 +7,6 @@ public class DotRotateUI : MonoBehaviour
 
     [SerializeField] private float _rotateSpeed = 0.5f;
 
-    private GameObject _circle;
     private GameObject _dot;
 
     private RectTransform _rectTrans;
@@ -17,7 +16,6 @@ public class DotRotateUI : MonoBehaviour
 
     private void Awake()
     {
-        _circle = transform.Find("Circle")?.gameObject;
         _dot = transform.Find("Dot")?.gameObject;
         _rectTrans = _dot.GetComponent<RectTransform>();
         _radius = gameObject.GetComponent<RectTransform>().rect.width / 2;
@@ -25,8 +23,7 @@ public class DotRotateUI : MonoBehaviour
 
     private void Update()
     {
-        if (isBlowUp) Rotate();
-        
+        if (isBlowUp) Rotate(); 
     }
 
     public void OnBlowUp()
