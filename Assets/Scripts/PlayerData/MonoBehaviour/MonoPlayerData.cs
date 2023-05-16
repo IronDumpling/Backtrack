@@ -29,4 +29,11 @@ public class MonoPlayerData : NoDestroyMonoSingleton<MonoPlayerData>
         get => _dataSo.level0Choices;
         set => _dataSo.level0Choices = value;
     }
+
+    public void Reset()
+    {
+        _dataSo.level0Score = 0;
+        _dataSo.level0Choices = "";
+        _dataSo.level3Score = 0;
+    }
 }
