@@ -5,7 +5,7 @@ using Cinemachine;
 public class CameraManager : MonoSingleton<CameraManager> {
     public CinemachineVirtualCamera _curActiveCamera;
     public CinemachineVirtualCamera[] CommonCameraList;
-
+    
     public CinemachineBlendDefinition defaultBlend;
 
     private CinemachineBrain _brain;
@@ -22,6 +22,7 @@ public class CameraManager : MonoSingleton<CameraManager> {
         switchVC.m_Priority = _curActiveCamera.m_Priority;
         _curActiveCamera.m_Priority = 0;
         _curActiveCamera = switchVC;
+        
     }
 
     private void Awake() {
