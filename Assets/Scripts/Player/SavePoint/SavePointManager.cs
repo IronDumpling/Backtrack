@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using Common;
 using Level3_Track;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class SavePointManager : Singleton<SavePointManager>
     public string saveBGMName;
     public float saveBGMTime;
     public int saveScores;
+    public int saveCamera;    
 
     public float speed;
     public float xspeed;
@@ -24,7 +26,7 @@ public class SavePointManager : Singleton<SavePointManager>
     
     
     public void SetSavePoint(string sceneName, Vector3 pointVector,Vector3 rotation,  string bgmName, float bgmTime,int scores,
-        float speed, float xspeed)
+        float speed, float xspeed,int camera)
     {
         isSave = true;
         
@@ -36,6 +38,7 @@ public class SavePointManager : Singleton<SavePointManager>
         saveScores = scores;
         this.speed = speed;
         this.xspeed = xspeed;
+        saveCamera = camera;
         // TODO: Add Camaera Info
         // TODO: Add choice info
         levelNum = 0;
@@ -75,11 +78,11 @@ public class SavePointManager : Singleton<SavePointManager>
         GameObject asyncLoadObject = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/MapObject/AsyncLevelObject"));
         asyncLoadObject.SetActive(true);
         asyncLoadObject.GetComponent<AsyncLevelLoader>().StartLoadAsync(saveSceneName);
-        asyncLoadObject.GetComponent<AsyncLevelLoader>().onAfterFinishLoad += LoadAfterScene;
-
+        //asyncLoadObject.GetComponent<AsyncLevelLoader>().onAfterFinishLoad += LoadAfterScene;
+        SceneManager.sceneLoaded += LoadAfterScene;
     }
 
-    private void LoadAfterScene()
+    private void LoadAfterScene(Scene scene, LoadSceneMode mode) //
     {
         if (levelNum == 3)
         {
@@ -94,13 +97,13 @@ public class SavePointManager : Singleton<SavePointManager>
             PlayerController.Instance.transform.rotation = Quaternion.Euler(saveRotationVector3);
             PlayerController.Instance.GetComponent<PlayerMotor>().ZSpeed = speed;
             PlayerController.Instance.GetComponent<PlayerMotor>().XSpeed = xspeed;
-
+            CameraManager.Instance.SetCamera(CameraManager.Instance.CommonCameraList[saveCamera]);
 
         }
         ScoreManager.Instance.CurrentScoreInLevel = saveScores;
         AudioManager.Instance.SetMusicTime(saveBGMName, saveBGMTime);
         AudioManager.Instance.Play(saveBGMName);
         
-
+        SceneManager.sceneLoaded -= LoadAfterScene;
     }
 }
