@@ -1,7 +1,8 @@
 using Common;
-using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
+using System.Numerics;
+using Vector2 = UnityEngine.Vector2;
 
 
 public class PlayerController_L3: PlayerControllerBase
@@ -10,6 +11,8 @@ public class PlayerController_L3: PlayerControllerBase
     private PlayerMotor_L3 _playerMotor;
 
     private Action<Vector2> A_planeMoveUpdate;
+    
+    
 
     #region Controll Motor Public Funcs
     public void SwitchMoveMapping(EInputMapping changeToMapping) {
@@ -55,7 +58,14 @@ public class PlayerController_L3: PlayerControllerBase
         _playerMotor = GetComponent<PlayerMotor_L3>();
     }
 
-    private void Update() {
-        A_planeMoveUpdate?.Invoke(_inputMove.ReadValue<Vector2>());
+ 
+    private void FixedUpdate()
+    {
+        Vector2 inputVec = _inputMove.ReadValue<Vector2>();
+        
+        A_planeMoveUpdate?.Invoke(inputVec);
+        
+        
     }
+    
 }

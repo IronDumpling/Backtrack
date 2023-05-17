@@ -10,8 +10,8 @@ public enum EInputMapping {
 
 public class PlayerMotor_L3 : MonoBehaviour
 {
-    [Range(0.2f, 10)]
-    public float _SpeedCoeff = 1f;
+    [Range(10f, 50f)]
+    public float _SpeedCoeff = 10f;
 
     private Rigidbody _rigidBody;
 
