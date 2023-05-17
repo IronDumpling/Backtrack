@@ -10,4 +10,6 @@ public class PlayerData_SO : ScriptableObject
     public int level0Score;
     public string level0Choices;
     public int level3Score;
+    public int level4Score;
+    public string level4Choices;
 }
