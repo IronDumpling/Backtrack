@@ -5,6 +5,7 @@ using UnityEngine;
 public class CollectionUI : MonoBehaviour
 {
     public int m_LevelNum = 1;
+    public float CollectRate = 0f;
     private GameObject _score;
     private GameObject _rate;
     private GameObject _collectionRate;
@@ -44,7 +45,8 @@ public class CollectionUI : MonoBehaviour
             totalScore += level.levelTotalScore;
         }
 
-        rate = (currScore / (float) totalScore) * 100;
+        CollectRate = currScore / (float)totalScore;
+        rate = CollectRate * 100;
 
         _collectionRate.GetComponent<TMPro.TMP_Text>().text = "收集率";
 

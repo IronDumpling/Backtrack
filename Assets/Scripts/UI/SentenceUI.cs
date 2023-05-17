@@ -26,6 +26,7 @@ public class SentenceUI : MonoBehaviour
     };
 
     private GameObject _sentence;
+    private float _collectRate;
     private PlayerData_SO _playerData;
     private string _fullSentence = "";
 
@@ -33,6 +34,7 @@ public class SentenceUI : MonoBehaviour
     void Awake()
     {
         _sentence = transform.Find("CollectedSentence")?.gameObject;
+        _collectRate = GameObject.Find("CollectionUI").GetComponent<CollectionUI>().CollectRate;
         _playerData = Resources.Load<PlayerData_SO>("GameData/PlayerData");
         _fullSentence = sentenceDict[_playerData.level0Choices];
     }
@@ -49,13 +51,16 @@ public class SentenceUI : MonoBehaviour
         
     }
 
-    void HidePartialSentence()
-    {
-
-    }
-
     void ShowSentence()
     {
         _sentence.GetComponent<TMPro.TMP_Text>().text = $"{_fullSentence}";
+    }
+
+    void HidePartialSentence()
+    {
+        int length = _fullSentence.Length;
+        int hideLength = (int)((int) length * (1 - _collectRate));
+        Debug.Log($"{length} {hideLength}");
+        _fullSentence.Remove(hideLength - 1);
     }
 }
