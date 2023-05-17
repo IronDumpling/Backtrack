@@ -36,7 +36,6 @@ public class ScoreManager : NoDestroyMonoSingleton<ScoreManager>
       }
    }
 
-
    protected override void Init()
    {
       base.Init();

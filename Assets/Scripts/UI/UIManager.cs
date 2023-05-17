@@ -36,9 +36,9 @@ public class UIManager : MonoSingleton<UIManager>
     // UI Main
     public void NewGame()
     {
-        //TODO: 清除所有游戏数据
-        transform.Find("SpecialUI")?.gameObject.SetActive(true);
-        transform.Find("NormalUI")?.gameObject.SetActive(false);
+        // 清除所有游戏数据
+        MonoPlayerData.Instance.Reset();
+        SceneManager.LoadScene("UI_Logo");
     }
 
     public void GameStart()

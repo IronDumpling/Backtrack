@@ -6,14 +6,18 @@ using UnityEngine.PlayerLoop;
 
 public class ScoreUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Animator _ani;
+
+    
+    void Awake()
     {
         ScoreManager.Instance.onAfterScoreAnObj += UpdateScore;
+        _ani = gameObject.GetComponent<Animator>();
     }
 
     void UpdateScore()
     {
+        _ani.SetTrigger("ScoreChange");
         gameObject.GetComponent<TMPro.TMP_Text>().text = $"{ScoreManager.Instance.CurrentScoreInLevel}";
     }
 

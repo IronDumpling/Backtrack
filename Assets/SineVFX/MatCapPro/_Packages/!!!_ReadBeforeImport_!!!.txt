@@ -1,0 +1,21 @@
+!!!!!!!!!!!!!!!!!!
+
+If your mesh has multiple submeshes (multiple material slots, very common on game characters), you need to split them in any 3d software or use only one FirstLayer material.
+
+!!!!!!!!!!!!!!!!!!
+
+
+
+1. There are two packages for HDRP and URP, plus one for Standard Renderer. Choose the correct one, based on what SRP you using and unpack it.
+
+2. For URP, it is recommended to enable these settings inside Pipeline Asset: Opaque Texture, Depth Texture, HDR. Also, enable PostProcessing in your Camera.
+
+3. For HDRP, you don't need to enable additional settings, just unpack and check the DemoScene.
+
+4. For better visual results use Linear Rendering instead of Gamma. You can choose it in a "Project Settings/Player" menu
+
+5. Check "_Documentation" folder
+
+
+
+Support email: sinevfx@gmail.com
