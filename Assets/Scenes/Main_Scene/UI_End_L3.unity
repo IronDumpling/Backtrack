@@ -531,6 +531,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4038306823252374058, guid: 1349c0d1dbf55487494ccef5e258cb59, type: 3}
+      propertyPath: _levelNum
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1349c0d1dbf55487494ccef5e258cb59, type: 3}
 --- !u!224 &911579256 stripped
@@ -1035,7 +1039,6 @@ GameObject:
   - component: {fileID: 1965574076}
   - component: {fileID: 1965574075}
   - component: {fileID: 1965574079}
-  - component: {fileID: 1965574080}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1141,35 +1144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8466fb7c39ae2674990b83b3dee9967f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1965574080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1965574074}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 0
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 6454022433153829152}
-          m_TargetAssemblyTypeName: CollectionUI, Assembly-CSharp
-          m_MethodName: ShowScore
-          m_Mode: 3
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 2
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &2100663574
 GameObject:
   m_ObjectHideFlags: 0
@@ -1301,7 +1275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6454022433904018978, guid: c2ec0f0a5270e482f9865906fdb235c6, type: 3}
       propertyPath: m_LevelNum
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6454022433904018979, guid: c2ec0f0a5270e482f9865906fdb235c6, type: 3}
       propertyPath: m_Pivot.x
@@ -1393,14 +1367,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2ec0f0a5270e482f9865906fdb235c6, type: 3}
---- !u!114 &6454022433153829152 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6454022433904018978, guid: c2ec0f0a5270e482f9865906fdb235c6, type: 3}
-  m_PrefabInstance: {fileID: 6454022433153829151}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ded26602a54fc4b0db0fb5dc4cd5af7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

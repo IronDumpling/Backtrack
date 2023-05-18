@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CollectionUI : MonoBehaviour
 {
-    public int m_LevelNum = 1;
     public float CollectRate = 0f;
     private GameObject _score;
     private GameObject _rate;
@@ -23,18 +22,17 @@ public class CollectionUI : MonoBehaviour
     {
         int currScore = 0;
         int totalScore = 0;
-        float rate = 0f;
 
         List<LevelInfo_SO> dataSoList = new List<LevelInfo_SO>();
 
-        if (levelNum == 1)
+        if (levelNum == 0)
         {
             dataSoList.Add(Resources.Load<LevelInfo_SO>("GameData/LevelData/Level0-1"));
             dataSoList.Add(Resources.Load<LevelInfo_SO>("GameData/LevelData/Level0-2"));
             currScore = MonoPlayerData.Instance.Level0Score;
             
         }
-        else if (levelNum == 2)
+        else if (levelNum == 1)
         {
             dataSoList.Add(Resources.Load<LevelInfo_SO>("GameData/LevelData/Level3-1"));
             currScore = MonoPlayerData.Instance.Level3Score;
@@ -46,7 +44,7 @@ public class CollectionUI : MonoBehaviour
         }
 
         CollectRate = currScore / (float)totalScore;
-        rate = CollectRate * 100;
+        float rate = CollectRate * 100;
 
         _collectionRate.GetComponent<TMPro.TMP_Text>().text = "收集率";
 
