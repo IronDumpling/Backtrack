@@ -23,10 +23,12 @@ public class SavePointManager : Singleton<SavePointManager>
 
     public int levelNum;
     public int saveTrackId;
+
+    public float saveTimeScale;
     
     
     public void SetSavePoint(string sceneName, Vector3 pointVector,Vector3 rotation,  string bgmName, float bgmTime,int scores,
-        float speed, float xspeed,int camera)
+        float speed, float xspeed,int camera, float timeScale)
     {
         isSave = true;
         
@@ -39,8 +41,7 @@ public class SavePointManager : Singleton<SavePointManager>
         this.speed = speed;
         this.xspeed = xspeed;
         saveCamera = camera;
-        // TODO: Add Camaera Info
-        // TODO: Add choice info
+        saveTimeScale = timeScale;
         levelNum = 0;
     }
 
