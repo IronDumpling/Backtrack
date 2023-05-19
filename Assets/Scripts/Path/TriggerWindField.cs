@@ -23,6 +23,6 @@ public class TriggerWindField : TriggerBase
         base.StayEvent();
         float windX = startPoint.transform.InverseTransformPoint(rb.transform.position).x;
         float ratio = windX / maxX;
-        rb.AddForce(rb.transform.right * 10000f * curve.Evaluate(ratio));
+        rb.AddForce(rb.transform.right * 10000f * curve.Evaluate(ratio), ForceMode.Force);
     }
 }
