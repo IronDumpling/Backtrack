@@ -20,7 +20,6 @@ public class TriggerSavePoint : TriggerBase
         }
         else
         {
-            Debug.Log($"Enter save point {Time.timeScale}");
             saveLevel0(c);
         }
     }

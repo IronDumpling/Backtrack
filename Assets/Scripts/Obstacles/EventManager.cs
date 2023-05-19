@@ -27,11 +27,11 @@ public class EventManager : Singleton<EventManager>
       DOTween.Clear();
       PlayerControllerBase.Instance.GameEnd();
       ScoreManager.Instance.CurrentScoreInLevel = 0;
-
+        
       SavePointManager.Instance.isSave = false;
       SavePointManager.Instance.saveBGMTime = 0f;
       SavePointManager.Instance.LoadSavePoint();
-   }
+    }
 
    public void PlayerEnterNewSceneEventTrigger(string switchSceneName)
    {
