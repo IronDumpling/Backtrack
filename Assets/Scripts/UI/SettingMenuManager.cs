@@ -21,11 +21,16 @@ public class SettingMenuManager : MonoBehaviour
         // Volume
         _volume = transform.Find("Volume").gameObject;
         _audioMixer = Resources.Load<AudioMixer>("Audio/Mixer/GameMixer");
-        ChangeVolume(DEFAULT_VOLUME);
 
         // Brightness
         _brightness = transform.Find("Brightness").gameObject;
+    }
+
+    private void Start()
+    {
+        ChangeVolume(DEFAULT_VOLUME);
         ChangeBrightness(DEFAULT_BRIGHTNESS);
+        gameObject.SetActive(false);
     }
 
     public void UpdateCircleUI(Transform ui, float perc)
@@ -128,7 +133,7 @@ public class SettingMenuManager : MonoBehaviour
     private GameObject _volume;
     private AudioMixer _audioMixer;
     private float _masterVolume = 0f;
-    [SerializeField] private int DEFAULT_VOLUME = 50;
+    [SerializeField] private int DEFAULT_VOLUME = 70;
 
     public void ChangeVolume(float volume)
     {

@@ -43,7 +43,6 @@ public class SavePointManager : Singleton<SavePointManager>
         saveCamera = camera;
         saveTimeScale = timeScale;
         levelNum = 0;
-        Debug.Log($"save time scale: {saveTimeScale}");
     }
 
     public void SetSavePointLevel3(string sceneName, string bgmName, float bgmTime,int scores, 

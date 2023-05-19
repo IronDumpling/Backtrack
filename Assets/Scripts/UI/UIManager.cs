@@ -11,11 +11,14 @@ public class UIManager : MonoSingleton<UIManager>
     private bool isVideo = true;
 
     private GameObject _pausePanel;
+    private GameObject _settingPanel;
 
     protected override void Init()
     {
         _pausePanel = transform.Find("PauseUI")?.Find("PausePanel")?.gameObject;
         _pausePanel?.SetActive(false);
+        _settingPanel = transform.Find("SettingUI")?.gameObject;
+        _settingPanel?.SetActive(true);
     }
 
     // UI Pause
