@@ -5,11 +5,14 @@ using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class SettingMenuManager : MonoBehaviour
 {
     #region 调分辨率
     public Resolution[] Resolutions;
+    private AudioMixer _audioMixer;
+
     private GameObject _resolution;
     private GameObject _volume;
     private GameObject _brightness;
@@ -20,6 +23,7 @@ public class SettingMenuManager : MonoBehaviour
         _resolution = transform.Find("Resolution").gameObject;
         _volume = transform.Find("Volume").gameObject;
         _brightness = transform.Find("Brightness").gameObject;
+        _audioMixer = Resources.Load<AudioMixer>("Aduio/Mixer/GameMixer");
     }
 
     public string[] ResolutionStrings()
@@ -62,6 +66,11 @@ public class SettingMenuManager : MonoBehaviour
     public void ChangeVolume()
     {
         
+    }
+
+    public void SetVolume (float volume)
+    {
+        _audioMixer.SetFloat("MasterVolume", volume);
     }
 
     #endregion
