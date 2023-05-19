@@ -3,28 +3,56 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 
 public class SettingMenuManager : MonoBehaviour
 {
-    #region 调分辨率
-    public Resolution[] Resolutions;
-    private AudioMixer _audioMixer;
-
-    private GameObject _resolution;
-    private GameObject _volume;
-    private GameObject _brightness;
-
+    #region 通用
+    
     private void Awake()
     {
-        Resolutions = Screen.resolutions;
+        // Resolution
         _resolution = transform.Find("Resolution").gameObject;
+        Resolutions = Screen.resolutions;
+
+        // Volume
         _volume = transform.Find("Volume").gameObject;
+        _audioMixer = Resources.Load<AudioMixer>("Audio/Mixer/GameMixer");
+        ChangeVolume(DEFAULT_VOLUME);
+
+        // Brightness
         _brightness = transform.Find("Brightness").gameObject;
-        _audioMixer = Resources.Load<AudioMixer>("Aduio/Mixer/GameMixer");
+        ChangeBrightness(DEFAULT_BRIGHTNESS);
     }
+
+    public void UpdateCircleUI(Transform ui, float perc)
+    {
+        GameObject circleBar = ui.Find("CircleSlideBar/CircleFill")?.gameObject;
+        circleBar.GetComponent<Image>().fillAmount = Mathf.Clamp01(perc);
+    }
+
+    public void UpdateNumberUI(Transform ui, float text)
+    {
+        GameObject number = ui.Find("AdjustNumUI/Number")?.gameObject;
+        number.GetComponent<TMPro.TMP_Text>().text = $"{text}%";
+    }
+
+    private float ReMap(float value, float fromMin, float fromMax, float toMin, float toMax)
+    {
+        return (value - fromMin) / (fromMax - fromMin) * (toMax - toMin) + toMin;
+    }
+
+    #endregion 
+
+    #region 调分辨率
+
+    public Resolution[] Resolutions;
+    private GameObject _resolution;
+    private int index = 0;
+    [SerializeField] private int DEFAULT_RESOLUTION_IDX = 1;
 
     public string[] ResolutionStrings()
     {
@@ -57,8 +85,6 @@ public class SettingMenuManager : MonoBehaviour
         Screen.SetResolution(resolution.width,resolution.height,Screen.fullScreen,resolution.refreshRate);
         Debug.Log("当前分辨率设置为 " + resolution);
     }
-
-    private int index = 0;
 
     //void OnGUI()
     //{
@@ -98,31 +124,53 @@ public class SettingMenuManager : MonoBehaviour
     #endregion
 
     #region 调音量
+    
+    private GameObject _volume;
+    private AudioMixer _audioMixer;
+    private float _masterVolume = 0f;
+    [SerializeField] private int DEFAULT_VOLUME = 50;
 
-    public void ChangeVolume()
+    public void ChangeVolume(float volume)
     {
-        
-    }
+        if (_audioMixer == null)
+        {
+            Debug.LogError($"Audio Mixer is Missing!");
+            return;
+        }
 
-    public void SetVolume (float volume)
-    {
-        _audioMixer.SetFloat("MasterVolume", volume);
+        if (_masterVolume + volume < 0 || _masterVolume + volume > 100)
+        {
+            Debug.LogWarning("Volume Reaches Limits!");
+            return;
+        }
+
+        _masterVolume += volume;
+        _audioMixer.SetFloat("MasterVolume", ReMap(_masterVolume, 0f, 100f, -80f, 20f));
+        UpdateCircleUI(_volume.transform, _masterVolume / 100f);
+        UpdateNumberUI(_volume.transform, _masterVolume);
     }
 
     #endregion
 
     #region 调亮度
 
+    private GameObject _brightness;
+    private float _masterBrightness = 0f;
+    [SerializeField] private int DEFAULT_BRIGHTNESS = 60;
 
-    #endregion
-
-    #region 通用
-
-    public void ModifyCircleUI()
+    public void ChangeBrightness(float brightness)
     {
+        if (_masterBrightness + brightness < 0 || _masterBrightness + brightness > 100)
+        {
+            Debug.LogWarning("Brightness Reaches Limits!");
+            return;
+        }
 
+        _masterBrightness += brightness;
+        UpdateCircleUI(_brightness.transform, _masterBrightness / 100f);
+        UpdateNumberUI(_brightness.transform, _masterBrightness);
     }
 
-    #endregion 
+    #endregion
 }
 

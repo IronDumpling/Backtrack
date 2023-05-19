@@ -171,6 +171,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c439e9748dca4a9ea2f0859c845a956, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DEFAULT_RESOLUTION_IDX: 1
+  DEFAULT_VOLUME: 50
+  DEFAULT_BRIGHTNESS: 60
 --- !u!1 &6906957463473322302
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,6 +462,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7809136606913223253}
     m_Modifications:
+    - target: {fileID: 5524035831647365388, guid: addb6465ddf0e42bd9905f42387af121, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524035831647365388, guid: addb6465ddf0e42bd9905f42387af121, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 6906957462994002715}
+    - target: {fileID: 5524035831647365388, guid: addb6465ddf0e42bd9905f42387af121, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ChangeBrightness
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524035831647365388, guid: addb6465ddf0e42bd9905f42387af121, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: SettingMenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524035831647365388, guid: addb6465ddf0e42bd9905f42387af121, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_FloatArgument
+      value: -5
+      objectReference: {fileID: 0}
     - target: {fileID: 6541790535689317822, guid: addb6465ddf0e42bd9905f42387af121, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -546,6 +569,26 @@ PrefabInstance:
     - target: {fileID: 6541790535689317823, guid: addb6465ddf0e42bd9905f42387af121, type: 3}
       propertyPath: m_Name
       value: AdjustNumUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 6541790536832026585, guid: addb6465ddf0e42bd9905f42387af121, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6541790536832026585, guid: addb6465ddf0e42bd9905f42387af121, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 6906957462994002715}
+    - target: {fileID: 6541790536832026585, guid: addb6465ddf0e42bd9905f42387af121, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ChangeBrightness
+      objectReference: {fileID: 0}
+    - target: {fileID: 6541790536832026585, guid: addb6465ddf0e42bd9905f42387af121, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: SettingMenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6541790536832026585, guid: addb6465ddf0e42bd9905f42387af121, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_FloatArgument
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: addb6465ddf0e42bd9905f42387af121, type: 3}
@@ -667,6 +710,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 457216268701502170}
     m_Modifications:
+    - target: {fileID: 5524035831647365388, guid: addb6465ddf0e42bd9905f42387af121, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524035831647365388, guid: addb6465ddf0e42bd9905f42387af121, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 6906957462994002715}
+    - target: {fileID: 5524035831647365388, guid: addb6465ddf0e42bd9905f42387af121, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ChangeVolume
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524035831647365388, guid: addb6465ddf0e42bd9905f42387af121, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: SettingMenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5524035831647365388, guid: addb6465ddf0e42bd9905f42387af121, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_FloatArgument
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 6541790535689317822, guid: addb6465ddf0e42bd9905f42387af121, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -754,6 +817,26 @@ PrefabInstance:
     - target: {fileID: 6541790535689317823, guid: addb6465ddf0e42bd9905f42387af121, type: 3}
       propertyPath: m_Name
       value: AdjustNumUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 6541790536832026585, guid: addb6465ddf0e42bd9905f42387af121, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6541790536832026585, guid: addb6465ddf0e42bd9905f42387af121, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 6906957462994002715}
+    - target: {fileID: 6541790536832026585, guid: addb6465ddf0e42bd9905f42387af121, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ChangeVolume
+      objectReference: {fileID: 0}
+    - target: {fileID: 6541790536832026585, guid: addb6465ddf0e42bd9905f42387af121, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: SettingMenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6541790536832026585, guid: addb6465ddf0e42bd9905f42387af121, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_FloatArgument
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: addb6465ddf0e42bd9905f42387af121, type: 3}
@@ -977,6 +1060,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7809136606913223253}
     m_Modifications:
+    - target: {fileID: 2054772456516072877, guid: 4e90b2e65080a49948f228e4f2e8f18a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3861593037872420848, guid: 4e90b2e65080a49948f228e4f2e8f18a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1088,6 +1175,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 457216268701502170}
     m_Modifications:
+    - target: {fileID: 2054772456516072877, guid: 4e90b2e65080a49948f228e4f2e8f18a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3861593037872420848, guid: 4e90b2e65080a49948f228e4f2e8f18a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1199,6 +1290,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3670029221539403154}
     m_Modifications:
+    - target: {fileID: 2054772456516072877, guid: 4e90b2e65080a49948f228e4f2e8f18a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3861593037872420848, guid: 4e90b2e65080a49948f228e4f2e8f18a, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
