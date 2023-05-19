@@ -9,12 +9,18 @@ using UnityEngine.SceneManagement;
 public class SettingMenuManager : MonoBehaviour
 {
     #region 调分辨率
-    [HideInInspector] public Resolution[] Resolutions;
+    public Resolution[] Resolutions;
+    private GameObject _resolution;
+    private GameObject _volume;
+    private GameObject _brightness;
+
     private void Awake()
     {
         Resolutions = Screen.resolutions;
+        _resolution = transform.Find("Resolution").gameObject;
+        _volume = transform.Find("Volume").gameObject;
+        _brightness = transform.Find("Brightness").gameObject;
     }
-
 
     public string[] ResolutionStrings()
     {
@@ -55,56 +61,55 @@ public class SettingMenuManager : MonoBehaviour
 
     public void ChangeVolume()
     {
-        //AkSoundEngine.SetRTPCValue();
-        //AkSoundEngine.
+        
     }
-    
-    
-    
 
     #endregion
-    
-    
-    
-    
-    
-    
-    
+
+    #region 调亮度
+
+
+    #endregion
+
+
     private int index = 0;
-    void OnGUI()
-    {
-        if (GUI.Button(new Rect(10, 10, 100, 50), "change resolution++"))
-        {
-            index++;
-            SetResolution(index);
-        }
+
+
+
+    //void OnGUI()
+    //{
+    //    if (GUI.Button(new Rect(10, 10, 100, 50), "change resolution++"))
+    //    {
+    //        index++;
+    //        SetResolution(index);
+    //    }
         
-        if (GUI.Button(new Rect(200, 10, 100, 50), "change resolution--"))
-        {
-            index--;
-            SetResolution(index);
-        }
+    //    if (GUI.Button(new Rect(200, 10, 100, 50), "change resolution--"))
+    //    {
+    //        index--;
+    //        SetResolution(index);
+    //    }
         
-        if (GUI.Button(new Rect(400, 10, 100, 50), "change fullscreen"))
-        {
-            if (Screen.fullScreen)
-            {
-                SetFullScreen(false);
-            }
-            else
-            {
-                SetFullScreen(true);
-            }
-        }
-        if (GUI.Button(new Rect(600, 10, 100, 50), "show all resolution"))
-        {
-            string[] s = ResolutionStrings();
-            foreach (var s1 in s)
-            {
-                Debug.Log(s1);
-            }
-        }
-    }
+    //    if (GUI.Button(new Rect(400, 10, 100, 50), "change fullscreen"))
+    //    {
+    //        if (Screen.fullScreen)
+    //        {
+    //            SetFullScreen(false);
+    //        }
+    //        else
+    //        {
+    //            SetFullScreen(true);
+    //        }
+    //    }
+    //    if (GUI.Button(new Rect(600, 10, 100, 50), "show all resolution"))
+    //    {
+    //        string[] s = ResolutionStrings();
+    //        foreach (var s1 in s)
+    //        {
+    //            Debug.Log(s1);
+    //        }
+    //    }
+    //}
 
     
 }
