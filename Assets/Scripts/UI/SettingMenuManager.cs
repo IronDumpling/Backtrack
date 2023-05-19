@@ -58,6 +58,42 @@ public class SettingMenuManager : MonoBehaviour
         Debug.Log("当前分辨率设置为 " + resolution);
     }
 
+    private int index = 0;
+
+    //void OnGUI()
+    //{
+    //    if (GUI.Button(new Rect(10, 10, 100, 50), "change resolution++"))
+    //    {
+    //        index++;
+    //        SetResolution(index);
+    //    }
+
+    //    if (GUI.Button(new Rect(200, 10, 100, 50), "change resolution--"))
+    //    {
+    //        index--;
+    //        SetResolution(index);
+    //    }
+
+    //    if (GUI.Button(new Rect(400, 10, 100, 50), "change fullscreen"))
+    //    {
+    //        if (Screen.fullScreen)
+    //        {
+    //            SetFullScreen(false);
+    //        }
+    //        else
+    //        {
+    //            SetFullScreen(true);
+    //        }
+    //    }
+    //    if (GUI.Button(new Rect(600, 10, 100, 50), "show all resolution"))
+    //    {
+    //        string[] s = ResolutionStrings();
+    //        foreach (var s1 in s)
+    //        {
+    //            Debug.Log(s1);
+    //        }
+    //    }
+    //}
 
     #endregion
 
@@ -80,46 +116,13 @@ public class SettingMenuManager : MonoBehaviour
 
     #endregion
 
+    #region 通用
 
-    private int index = 0;
+    public void ModifyCircleUI()
+    {
 
+    }
 
-
-    //void OnGUI()
-    //{
-    //    if (GUI.Button(new Rect(10, 10, 100, 50), "change resolution++"))
-    //    {
-    //        index++;
-    //        SetResolution(index);
-    //    }
-        
-    //    if (GUI.Button(new Rect(200, 10, 100, 50), "change resolution--"))
-    //    {
-    //        index--;
-    //        SetResolution(index);
-    //    }
-        
-    //    if (GUI.Button(new Rect(400, 10, 100, 50), "change fullscreen"))
-    //    {
-    //        if (Screen.fullScreen)
-    //        {
-    //            SetFullScreen(false);
-    //        }
-    //        else
-    //        {
-    //            SetFullScreen(true);
-    //        }
-    //    }
-    //    if (GUI.Button(new Rect(600, 10, 100, 50), "show all resolution"))
-    //    {
-    //        string[] s = ResolutionStrings();
-    //        foreach (var s1 in s)
-    //        {
-    //            Debug.Log(s1);
-    //        }
-    //    }
-    //}
-
-    
+    #endregion 
 }
 
