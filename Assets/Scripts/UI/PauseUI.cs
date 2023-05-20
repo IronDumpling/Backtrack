@@ -39,6 +39,11 @@ public class PauseUI : MonoBehaviour
         AudioManager.Instance?.Play(_bgmName);
     }
 
+    public void OnDestroy()
+    {
+        Time.timeScale = 1f;
+    }
+
     // UI Pause
     public void Resume()
     {
@@ -47,7 +52,6 @@ public class PauseUI : MonoBehaviour
 
     public void Restart()
     {
-        Time.timeScale = 1f;
         EventManager.Instance.PlayerRestartEventTrigger();
     }
 

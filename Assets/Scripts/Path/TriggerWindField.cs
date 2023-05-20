@@ -6,15 +6,30 @@ using UnityEngine;
 public class TriggerWindField : TriggerBase
 {
     private Rigidbody rb;
+    public Transform startPoint;
+    public Transform endPoint;
+    public AnimationCurve curve;
+    private float maxX;
 
     private void Start()
     {
         rb = PlayerController_L3.Instance.transform.Find("BirdSlot").GetComponent<Rigidbody>();
+        maxX = startPoint.transform.InverseTransformPoint(endPoint.position).x; 
+
     }
 
     protected override void StayEvent()
     {
         base.StayEvent();
-        rb.AddForce(rb.transform.right * 1000f);
+        float windX = startPoint.transform.InverseTransformPoint(rb.transform.position).x;
+        float ratio = windX / maxX;
+        if(maxX<0)
+        {
+            rb.AddForce(rb.transform.right * 10000f*-1 * curve.Evaluate(ratio), ForceMode.Force);
+        }
+        else
+        {
+            rb.AddForce(rb.transform.right * 10000f * curve.Evaluate(ratio), ForceMode.Force);
+        }
     }
 }

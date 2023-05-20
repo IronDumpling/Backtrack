@@ -35,6 +35,7 @@ public class TriggerSavePoint : TriggerBase
 
         float speed = PlayerController.Instance.GetComponent<PlayerMotor>().ZSpeed;
         float xspeed = PlayerController.Instance.GetComponent<PlayerMotor>().XSpeed;
+        float timeScale = Time.timeScale;
 
         CinemachineVirtualCamera cam = CameraManager.Instance._curActiveCamera;
         int curNum = -1;
@@ -57,7 +58,8 @@ public class TriggerSavePoint : TriggerBase
             scores,
             speed,
             xspeed,
-            curNum);
+            curNum,
+            timeScale);
     }
 
     private void saveLevel3()

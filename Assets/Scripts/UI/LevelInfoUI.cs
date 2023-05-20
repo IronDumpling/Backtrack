@@ -22,8 +22,8 @@ public class LevelInfoUI : MonoBehaviour
     // Update is called once per frame
     public void HoverLevel(int levelNum)
     {
-        _title.GetComponent<TMPro.TMP_Text>().text = $"{_levelTitles[levelNum-1]}";
-        _description.GetComponent<TMPro.TMP_Text>().text = $"{_levelDescriptions[levelNum-1]}";
+        _title.GetComponent<TMPro.TMP_Text>().text = $"{_levelTitles[levelNum]}";
+        _description.GetComponent<TMPro.TMP_Text>().text = $"{_levelDescriptions[levelNum]}";
         _collection.GetComponent<CollectionUI>().ShowScore(levelNum);
     }
 }

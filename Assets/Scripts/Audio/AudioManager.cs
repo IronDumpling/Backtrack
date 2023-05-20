@@ -149,6 +149,7 @@ public class AudioManager : NoDestroyMonoSingleton<AudioManager>
     }
 
 }
+
 [System.Serializable]
 public class AudioType
 {

@@ -49,6 +49,7 @@ public class ScoreManager : NoDestroyMonoSingleton<ScoreManager>
    {
       _scoreObjects.Add(so);
    }
+
    public void RemoveScoreObj(ScoreObject so)
    {
       _scoreObjects.Remove(so);
