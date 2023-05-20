@@ -17,7 +17,7 @@ public class TriggerCamera : TriggerBase {
         if (_SetCustomBlend) _camManager.SetCustomBlend(_CustomBlend);
         else _camManager.SetDefaultBlend();
 
-        _camManager.SetCamera(_SelectVC);
+        _camManager.SwitchCamera(_SelectVC);
     }
 
     protected virtual void _awake() { }

@@ -37,18 +37,8 @@ public class TriggerSavePoint : TriggerBase
         float xspeed = PlayerController.Instance.GetComponent<PlayerMotor>().XSpeed;
         float timeScale = Time.timeScale;
 
-        CinemachineVirtualCamera cam = CameraManager.Instance._curActiveCamera;
-        int curNum = -1;
-        for (int i = 0; i < CameraManager.Instance.CommonCameraList.Length; i++)
-        {
-            if(CameraManager.Instance.CommonCameraList[i].name == cam.name)
-            {
-                curNum = i;
-                break;
-            }
-
-        }
-        if(curNum == -1)Debug.LogError("cant find camera in savelevel");
+        int curNum = CameraManager.Instance.GetCurCameraIdx();
+        if(curNum == -1) DebugLogger.Error(this.name, "cant find camera in savelevel.");
         
         SavePointManager.Instance.SetSavePoint(sceneName,
             point,
