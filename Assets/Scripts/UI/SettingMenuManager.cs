@@ -11,9 +11,13 @@ using UnityEngine.Audio;
 public class SettingMenuManager : MonoBehaviour
 {
     #region 通用
+    public GameData_SO gameData;
     
     private void Awake()
     {
+        // Load Game Data
+        gameData = Resources.Load<GameData_SO>("GameData/GameData");
+
         // Resolution
         _resolution = transform.Find("Resolution").gameObject;
         Resolutions = Screen.resolutions;
@@ -28,9 +32,9 @@ public class SettingMenuManager : MonoBehaviour
 
     private void Start()
     {
-        ChangeResolution(DEFAULT_RESOLUTION_IDX);
-        ChangeVolume(DEFAULT_VOLUME);
-        ChangeBrightness(DEFAULT_BRIGHTNESS);
+        ChangeResolution(gameData.masterResolutionIdx);
+        ChangeVolume(gameData.masterVolume);
+        ChangeBrightness(gameData.masterBrightness);
         gameObject.SetActive(false);
     }
 
@@ -58,7 +62,6 @@ public class SettingMenuManager : MonoBehaviour
     private GameObject _resolution;
     public Resolution[] Resolutions;
     private int _masterResIdx = 0;
-    [SerializeField] private int DEFAULT_RESOLUTION_IDX = 1;
 
     public void SetResolution(int listIndex)
     {
@@ -76,6 +79,8 @@ public class SettingMenuManager : MonoBehaviour
         }
 
         _masterResIdx += resIdx;
+        gameData.masterResolutionIdx = _masterResIdx;
+
         SetResolution(_masterResIdx);
         UpdateCircleUI(_resolution.transform, ReMap(_masterResIdx, 0f, Resolutions.Length - 1, 0f, 1f));
         UpdateNumberUI(_resolution.transform, Resolutions[_masterResIdx].ToString());
@@ -135,7 +140,6 @@ public class SettingMenuManager : MonoBehaviour
     private GameObject _volume;
     private AudioMixer _audioMixer;
     private float _masterVolume = 0f;
-    [SerializeField] private int DEFAULT_VOLUME = 70;
 
     public void ChangeVolume(float volume)
     {
@@ -152,6 +156,8 @@ public class SettingMenuManager : MonoBehaviour
         }
 
         _masterVolume += volume;
+        gameData.masterVolume = _masterVolume;
+
         _audioMixer.SetFloat("MasterVolume", ReMap(_masterVolume, 0f, 100f, -80f, 20f));
         UpdateCircleUI(_volume.transform, _masterVolume / 100f);
         UpdateNumberUI(_volume.transform, $"{_masterVolume}%");
@@ -163,7 +169,6 @@ public class SettingMenuManager : MonoBehaviour
 
     private GameObject _brightness;
     private float _masterBrightness = 0f;
-    [SerializeField] private int DEFAULT_BRIGHTNESS = 60;
 
     public void ChangeBrightness(float brightness)
     {
@@ -174,6 +179,8 @@ public class SettingMenuManager : MonoBehaviour
         }
 
         _masterBrightness += brightness;
+        gameData.masterBrightness = _masterBrightness;
+
         UpdateCircleUI(_brightness.transform, _masterBrightness / 100f);
         UpdateNumberUI(_brightness.transform, $"{_masterBrightness}%");
     }
