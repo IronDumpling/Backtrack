@@ -63,18 +63,16 @@ public class SavePointManager : Singleton<SavePointManager>
     }
     public void LoadSavePoint()
     {
-        
         if (!isSave)
         {
             Debug.Log("没有存档");
             GameObject a2 = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/MapObject/AsyncLevelObject"));
             a2.SetActive(true);
+            Time.timeScale = 1;
             a2.GetComponent<AsyncLevelLoader>().StartLoadAsync(SceneManager.GetActiveScene().name);
             return;
         }
 
-     
-        
         
         GameObject asyncLoadObject = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/MapObject/AsyncLevelObject"));
         asyncLoadObject.SetActive(true);
@@ -89,8 +87,6 @@ public class SavePointManager : Singleton<SavePointManager>
         {
             TrackManager.Instance._CurrentTrackIdx = saveTrackId;
             TrackManager.Instance.TrackSwitch();
-
-            
         }
         else
         {
@@ -98,8 +94,8 @@ public class SavePointManager : Singleton<SavePointManager>
             PlayerController.Instance.transform.rotation = Quaternion.Euler(saveRotationVector3);
             PlayerController.Instance.GetComponent<PlayerMotor>().ZSpeed = speed;
             PlayerController.Instance.GetComponent<PlayerMotor>().XSpeed = xspeed;
-            CameraManager.Instance.SetCamera(CameraManager.Instance.CommonCameraList[saveCamera]);
-
+            
+            CameraManager.Instance.LoadCamera(saveCamera);
         }
         ScoreManager.Instance.CurrentScoreInLevel = saveScores;
         AudioManager.Instance.SetMusicTime(saveBGMName, saveBGMTime);

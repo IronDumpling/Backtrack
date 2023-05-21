@@ -28,8 +28,9 @@ public class SettingMenuManager : MonoBehaviour
 
     private void Start()
     {
-        ChangeVolume(DEFAULT_VOLUME);
-        ChangeBrightness(DEFAULT_BRIGHTNESS);
+        ChangeResolution(MonoGameData.Instance.ResolutionIdx);
+        ChangeVolume(MonoGameData.Instance.Volume);
+        ChangeBrightness(MonoGameData.Instance.Brightness);
         gameObject.SetActive(false);
     }
 
@@ -39,10 +40,10 @@ public class SettingMenuManager : MonoBehaviour
         circleBar.GetComponent<Image>().fillAmount = Mathf.Clamp01(perc);
     }
 
-    public void UpdateNumberUI(Transform ui, float text)
+    public void UpdateNumberUI(Transform ui, string text)
     {
         GameObject number = ui.Find("AdjustNumUI/Number")?.gameObject;
-        number.GetComponent<TMPro.TMP_Text>().text = $"{text}%";
+        number.GetComponent<TMPro.TMP_Text>().text = text;
     }
 
     private float ReMap(float value, float fromMin, float fromMax, float toMin, float toMax)
@@ -54,35 +55,9 @@ public class SettingMenuManager : MonoBehaviour
 
     #region 调分辨率
 
-    public Resolution[] Resolutions;
     private GameObject _resolution;
-    private int index = 0;
-    [SerializeField] private int DEFAULT_RESOLUTION_IDX = 1;
-
-    public string[] ResolutionStrings()
-    {
-        string[] sArr = new string[Resolutions.Length];
-        for (var i = 0; i < Resolutions.Length; i++)
-        {
-            sArr[i] =  i + ": " + Resolutions[i].ToString();
-        }
-
-        return sArr;
-    }
-
-    public void SetFullScreen(bool isFullScreen)
-    {
-        if (isFullScreen)
-        {
-            Screen.fullScreen = true;
-            Debug.Log("全屏");
-        }
-        else
-        {
-            Screen.fullScreen = false;
-            Debug.Log("窗口化");
-        }
-    }
+    public Resolution[] Resolutions;
+    private int _masterResIdx = 0;
 
     public void SetResolution(int listIndex)
     {
@@ -91,20 +66,48 @@ public class SettingMenuManager : MonoBehaviour
         Debug.Log("当前分辨率设置为 " + resolution);
     }
 
+    public void ChangeResolution(int resIdx)
+    {
+        if (_masterResIdx + resIdx < 0 || _masterResIdx + resIdx >= Resolutions.Length)
+        {
+            Debug.LogWarning("Resolution Reaches Limits!");
+            return;
+        }
+
+        _masterResIdx += resIdx;
+        MonoGameData.Instance.ResolutionIdx = _masterResIdx;
+
+        SetResolution(_masterResIdx);
+        UpdateCircleUI(_resolution.transform, ReMap(_masterResIdx, 0f, Resolutions.Length - 1, 0f, 1f));
+        UpdateNumberUI(_resolution.transform, Resolutions[_masterResIdx].ToString());
+    }
+
+    //public string[] ResolutionStrings()
+    //{
+    //    string[] sArr = new string[Resolutions.Length];
+    //    for (var i = 0; i < Resolutions.Length; i++)
+    //    {
+    //        sArr[i] = i + ": " + Resolutions[i].ToString();
+    //    }
+    //    return sArr;
+    //}
+
+    //public void SetFullScreen(bool isFullScreen)
+    //{
+    //    if (isFullScreen)
+    //    {
+    //        Screen.fullScreen = true;
+    //        Debug.Log("全屏");
+    //    }
+    //    else
+    //    {
+    //        Screen.fullScreen = false;
+    //        Debug.Log("窗口化");
+    //    }
+    //}
+
     //void OnGUI()
     //{
-    //    if (GUI.Button(new Rect(10, 10, 100, 50), "change resolution++"))
-    //    {
-    //        index++;
-    //        SetResolution(index);
-    //    }
-
-    //    if (GUI.Button(new Rect(200, 10, 100, 50), "change resolution--"))
-    //    {
-    //        index--;
-    //        SetResolution(index);
-    //    }
-
     //    if (GUI.Button(new Rect(400, 10, 100, 50), "change fullscreen"))
     //    {
     //        if (Screen.fullScreen)
@@ -129,11 +132,10 @@ public class SettingMenuManager : MonoBehaviour
     #endregion
 
     #region 调音量
-    
+
     private GameObject _volume;
     private AudioMixer _audioMixer;
     private float _masterVolume = 0f;
-    [SerializeField] private int DEFAULT_VOLUME = 70;
 
     public void ChangeVolume(float volume)
     {
@@ -150,9 +152,11 @@ public class SettingMenuManager : MonoBehaviour
         }
 
         _masterVolume += volume;
+        MonoGameData.Instance.Volume = _masterVolume;
+
         _audioMixer.SetFloat("MasterVolume", ReMap(_masterVolume, 0f, 100f, -80f, 20f));
         UpdateCircleUI(_volume.transform, _masterVolume / 100f);
-        UpdateNumberUI(_volume.transform, _masterVolume);
+        UpdateNumberUI(_volume.transform, $"{_masterVolume}%");
     }
 
     #endregion
@@ -161,7 +165,6 @@ public class SettingMenuManager : MonoBehaviour
 
     private GameObject _brightness;
     private float _masterBrightness = 0f;
-    [SerializeField] private int DEFAULT_BRIGHTNESS = 60;
 
     public void ChangeBrightness(float brightness)
     {
@@ -172,8 +175,10 @@ public class SettingMenuManager : MonoBehaviour
         }
 
         _masterBrightness += brightness;
+        MonoGameData.Instance.Brightness = _masterBrightness;
+
         UpdateCircleUI(_brightness.transform, _masterBrightness / 100f);
-        UpdateNumberUI(_brightness.transform, _masterBrightness);
+        UpdateNumberUI(_brightness.transform, $"{_masterBrightness}%");
     }
 
     #endregion

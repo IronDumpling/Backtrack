@@ -28,7 +28,7 @@ public class TriggerCameraDollyTrack : TriggerCamera {
         pathLength,
         pathLength / _TrackCamSpeed).SetEase(_EaseType)
         .onComplete += () => {
-            CameraManager.Instance.SetCamera(_previousVC);
+            CameraManager.Instance.SwitchCamera(_previousVC);
             PlayerLookAt.Instance._IsFixOnPath = true;
         };
     }

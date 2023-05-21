@@ -5,7 +5,7 @@ using Cinemachine;
 public class CameraManager : MonoSingleton<CameraManager> {
     public CinemachineVirtualCamera _curActiveCamera;
     public CinemachineVirtualCamera[] CommonCameraList;
-    
+
     public CinemachineBlendDefinition defaultBlend;
 
     private CinemachineBrain _brain;
@@ -18,11 +18,30 @@ public class CameraManager : MonoSingleton<CameraManager> {
         _brain.m_DefaultBlend = customBlend;
     }
 
-    public void SetCamera(CinemachineVirtualCamera switchVC) {
-        switchVC.m_Priority = _curActiveCamera.m_Priority;
-        _curActiveCamera.m_Priority = 0;
+    public void SwitchCamera(CinemachineVirtualCamera switchVC) {
+        switchVC.m_Priority = 10;
+        if(_curActiveCamera != null)
+            _curActiveCamera.m_Priority = 0;
+
         _curActiveCamera = switchVC;
-        
+    }
+
+    public void LoadCamera(int VCId) {
+        CommonCameraList[VCId].m_Priority = 10;
+        foreach (CinemachineVirtualCamera virtualCamera in FindObjectsOfType<CinemachineVirtualCamera>()) {
+            if (virtualCamera != CommonCameraList[VCId])
+                virtualCamera.m_Priority = 0;
+        }
+    }
+
+    public int GetCurCameraIdx() {
+        for (int i = 0; i < CommonCameraList.Length; i++) {
+            if (CommonCameraList[i] == _curActiveCamera)
+                return i;
+        }
+
+        DebugLogger.Log(this.name, "Did not find _currVC " + _curActiveCamera.name + "in CommonCameraList");
+        return -1;
     }
 
     private void Awake() {
@@ -51,6 +70,7 @@ public class CameraManager : MonoSingleton<CameraManager> {
         CommonCameraList[2].Follow = follow;
 
 
+        /* Check if _curActiveCamera is the highest pirority Camera in Scene*/
         if (_curActiveCamera == null) {
             DebugLogger.Error(this.name, "First Camera not set!");
         }
