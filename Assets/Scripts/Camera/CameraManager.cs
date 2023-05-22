@@ -28,6 +28,7 @@ public class CameraManager : MonoSingleton<CameraManager> {
 
     public void LoadCamera(int VCId) {
         CommonCameraList[VCId].m_Priority = 10;
+        _curActiveCamera = CommonCameraList[VCId];
         foreach (CinemachineVirtualCamera virtualCamera in FindObjectsOfType<CinemachineVirtualCamera>()) {
             if (virtualCamera != CommonCameraList[VCId])
                 virtualCamera.m_Priority = 0;
@@ -36,8 +37,9 @@ public class CameraManager : MonoSingleton<CameraManager> {
 
     public int GetCurCameraIdx() {
         for (int i = 0; i < CommonCameraList.Length; i++) {
-            if (CommonCameraList[i] == _curActiveCamera)
+            if (CommonCameraList[i] == _curActiveCamera) {
                 return i;
+            }
         }
 
         DebugLogger.Log(this.name, "Did not find _currVC " + _curActiveCamera.name + "in CommonCameraList");
