@@ -9,7 +9,9 @@ public class TriggerObjectFadeIn : TriggerBase
 {
     [Header("指定播放的Animator 如果为空则在当前物体搜animator")]
     [SerializeField] private Animator _animator;
+    [SerializeField] private AudioSource _audio;
     [SerializeField, ReadOnly] private String triggerName = "FadeInTrigger";
+    [SerializeField] private bool isUsingAudioSource = false;
     [SerializeField] private bool isUsingAnimator = true;
     [SerializeField] private bool isUsingFadeIn = true;
     [SerializeField] private bool isUsingFadeOut = true;
@@ -20,6 +22,7 @@ public class TriggerObjectFadeIn : TriggerBase
     private void Awake()
     {
         if (_animator == null && isUsingAnimator) _animator = GetComponent<Animator>();
+        if (_audio == null && isUsingAudioSource) _audio = GetComponent<AudioSource>();
 
         _childList = new List<Transform>();
         _renderer = GetComponent<Renderer>();
@@ -37,21 +40,18 @@ public class TriggerObjectFadeIn : TriggerBase
     protected override void enterEvent()
     {
         base.enterEvent();
-        FadeIn();
+        if (isUsingFadeIn) FadeIn();
+        if (_animator != null && isUsingAnimator) _animator.SetTrigger(triggerName);
+        if (_audio != null && isUsingAudioSource) _audio.Play();
     }
 
     void FadeIn()
     {
-        if (isUsingFadeIn)
+        foreach (var child in _childList)
         {
-            foreach (var child in _childList)
-            {
-                child.gameObject.SetActive(true);
-            }
-            if (_renderer != null) _renderer.enabled = true;
+            child.gameObject.SetActive(true);
         }
-
-        if(_animator != null && isUsingAnimator) _animator.SetTrigger(triggerName);
+        if (_renderer != null) _renderer.enabled = true;
     }
 
     protected override void ExitEvent()
@@ -66,8 +66,6 @@ public class TriggerObjectFadeIn : TriggerBase
         {
             child.gameObject.SetActive(false);
             if(_renderer != null) _renderer.enabled = true;
-
         }
     }
-
 }

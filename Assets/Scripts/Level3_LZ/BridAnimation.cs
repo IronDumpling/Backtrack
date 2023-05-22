@@ -14,7 +14,7 @@ public class BridAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Input.GetAxisRaw("Horizontal"));
+        //Debug.Log(Input.GetAxisRaw("Horizontal"));
         _animator.SetFloat("isCurve",Input.GetAxisRaw("Horizontal"));
         if(Input.GetAxisRaw("Horizontal") == 0)
         {
