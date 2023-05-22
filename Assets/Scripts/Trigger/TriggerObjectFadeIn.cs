@@ -42,11 +42,7 @@ public class TriggerObjectFadeIn : TriggerBase
         base.enterEvent();
         if (isUsingFadeIn) FadeIn();
         if (_animator != null && isUsingAnimator) _animator.SetTrigger(triggerName);
-        if (_audio != null && isUsingAudioSource)
-        {
-            _audio.Play();
-            Debug.Log("Played!");
-        }
+        if (_audio != null && isUsingAudioSource) _audio.Play();
     }
 
     void FadeIn()
