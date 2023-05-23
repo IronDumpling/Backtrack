@@ -13,11 +13,6 @@ public class MonoGameData : NoDestroyMonoSingleton<MonoGameData>
         if (_dataSo == null) _dataSo = Resources.Load<GameData_SO>("GameData/GameData");
     }
 
-    private void Start()
-    {
-        //_dataSo?.masterResolutionIdx
-    }
-
     public int ResolutionIdx
     {
         get => _dataSo.masterResolutionIdx;

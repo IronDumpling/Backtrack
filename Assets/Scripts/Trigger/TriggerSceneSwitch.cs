@@ -10,6 +10,7 @@ public class TriggerSceneSwitch : TriggerBase
     {
         if (isVictoryTrigger)
         {
+            URPManager.Instance.SetRendererAsset(0);
             EventManager.Instance.PlayerVictoryEventTrigger();
         } 
         EventManager.Instance.PlayerEnterNewSceneEventTrigger(_switchSceneName);

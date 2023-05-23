@@ -52,17 +52,20 @@ public class PauseUI : MonoBehaviour
 
     public void Restart()
     {
+        URPManager.Instance.SetRendererAsset(0);
         EventManager.Instance.PlayerRestartEventTrigger();
     }
 
     public void Select()
     {
         AudioManager.Instance?.StopAll();
+        URPManager.Instance.SetRendererAsset(0);
         SceneManager.LoadScene("UI_Select"); 
     }
 
     public void Quit()
     {
+        URPManager.Instance.SetRendererAsset(0);
         Application.Quit();
     }
 }
