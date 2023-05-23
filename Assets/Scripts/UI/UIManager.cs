@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using Common;
+using Cyan;
 
 public class UIManager : MonoSingleton<UIManager>
 {
@@ -31,7 +32,6 @@ public class UIManager : MonoSingleton<UIManager>
     // UI Main
     public void LogoStart()
     {
-
         //加载到“UI_Main”场景
         SceneManager.LoadScene("UI_Main");
     }

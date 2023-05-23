@@ -11,13 +11,9 @@ using UnityEngine.Audio;
 public class SettingMenuManager : MonoBehaviour
 {
     #region 通用
-    public GameData_SO gameData;
     
     private void Awake()
     {
-        // Load Game Data
-        gameData = Resources.Load<GameData_SO>("GameData/GameData");
-
         // Resolution
         _resolution = transform.Find("Resolution").gameObject;
         Resolutions = Screen.resolutions;
@@ -32,9 +28,9 @@ public class SettingMenuManager : MonoBehaviour
 
     private void Start()
     {
-        ChangeResolution(gameData.masterResolutionIdx);
-        ChangeVolume(gameData.masterVolume);
-        ChangeBrightness(gameData.masterBrightness);
+        ChangeResolution(MonoGameData.Instance.ResolutionIdx);
+        ChangeVolume(MonoGameData.Instance.Volume);
+        ChangeBrightness(MonoGameData.Instance.Brightness);
         gameObject.SetActive(false);
     }
 
@@ -79,7 +75,7 @@ public class SettingMenuManager : MonoBehaviour
         }
 
         _masterResIdx += resIdx;
-        gameData.masterResolutionIdx = _masterResIdx;
+        MonoGameData.Instance.ResolutionIdx = _masterResIdx;
 
         SetResolution(_masterResIdx);
         UpdateCircleUI(_resolution.transform, ReMap(_masterResIdx, 0f, Resolutions.Length - 1, 0f, 1f));
@@ -156,7 +152,7 @@ public class SettingMenuManager : MonoBehaviour
         }
 
         _masterVolume += volume;
-        gameData.masterVolume = _masterVolume;
+        MonoGameData.Instance.Volume = _masterVolume;
 
         _audioMixer.SetFloat("MasterVolume", ReMap(_masterVolume, 0f, 100f, -80f, 20f));
         UpdateCircleUI(_volume.transform, _masterVolume / 100f);
@@ -179,7 +175,7 @@ public class SettingMenuManager : MonoBehaviour
         }
 
         _masterBrightness += brightness;
-        gameData.masterBrightness = _masterBrightness;
+        MonoGameData.Instance.Brightness = _masterBrightness;
 
         UpdateCircleUI(_brightness.transform, _masterBrightness / 100f);
         UpdateNumberUI(_brightness.transform, $"{_masterBrightness}%");

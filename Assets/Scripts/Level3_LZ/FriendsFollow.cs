@@ -15,7 +15,7 @@ public class FriendsFollow : MonoBehaviour
             isFollow = true;
         }
     }
-    private void Update()
+    private void FixedUpdate()
     {
         // 将敌人的世界坐标转换为屏幕坐标
         if(isFollow)
