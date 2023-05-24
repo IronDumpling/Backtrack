@@ -35,7 +35,13 @@ public class CollectionUI : MonoBehaviour
         else if (levelNum == 1)
         {
             dataSoList.Add(Resources.Load<LevelInfo_SO>("GameData/LevelData/Level3-1"));
+            dataSoList.Add(Resources.Load<LevelInfo_SO>("GameData/LevelData/Level3-2"));
             currScore = MonoPlayerData.Instance.Level3Score;
+        }
+        else if (levelNum == 2)
+        {
+            dataSoList.Add(Resources.Load<LevelInfo_SO>("GameData/LevelData/Level4-1"));
+            currScore = MonoPlayerData.Instance.Level4Score;
         }
 
         foreach (LevelInfo_SO level in dataSoList)
