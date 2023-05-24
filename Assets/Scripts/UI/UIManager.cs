@@ -92,6 +92,11 @@ public class UIManager : MonoSingleton<UIManager>
     {
         SceneManager.LoadScene("Level3_P1");
     }
+    
+    public void SelectL4()
+    {
+        SceneManager.LoadScene("Level4");
+    }
 
     // UI End
     public void EndBack()

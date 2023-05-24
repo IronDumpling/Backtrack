@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
@@ -57,7 +57,7 @@ namespace Level3_Track {
             Track curTrack = _TrackList[_CurrentTrackIdx];
             curTrack._TrackVirtualCamera.m_Priority = (_CurrentTrackIdx+1);
 
-            if (isL4)
+            if (isL4 && curTrack != _TrackList[0])
             {
                 Vector3 fromPos = _playerController.transform.position;
                 Vector3 toPos = curTrack.transform.TransformPoint(curTrack._PlayerTrack.m_Waypoints[0].position);
