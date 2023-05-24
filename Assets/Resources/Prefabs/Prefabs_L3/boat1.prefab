@@ -590,6 +590,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6895747226214693613}
+  - component: {fileID: 97604014152315146}
+  - component: {fileID: 4411833745870436505}
   m_Layer: 0
   m_Name: boat1
   m_TagString: Untagged
@@ -622,6 +624,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &97604014152315146
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6123010095960367191}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 8.23}
+  m_Center: {x: 0, y: -0.22, z: 0}
+--- !u!114 &4411833745870436505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6123010095960367191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4238844b2f4ba4291772f002dfc3b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  canWork: 1
+  isOneTime: 0
 --- !u!1 &6297116804475918952
 GameObject:
   m_ObjectHideFlags: 0
