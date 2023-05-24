@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
@@ -23,6 +23,8 @@ namespace Level3_Track {
         private CinemachineDollyCart _playerDollyCart;
 
         private Action A_TrackUpdate;
+
+        public bool isL4 = false;
 
         private void TrackNormal() {
             if (_playerDollyCart.m_Path.PathLength == _playerDollyCart.m_Position) {
@@ -55,31 +57,35 @@ namespace Level3_Track {
             Track curTrack = _TrackList[_CurrentTrackIdx];
             curTrack._TrackVirtualCamera.m_Priority = (_CurrentTrackIdx+1);
 
-            // TODO: use to lerp to Transform Player Position to TrackStarting point
-            Vector3 fromPos = _playerController.transform.position;
-            Vector3 toPos = curTrack.transform.TransformPoint(curTrack._PlayerTrack.m_Waypoints[0].position);
-            Debug.Log("from :" + fromPos);
-            Debug.Log("to :" + toPos);
-            _playerDollyCart.m_Path = null;
-            DOTween.To(
-                () => fromPos,
-                x => _playerController.transform.position = fromPos = x,
-                toPos,
-                1f
-            ).SetEase(DOTween.defaultEaseType)
-            .onComplete += () => {
-                _playerDollyCart.m_Path = curTrack._PlayerTrack;
-                _playerDollyCart.m_Position = 0;
-            };
-            //_playerDollyCart.m_Position = 0;
-            //_playerDollyCart.m_Path = curTrack._PlayerTrack;
-            Quaternion toQT = curTrack._PlayerTrack.EvaluateOrientation(0);
+            if (isL4 && curTrack != _TrackList[0])
+            {
+                Vector3 fromPos = _playerController.transform.position;
+                Vector3 toPos = curTrack.transform.TransformPoint(curTrack._PlayerTrack.m_Waypoints[0].position);
+                Debug.Log("from :" + fromPos);
+                Debug.Log("to :" + toPos);
+                _playerDollyCart.m_Path = null;
+                DOTween.To(
+                        () => fromPos,
+                        x => _playerController.transform.position = fromPos = x,
+                        toPos,
+                        1f
+                    ).SetEase(DOTween.defaultEaseType)
+                    .onComplete += () => {
+                    _playerDollyCart.m_Path = curTrack._PlayerTrack;
+                    _playerDollyCart.m_Position = 0;
+                };
+                Quaternion toQT = curTrack._PlayerTrack.EvaluateOrientation(0);
+                _playerController.transform.DORotate(toQT.eulerAngles, 1f);
 
-            _playerController.transform.DORotate(toQT.eulerAngles, 1f);
-            
-            
-            //curTrack._PlayerTrack.m_Waypoints[0].
-            
+            }
+            else
+            {
+                _playerDollyCart.m_Position = 0;
+                _playerDollyCart.m_Path = curTrack._PlayerTrack;
+
+
+            }
+
             A_TrackUpdate = TrackNormal;
             StartCoroutine(CamBlendYieldPlyControl(curTrack));
         }
