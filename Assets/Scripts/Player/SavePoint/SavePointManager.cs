@@ -77,16 +77,28 @@ public class SavePointManager : Singleton<SavePointManager>
         GameObject asyncLoadObject = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/MapObject/AsyncLevelObject"));
         asyncLoadObject.SetActive(true);
         asyncLoadObject.GetComponent<AsyncLevelLoader>().StartLoadAsync(saveSceneName);
-        //asyncLoadObject.GetComponent<AsyncLevelLoader>().onAfterFinishLoad += LoadAfterScene;
+        if (levelNum == 3)
+        {
+            asyncLoadObject.GetComponent<AsyncLevelLoader>().onAfterFinishLoad += LoadAfterAsync;
+
+        }
         SceneManager.sceneLoaded += LoadAfterScene;
+    }
+
+    private void LoadAfterAsync()
+    {
+        TrackManager.Instance._CurrentTrackIdx = saveTrackId;
+        TrackManager.Instance.TrackSwitch();
     }
 
     private void LoadAfterScene(Scene scene, LoadSceneMode mode) //
     {
         if (levelNum == 3)
         {
-            TrackManager.Instance._CurrentTrackIdx = saveTrackId;
-            TrackManager.Instance.TrackSwitch();
+            //TrackManager.Instance._CurrentTrackIdx = saveTrackId;
+            
+
+            
         }
         else
         {
