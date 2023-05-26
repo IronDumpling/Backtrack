@@ -656,6 +656,41 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6198712621937850242, guid: 516cf651b663743489faedcae6db847c, type: 3}
   m_PrefabInstance: {fileID: 40702617}
   m_PrefabAsset: {fileID: 0}
+--- !u!21 &47918349
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Height Fog Global
+  m_Shader: {fileID: 4800000, guid: 3a7ef1b66bafb7a448a880ef76d2e6e6, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3001
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _AdvancedCat: 1
+    - _AlphaCutoff: 0.5
+    - _Banner: 1
+    - _DirectionalCat: 1
+    - _FogAxisMode: 1
+    - _FogCat: 1
+    - _HeightFogGlobal: 1
+    - _IsHeightFogShader: 1
+    - _NoiseCat: 1
+    - _SkyboxCat: 1
+    m_Colors:
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1001 &55757763
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7867,6 +7902,65 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb2b1ea6c7abf464abd2798bafe71acf, type: 3}
+--- !u!21 &427035745
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Override
+  m_Shader: {fileID: 4800000, guid: a3a3bc8785681554d9558e2ea68f100e, type: 3}
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs: []
+    m_Ints: []
+    m_Floats:
+    - _Banner: 1
+    - _DirectionalCat: 1
+    - _DirectionalFalloff: 2
+    - _DirectionalIntensity: 1
+    - _FogAxisMode: 1
+    - _FogCat: 1
+    - _FogColorDuo: 1
+    - _FogDistanceEnd: 200
+    - _FogDistanceFalloff: 2
+    - _FogDistanceStart: -200
+    - _FogHeightEnd: 200
+    - _FogHeightFalloff: 2
+    - _FogHeightStart: 0
+    - _FogIntensity: 1
+    - _FogLayersMode: 0
+    - _IsHeightFogPreset: 1
+    - _IsHeightFogShader: 1
+    - _NoiseCat: 1
+    - _NoiseDistanceEnd: 50
+    - _NoiseIntensity: 1
+    - _NoiseModeBlend: 1
+    - _NoiseScale: 30
+    - _SkyboxCat: 1
+    - _SkyboxFogBottom: 0
+    - _SkyboxFogFalloff: 1
+    - _SkyboxFogFill: 1
+    - _SkyboxFogHeight: 1
+    - _SkyboxFogIntensity: 1
+    - _SkyboxFogOffset: 0
+    m_Colors:
+    - _DirectionalColor: {r: 1, g: 0.7793103, b: 0.5, a: 1}
+    - _DirectionalDir: {r: 0, g: 0, b: 0, a: 0}
+    - _FogAxisOption: {r: 0, g: 0, b: 0, a: 0}
+    - _FogColorEnd: {r: 0.8862745, g: 1.443137, b: 2, a: 1}
+    - _FogColorStart: {r: 0.4411765, g: 0.722515, b: 1, a: 1}
+    - _NoiseSpeed: {r: 0.5, g: 0, b: 0.5, a: 0}
+  m_BuildTextureStacks: []
 --- !u!4 &428754822 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6198712621937850242, guid: 516cf651b663743489faedcae6db847c, type: 3}
@@ -15619,19 +15713,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 643144386, guid: b4cc1501eb49f644fa9a6098501ba2f9, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8190888
+      value: 0.81908876
       objectReference: {fileID: 0}
     - target: {fileID: 643144386, guid: b4cc1501eb49f644fa9a6098501ba2f9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.5736669
+      value: 0.5736668
       objectReference: {fileID: 0}
     - target: {fileID: 643144386, guid: b4cc1501eb49f644fa9a6098501ba2f9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0000020060688
+      value: 0.0000020060686
       objectReference: {fileID: 0}
     - target: {fileID: 643144386, guid: b4cc1501eb49f644fa9a6098501ba2f9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000005848706
+      value: 0.0000005848705
       objectReference: {fileID: 0}
     - target: {fileID: 1945740453032330393, guid: b4cc1501eb49f644fa9a6098501ba2f9, type: 3}
       propertyPath: m_Size.x
@@ -30630,41 +30724,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6198712621937850242, guid: 516cf651b663743489faedcae6db847c, type: 3}
   m_PrefabInstance: {fileID: 1598669385}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &1598835664
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Height Fog Global
-  m_Shader: {fileID: 4800000, guid: 3a7ef1b66bafb7a448a880ef76d2e6e6, type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3001
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - _AdvancedCat: 1
-    - _AlphaCutoff: 0.5
-    - _Banner: 1
-    - _DirectionalCat: 1
-    - _FogAxisMode: 1
-    - _FogCat: 1
-    - _HeightFogGlobal: 1
-    - _IsHeightFogShader: 1
-    - _NoiseCat: 1
-    - _SkyboxCat: 1
-    m_Colors:
-    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1001 &1607500945
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33541,7 +33600,7 @@ MonoBehaviour:
   manualPositionAndScale: 0
   renderPriority: 1
   styledSpace0: 0
-  overrideMaterial: {fileID: 1865964606}
+  overrideMaterial: {fileID: 427035745}
   overrideCamToVolumeDistance: 1
   overrideVolumeDistanceFade: 0
   version: 0
@@ -33573,7 +33632,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1598835664}
+  - {fileID: 47918349}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -35691,65 +35750,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6198712621937850242, guid: 516cf651b663743489faedcae6db847c, type: 3}
   m_PrefabInstance: {fileID: 1863459320}
   m_PrefabAsset: {fileID: 0}
---- !u!21 &1865964606
-Material:
-  serializedVersion: 8
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Override
-  m_Shader: {fileID: 4800000, guid: a3a3bc8785681554d9558e2ea68f100e, type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs: []
-    m_Ints: []
-    m_Floats:
-    - _Banner: 1
-    - _DirectionalCat: 1
-    - _DirectionalFalloff: 2
-    - _DirectionalIntensity: 1
-    - _FogAxisMode: 1
-    - _FogCat: 1
-    - _FogColorDuo: 1
-    - _FogDistanceEnd: 200
-    - _FogDistanceFalloff: 2
-    - _FogDistanceStart: -200
-    - _FogHeightEnd: 200
-    - _FogHeightFalloff: 2
-    - _FogHeightStart: 0
-    - _FogIntensity: 1
-    - _FogLayersMode: 0
-    - _IsHeightFogPreset: 1
-    - _IsHeightFogShader: 1
-    - _NoiseCat: 1
-    - _NoiseDistanceEnd: 50
-    - _NoiseIntensity: 1
-    - _NoiseModeBlend: 1
-    - _NoiseScale: 30
-    - _SkyboxCat: 1
-    - _SkyboxFogBottom: 0
-    - _SkyboxFogFalloff: 1
-    - _SkyboxFogFill: 1
-    - _SkyboxFogHeight: 1
-    - _SkyboxFogIntensity: 1
-    - _SkyboxFogOffset: 0
-    m_Colors:
-    - _DirectionalColor: {r: 1, g: 0.7793103, b: 0.5, a: 1}
-    - _DirectionalDir: {r: 0, g: 0, b: 0, a: 0}
-    - _FogAxisOption: {r: 0, g: 0, b: 0, a: 0}
-    - _FogColorEnd: {r: 0.8862745, g: 1.443137, b: 2, a: 1}
-    - _FogColorStart: {r: 0.4411765, g: 0.722515, b: 1, a: 1}
-    - _NoiseSpeed: {r: 0.5, g: 0, b: 0.5, a: 0}
-  m_BuildTextureStacks: []
 --- !u!1 &1866423208
 GameObject:
   m_ObjectHideFlags: 0
@@ -36576,6 +36576,181 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6198712621937850242, guid: 516cf651b663743489faedcae6db847c, type: 3}
   m_PrefabInstance: {fileID: 1148353149}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1906328045
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1906328047}
+  - component: {fileID: 1906328046}
+  m_Layer: 0
+  m_Name: WaterSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1906328046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906328045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93eb560ae5ebcd8459ef03cd3eccbd16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowColorSettings: 1
+  ShowExpertColorSettings: 0
+  Transparent: 11.1
+  WaterColor: {r: 1, g: 1, b: 1, a: 1}
+  TurbidityColor: {r: 0.735849, g: 0.04523037, b: 0, a: 1}
+  Turbidity: 0.52
+  ShowWaves: 1
+  ShowExpertWavesSettings: 0
+  FFT_SimulationSize: 128
+  UseMultipleSimulations: 1
+  WindSpeed: 4
+  WindRotation: 0
+  WindTurbulence: 0.75
+  TimeScale: 1
+  ReflectionProfile: 0
+  ShowReflectionSettings: 1
+  ShowExpertReflectionSettings: 1
+  ReflectionMode: 0
+  CubemapUpdateInterval: 30
+  CubemapCullingMask: 32
+  CubemapReflectionResolutionQuality: 512
+  PlanarReflectionResolutionQuality: 512
+  ScreenSpaceReflectionResolutionQuality: 50
+  UsePlanarCubemapReflection: 1
+  ReflectionClipPlaneOffset: 0.0085
+  ReflectioDepthHolesFillDistance: 5
+  UseAnisotropicReflections: 1
+  AnisotropicReflectionsHighQuality: 1
+  AnisotropicReflectionsScale: 0.55
+  ReflectSun: 1
+  ReflectedSunCloudinessStrength: 0.04
+  ReflectedSunStrength: 1
+  RefractionProfile: 2
+  ShowRefractionSettings: 1
+  ShowExpertRefractionSettings: 0
+  RefractionMode: 1
+  RefractionAproximatedDepth: 5
+  RefractionSimpleStrength: 0.25
+  UseRefractionDispersion: 1
+  RefractionDispersionStrength: 0.35
+  VolumetricLightProfile: 3
+  UseVolumetricLight: 1
+  ShowVolumetricLightSettings: 1
+  ShowExpertVolumetricLightSettings: 0
+  VolumetricLightResolutionQuality: 35
+  VolumetricLightIteration: 4
+  VolumetricLightBlurRadius: 1
+  VolumetricLightFilter: 0
+  FlowmapProfile: 2
+  UseFlowMap: 0
+  ShowFlowMap: 0
+  ShowExpertFlowmapSettings: 0
+  FlowMapInEditMode: 0
+  FlowMapAreaPosition: {x: 0, y: 0, z: 0}
+  FlowMapAreaSize: 200
+  FlowMapTextureResolution: 4096
+  FlowMapBrushStrength: 0.5
+  FlowMapSpeed: 1
+  UseFluidsSimulation: 0
+  FluidsAreaSize: 35
+  FluidsSimulationIterrations: 2
+  FluidsTextureSize: 1536
+  FluidsSimulationFPS: 60
+  FluidsSpeed: 1
+  FluidsFoamStrength: 0.5
+  DynamicWavesProfile: 2
+  UseDynamicWaves: 0
+  ShowDynamicWaves: 1
+  ShowExpertDynamicWavesSettings: 0
+  DynamicWavesAreaSize: 50
+  DynamicWavesSimulationFPS: 60
+  DynamicWavesResolutionPerMeter: 34
+  DynamicWavesPropagationSpeed: 0.3
+  UseDynamicWavesRainEffect: 0
+  DynamicWavesRainStrength: 0.2
+  ShorelineProfile: 2
+  UseShorelineRendering: 0
+  ShowShorelineMap: 0
+  ShowExpertShorelineSettings: 0
+  FoamLodQuality: 1
+  FoamCastShadows: 1
+  FoamReceiveShadows: 1
+  ShorelineInEditMode: 0
+  ShorelineAreaPosition: {x: 0, y: 0, z: 0}
+  ShorelineAreaSize: 512
+  ShorelineCurvedSurfacesQuality: 1
+  CausticProfile: 2
+  UseCausticEffect: 0
+  ShowCausticEffectSettings: 0
+  ShowExpertCausticEffectSettings: 0
+  UseCausticBicubicInterpolation: 0
+  UseCausticDispersion: 1
+  CausticTextureSize: 768
+  CausticMeshResolution: 320
+  CausticActiveLods: 4
+  CausticStrength: 1
+  UseDepthCausticScale: 0
+  CausticDepthScaleInEditMode: 0
+  CausticDepthScale: 1
+  CausticOrthoDepthPosition: {x: Infinity, y: Infinity, z: Infinity}
+  CausticOrthoDepthAreaSize: 512
+  CausticOrthoDepthTextureResolution: 2048
+  UseUnderwaterEffect: 1
+  ShowUnderwaterEffectSettings: 1
+  UseUnderwaterBlur: 0
+  UnderwaterBlurRadius: 1.75
+  MeshProfile: 0
+  ShowMeshSettings: 1
+  ShowExpertMeshSettings: 0
+  SplineMeshInEditMode: 0
+  WaterMeshType: 0
+  RiverSplineNormalOffset: 1
+  RiverSplineVertexCountBetweenPoints: 20
+  CustomMesh: {fileID: 0}
+  InfiniteMeshQuality: 21
+  FiniteMeshQuality: 37
+  MeshSize: {x: 10, y: 10, z: 10}
+  UseTesselation: 1
+  TesselationFactor: 0.75
+  TesselationInfiniteMeshMaxDistance: 5000
+  TesselationOtherMeshMaxDistance: 100
+  RenderingProfile: 2
+  ShowRendering: 1
+  ShowExpertRenderingSettings: 0
+  UseFiltering: 1
+  UseAnisotropicFiltering: 0
+  DrawToPosteffectsDepth: 0
+  EnableWaterSurfaceDataComputation: 0
+  UseNetworkTime: 0
+  NetworkTime: 0
+  _waterGUID: c11c1a697f0937345836038630056f22
+--- !u!4 &1906328047
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906328045}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -263, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 26
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1909676703 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6198712621937850242, guid: 516cf651b663743489faedcae6db847c, type: 3}
