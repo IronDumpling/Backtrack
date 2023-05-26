@@ -20,7 +20,7 @@ public class URPManager : NoDestroyMonoSingleton<URPManager>
 
     public void SetRendererAsset(int assetIdx)
     {
-        if (assetIdx < 0 && assetIdx >= _URPAssetList.Count) return;
+        if (assetIdx < 0 || assetIdx >= _URPAssetList.Count || !_URPAssetList[assetIdx]) return;
         
         if (QualitySettings.renderPipeline != null && QualitySettings.renderPipeline != _URPAssetList[assetIdx])
         {

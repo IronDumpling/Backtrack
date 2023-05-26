@@ -25,6 +25,7 @@ public class UIManager : MonoSingleton<UIManager>
     // UI Pause
     public void PausePreform(InputAction.CallbackContext obj)
     {
+        if (_pausePanel == null) return;
         if ((bool)(_pausePanel?.activeSelf)) _pausePanel?.SetActive(false);
         else _pausePanel?.SetActive(true);
     }
@@ -90,7 +91,7 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void SelectL3()
     {
-        SceneManager.LoadScene("Level3_P1");
+        SceneManager.LoadScene("Level3_3_Start");
     }
     
     public void SelectL4()

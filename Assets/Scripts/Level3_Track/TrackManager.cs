@@ -15,7 +15,7 @@ namespace Level3_Track {
 
         [Header("TrackManager Settings")]
         public Track[] _TrackList;
-        public int _CurrentTrackIdx = 0;
+        public int _CurrentTrackIdx;
 
         private CinemachineBrain _cmbrain;
 
@@ -49,8 +49,8 @@ namespace Level3_Track {
         /// </summary>
         public void TrackSwitch() {
             if(_CurrentTrackIdx >= _TrackList.Length) {
-                Debug.Log("All Track Played successfully");
-                Debug.Break();
+                //Debug.Log("All Track Played successfully)";
+                //Debug.Break();
                 return;
             }
 
@@ -91,23 +91,24 @@ namespace Level3_Track {
         }
 
         private IEnumerator CamBlendYieldPlyControl(Track curTrack) {
-            _playerController.GameEnd();
+            //_playerController.GameEnd();
             do {
                 yield return null;
             } while (_cmbrain.IsBlending);
 
-            _playerController.GameStart();
+            //_playerController.GameStart();
             _playerController.SwitchMoveMapping(curTrack._InputMapping);
         }
 
 
-        private void Awake() {
+        protected void Awake() {
             if (_TrackList == null || _TrackList.Length == 0) {
                 DebugLogger.Error(this.name, "TrackList Empty! Please Set in Editor.");
             }
             if (_CurrentTrackIdx < 0 || _CurrentTrackIdx >= _TrackList.Length) {
                 DebugLogger.Error(this.name, "_CurrentTrack Out Of Rangce! Please Set a Correct number in Editor.");
             }
+            
         }
 
         private void Start() {
