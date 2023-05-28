@@ -91,12 +91,12 @@ namespace Level3_Track {
         }
 
         private IEnumerator CamBlendYieldPlyControl(Track curTrack) {
-            //_playerController.GameEnd();
+            if(!isL4) _playerController.GameEnd();
             do {
                 yield return null;
             } while (_cmbrain.IsBlending);
 
-            //_playerController.GameStart();
+            if(!isL4) _playerController.GameStart();
             _playerController.SwitchMoveMapping(curTrack._InputMapping);
         }
 
