@@ -30,6 +30,9 @@ public class PlayerController_L3: PlayerControllerBase
             case EInputMapping.SIDEVIEW:
                 A_planeMoveUpdate = _playerMotor.SideViewMove;
                 break;
+            case EInputMapping.EYELEVEL_X:
+                A_planeMoveUpdate = _playerMotor.EyeLevelMoveOnlyX;
+                break;
         }
     }
     #endregion
