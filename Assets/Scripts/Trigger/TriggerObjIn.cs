@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,9 +8,14 @@ public class TriggerObjIn : TriggerBase
 {
     public Transform obj;
 
+    private void Start()
+    {
+        obj.gameObject.SetActive(false);
+    }
+
     protected override void enterEvent()
     {
-        Debug.Log(" innnnnn");
+        
         base.enterEvent();
         obj.gameObject.SetActive(true);
     }
