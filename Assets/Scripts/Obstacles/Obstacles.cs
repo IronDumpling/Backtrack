@@ -15,10 +15,12 @@ namespace Level1
         [System.Serializable] public class ColliderEvent : UnityEvent{}
         
         [SerializeField] public ColliderEvent CollidePlayerAction;
-        protected override void enterEvent()
+        protected override void enterEvent(Collider collision)
         {
-            Debug.Log("collide player");
-            EventManager.Instance.PlayerDeadEventTrigger();
+            if(collision.gameObject.tag == "Player")
+            {
+                EventManager.Instance.PlayerDeadEventTrigger();
+            }
             CollidePlayerAction?.Invoke();
         }
     }
