@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 711899018445681695}
   - component: {fileID: 7282723868587541085}
   - component: {fileID: 5449088644021173706}
+  - component: {fileID: 4331491416185932366}
   m_Layer: 0
   m_Name: Arrow (20)
   m_TagString: Arrow
@@ -68,6 +69,51 @@ MonoBehaviour:
     m_Bits: 512
   canWork: 1
   isOneTime: 0
+  CollidePlayerAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8284220343294105248}
+        m_TargetAssemblyTypeName: TriggerTimeSlow, Assembly-CSharp
+        m_MethodName: SetTimeBack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2346398278283546787}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4331491416185932366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 192243896696647333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 121af51f72b991c47a5a6a25fc71bf64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 2560
+  canWork: 1
+  isOneTime: 0
+  m_Profile: {fileID: 11400000, guid: 883495ab8b57b57478ba681c9c21829b, type: 2}
 --- !u!1 &1773956982744184910
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,6 +228,69 @@ Transform:
   m_Father: {fileID: 3046478263249318310}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2346398278283546787
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6958333219432273064}
+  - component: {fileID: 2096946486170958448}
+  - component: {fileID: 8284220343294105248}
+  m_Layer: 0
+  m_Name: TimePauseCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6958333219432273064
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2346398278283546787}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8525413338212322761}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2096946486170958448
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2346398278283546787}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.4999676, y: 1, z: 8.831488}
+  m_Center: {x: 0.022658348, y: 0, z: -1.7131994}
+--- !u!114 &8284220343294105248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2346398278283546787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a539255a9fcd2504e9ba4f1f15c8451d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 2560
+  canWork: 1
+  isOneTime: 0
 --- !u!1 &2396121468531015984
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,6 +819,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 711899018445681695}
+  - {fileID: 6958333219432273064}
   m_Father: {fileID: 8525413338308181938}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
