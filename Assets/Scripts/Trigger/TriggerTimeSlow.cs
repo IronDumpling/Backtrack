@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TriggerTimeSlow : TriggerBase
 {
+    
     protected override void StayEvent()
     {
         base.StayEvent();
