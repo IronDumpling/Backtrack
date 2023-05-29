@@ -5,7 +5,9 @@ using UnityEngine;
 public class TriggerUI : TriggerBase
 {
     [SerializeField] private string _UIName;
+    [SerializeField] private bool _isText = false;
     private GameObject _targetUI;
+    private Animator _ani;
 
     void Awake()
     {
@@ -17,18 +19,21 @@ public class TriggerUI : TriggerBase
 
     private void Start()
     {
-        _targetUI?.SetActive(false);
+        if (!_isText) _targetUI?.SetActive(false);
+        else _ani = _targetUI.GetComponent<Animator>();
     }
 
     protected override void enterEvent()
     {
         base.enterEvent();
-        _targetUI?.SetActive(true);
+        if (!_isText) _targetUI?.SetActive(true);
+        else _ani.SetTrigger("Enable");
     }
 
     protected override void ExitEvent()
     {
         base.ExitEvent();
-        _targetUI?.SetActive(false);
+        if (!_isText) _targetUI?.SetActive(false);
+        else _ani.SetTrigger("Disable");
     }
 }
