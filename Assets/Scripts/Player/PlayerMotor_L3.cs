@@ -5,7 +5,9 @@ public enum EInputMapping {
     DISABLE,
     TOPDOWN,
     EYELEVEL,
-    SIDEVIEW
+    SIDEVIEW,
+    EYELEVEL_X,
+    EYELEVEL_Y
 }
 
 public class PlayerMotor_L3 : MonoBehaviour
@@ -86,6 +88,27 @@ public class PlayerMotor_L3 : MonoBehaviour
         filterBoundClamp(ref input);
 
         Vector3 worldDirection = input.x * worldX + input.y * worldY;
+        _rigidBody.velocity = worldDirection * _SpeedCoeff;
+    }
+    
+    public void EyeLevelMoveOnlyX(Vector2 input) {
+        
+        Vector3 worldX = this.transform.right;
+        
+
+        filterBoundClamp(ref input);
+
+        Vector3 worldDirection = input.x * worldX;
+        _rigidBody.velocity = worldDirection * _SpeedCoeff;
+    }
+    
+    public void EyeLevelMoveY(Vector2 input) {
+        
+        Vector3 worldY = this.transform.up;
+
+        filterBoundClamp(ref input);
+
+        Vector3 worldDirection =  input.y * worldY;
         _rigidBody.velocity = worldDirection * _SpeedCoeff;
     }
 
