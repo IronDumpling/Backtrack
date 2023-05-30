@@ -50,7 +50,11 @@ public class SentenceUI : MonoBehaviour
         _sentence = transform.Find("CollectedSentence")?.gameObject;
         _collectUI = GameObject.Find("CollectionUI");
         _playerData = Resources.Load<PlayerData_SO>("GameData/PlayerData");
-        _fullSentence = sentenceDict[_playerData.level0Choices];
+
+        if(_levelNum == 0) _fullSentence = sentenceDict[_playerData.level0Choices];
+        else if (_levelNum == 1) _fullSentence = sentenceDict[""];
+        else if (_levelNum == 2) _fullSentence = sentenceDict[_playerData.level4Choices];
+
         if (_rateRangeList == null) _rateRangeList = new List<float>(_displayRank);
         if (_rankPercList == null) _rankPercList = new List<float>(_displayRank);
     }

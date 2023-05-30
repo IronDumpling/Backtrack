@@ -22,15 +22,22 @@ public class ChoiceManager : NoDestroyMonoSingleton<ChoiceManager>
             choices.Add("");
         }
 
-        if(isDisplay) DisplayChoices();
+        DisplayChoices();
     }
 
     public void DisplayChoices()
     {
         generateString();
-        GameObject.Find("Beat_5_Track/End-Track-L/Instruction_Canvas/Instruction").GetComponent<TMPro.TMP_Text>().text = displayText;
-        GameObject.Find("Beat_5_Track/End-Track-R/Instruction_Canvas/Instruction").GetComponent<TMPro.TMP_Text>().text = displayText;
-        _playerData.level0Choices = displayText;
+        if (isDisplay)
+        {
+            GameObject.Find("Beat_5_Track/End-Track-L/Instruction_Canvas/Instruction").GetComponent<TMPro.TMP_Text>().text = displayText;
+            GameObject.Find("Beat_5_Track/End-Track-R/Instruction_Canvas/Instruction").GetComponent<TMPro.TMP_Text>().text = displayText;
+            _playerData.level0Choices = displayText;
+        }
+        else
+        {
+            _playerData.level4Choices = displayText;
+        }
     }
 
     public void generateString()
