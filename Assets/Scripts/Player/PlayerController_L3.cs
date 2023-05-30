@@ -51,8 +51,8 @@ public class PlayerController_L3: PlayerControllerBase
     //     
     // }
 
-    public override void GameEnd() {
-        base.GameEnd();
+    public override void GameEndLv3() {
+        base.GameEndLv3();
         A_planeMoveUpdate = null;
         _playerMotor.MotorReset();
     }

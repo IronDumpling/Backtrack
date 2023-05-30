@@ -8,6 +8,7 @@ public class ChoiceManager : NoDestroyMonoSingleton<ChoiceManager>
     public string displayText;
     public List<string> choices;
     private PlayerData_SO _playerData;
+    public bool isDisplay = true;
 
     protected override void Init()
     {
@@ -27,9 +28,16 @@ public class ChoiceManager : NoDestroyMonoSingleton<ChoiceManager>
     public void DisplayChoices()
     {
         generateString();
-        GameObject.Find("Beat_5_Track/End-Track-L/Instruction_Canvas/Instruction").GetComponent<TMPro.TMP_Text>().text = displayText;
-        GameObject.Find("Beat_5_Track/End-Track-R/Instruction_Canvas/Instruction").GetComponent<TMPro.TMP_Text>().text = displayText;
-        _playerData.level0Choices = displayText;
+        if (isDisplay)
+        {
+            GameObject.Find("Beat_5_Track/End-Track-L/Instruction_Canvas/Instruction").GetComponent<TMPro.TMP_Text>().text = displayText;
+            GameObject.Find("Beat_5_Track/End-Track-R/Instruction_Canvas/Instruction").GetComponent<TMPro.TMP_Text>().text = displayText;
+            _playerData.level0Choices = displayText;
+        }
+        else
+        {
+            _playerData.level4Choices = displayText;
+        }
     }
 
     public void generateString()

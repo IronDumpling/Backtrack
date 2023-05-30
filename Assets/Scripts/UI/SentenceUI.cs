@@ -23,7 +23,9 @@ public class SentenceUI : MonoBehaviour
         { "我挣扎到达过去", "迷失混沌，障目一叶。" },
         { "我挣扎离开未来", "成为它，我变成了它。" },
         { "我挣扎离开过去", "占据这里成为新的主导。" },
-        { "", "我心里危险的东西。"}
+        { "", "我心里危险的东西。"},
+        { "你", "轮回···"},
+        { "我", "苏醒。"},
     };
 
     private GameObject _sentence;
@@ -48,7 +50,11 @@ public class SentenceUI : MonoBehaviour
         _sentence = transform.Find("CollectedSentence")?.gameObject;
         _collectUI = GameObject.Find("CollectionUI");
         _playerData = Resources.Load<PlayerData_SO>("GameData/PlayerData");
-        _fullSentence = sentenceDict[_playerData.level0Choices];
+
+        if(_levelNum == 0) _fullSentence = sentenceDict[_playerData.level0Choices];
+        else if (_levelNum == 1) _fullSentence = sentenceDict[""];
+        else if (_levelNum == 2) _fullSentence = sentenceDict[_playerData.level4Choices];
+
         if (_rateRangeList == null) _rateRangeList = new List<float>(_displayRank);
         if (_rankPercList == null) _rankPercList = new List<float>(_displayRank);
     }
