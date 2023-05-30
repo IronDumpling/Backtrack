@@ -20,7 +20,13 @@ public class Video_Manager : MonoBehaviour
         currentTime += Time.deltaTime;
         if (currentTime >= video_time)
         {
-            SceneManager.LoadScene("Level0_DESIGN");
+            ChangeScene();
         }
+    }
+
+    public void ChangeScene()
+    {
+        
+        SceneManager.LoadScene("Level0_DESIGN");
     }
 }
