@@ -48,7 +48,15 @@ public class EventManager : Singleton<EventManager>
    public void PlayerVictoryEventTrigger()
    {
       //savepoint manager clean all
-      MonoPlayerData.Instance.Level0Score = ScoreManager.Instance.CurrentScoreInLevel;
+      switch (MonoLevelInfo.Instance.levelNum)
+      {
+         case 0: MonoPlayerData.Instance.Level0Score = ScoreManager.Instance.CurrentScoreInLevel;
+            break;
+         case 3: MonoPlayerData.Instance.Level3Score = ScoreManager.Instance.CurrentScoreInLevel;
+            break;
+         case 4: MonoPlayerData.Instance.Level4Score = ScoreManager.Instance.CurrentScoreInLevel;
+            break;
+      }
       ScoreManager.Instance.CurrentScoreInLevel = 0;
       AudioManager.Instance.StopAll();
       SavePointManager.Instance.isSave = false;

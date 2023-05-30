@@ -37,6 +37,11 @@ public class PlayerControllerBase : MonoSingleton<PlayerControllerBase>
        // _playerInput.UI.Pause.performed -= UIManager.Instance.PausePreform;
 
     }
+
+    public virtual void GameEndLv3()
+    {
+        
+    }
     
     
 }
