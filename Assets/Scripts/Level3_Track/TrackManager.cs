@@ -22,7 +22,7 @@ namespace Level3_Track {
         private PlayerController_L3 _playerController;
         private CinemachineDollyCart _playerDollyCart;
 
-        private Action A_TrackUpdate;
+        public Action A_TrackUpdate;
 
         public bool isL4 = false;
 

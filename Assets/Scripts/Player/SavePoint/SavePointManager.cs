@@ -87,18 +87,19 @@ public class SavePointManager : Singleton<SavePointManager>
 
     private void LoadAfterAsync()
     {
-        TrackManager.Instance._CurrentTrackIdx = saveTrackId;
-        TrackManager.Instance.TrackSwitch();
+    //     TrackManager.Instance._CurrentTrackIdx = saveTrackId;
+    //     TrackManager.Instance.TrackSwitch();
     }
 
     private void LoadAfterScene(Scene scene, LoadSceneMode mode) //
     {
         if (levelNum == 3)
         {
-            //TrackManager.Instance._CurrentTrackIdx = saveTrackId;
-            
+            TrackManager.Instance._CurrentTrackIdx = saveTrackId;
+            TrackManager.Instance._TrackList[TrackManager.Instance._CurrentTrackIdx]._TrackVirtualCamera.m_Priority =
+                TrackManager.Instance._CurrentTrackIdx + 1;
+            TrackManager.Instance.A_TrackUpdate += TrackManager.Instance.TrackSwitch;
 
-            
         }
         else
         {
