@@ -13,6 +13,6 @@ public class TriggerChoiceRecord : TriggerBase
     {
         base.enterEvent();
         ChoiceManager.Instance.choices[index-1] = choice;
-        ChoiceManager.Instance.DisplayChoices();
+        if(ChoiceManager.Instance.isDisplay) ChoiceManager.Instance.DisplayChoices();
     }
 }

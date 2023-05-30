@@ -8,6 +8,7 @@ public class ChoiceManager : NoDestroyMonoSingleton<ChoiceManager>
     public string displayText;
     public List<string> choices;
     private PlayerData_SO _playerData;
+    public bool isDisplay = true;
 
     protected override void Init()
     {
@@ -21,7 +22,7 @@ public class ChoiceManager : NoDestroyMonoSingleton<ChoiceManager>
             choices.Add("");
         }
 
-        DisplayChoices();
+        if(isDisplay) DisplayChoices();
     }
 
     public void DisplayChoices()

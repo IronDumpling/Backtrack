@@ -123,7 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &534816784
+--- !u!1001 &430196892
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -188,15 +188,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5082017715772430086, guid: 9976dff7f3cfeab49b1ecef08df6e01a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5082017715772430086, guid: 9976dff7f3cfeab49b1ecef08df6e01a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5082017715772430086, guid: 9976dff7f3cfeab49b1ecef08df6e01a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5082017715772430086, guid: 9976dff7f3cfeab49b1ecef08df6e01a, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -220,10 +220,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9976dff7f3cfeab49b1ecef08df6e01a, type: 3}
---- !u!224 &534816785 stripped
+--- !u!224 &430196893 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5082017715772430086, guid: 9976dff7f3cfeab49b1ecef08df6e01a, type: 3}
-  m_PrefabInstance: {fileID: 534816784}
+  m_PrefabInstance: {fileID: 430196892}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &535579247
 PrefabInstance:
@@ -527,11 +527,15 @@ PrefabInstance:
       objectReference: {fileID: 1965574079}
     - target: {fileID: 3861593037872420849, guid: 4e90b2e65080a49948f228e4f2e8f18a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SelectL4
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3861593037872420851, guid: 4e90b2e65080a49948f228e4f2e8f18a, type: 3}
       propertyPath: m_Name
       value: Next
+      objectReference: {fileID: 0}
+    - target: {fileID: 3861593037872420851, guid: 4e90b2e65080a49948f228e4f2e8f18a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3861593038778707784, guid: 4e90b2e65080a49948f228e4f2e8f18a, type: 3}
       propertyPath: m_text
@@ -561,6 +565,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1965574078}
     m_Modifications:
+    - target: {fileID: 147186115985464844, guid: 1349c0d1dbf55487494ccef5e258cb59, type: 3}
+      propertyPath: m_text
+      value: "\u82CF\u9192"
+      objectReference: {fileID: 0}
+    - target: {fileID: 147186115985464844, guid: 1349c0d1dbf55487494ccef5e258cb59, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: aa516e998ddfc44cf8685a341847ed76, type: 2}
+    - target: {fileID: 147186115985464844, guid: 1349c0d1dbf55487494ccef5e258cb59, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4493971377326271374, guid: aa516e998ddfc44cf8685a341847ed76, type: 2}
     - target: {fileID: 1713550874791782457, guid: 1349c0d1dbf55487494ccef5e258cb59, type: 3}
       propertyPath: m_Name
       value: SentenceUI
@@ -651,7 +667,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4038306823252374058, guid: 1349c0d1dbf55487494ccef5e258cb59, type: 3}
       propertyPath: _levelNum
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4038306823252374058, guid: 1349c0d1dbf55487494ccef5e258cb59, type: 3}
       propertyPath: m_Enabled
@@ -728,7 +744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6462264, g: 0.8614472, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -783,7 +799,7 @@ PrefabInstance:
     - target: {fileID: 1256846554875229835, guid: 2bfe4d5f8245f4ef8bd0958c038b9851, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: f7504a7145780eb49b37f78f44d99a82, type: 3}
+      objectReference: {fileID: 21300000, guid: 48e8aace32562e3498e7d54bce3aa83d, type: 3}
     - target: {fileID: 6571096677606960144, guid: 2bfe4d5f8245f4ef8bd0958c038b9851, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1280,7 +1296,7 @@ RectTransform:
   - {fileID: 902369084}
   - {fileID: 1203649235}
   - {fileID: 911579256}
-  - {fileID: 534816785}
+  - {fileID: 430196893}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

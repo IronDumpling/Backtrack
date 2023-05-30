@@ -30,7 +30,6 @@ public class CollectionUI : MonoBehaviour
             dataSoList.Add(Resources.Load<LevelInfo_SO>("GameData/LevelData/Level0-1"));
             dataSoList.Add(Resources.Load<LevelInfo_SO>("GameData/LevelData/Level0-2"));
             currScore = MonoPlayerData.Instance.Level0Score;
-            
         }
         else if (levelNum == 1)
         {
@@ -49,7 +48,7 @@ public class CollectionUI : MonoBehaviour
             totalScore += level.levelTotalScore;
         }
 
-        CollectRate = currScore / (float)totalScore;
+        CollectRate = (float)currScore / (float)totalScore;
         float rate = CollectRate * 100;
 
         _collectionRate.GetComponent<TMPro.TMP_Text>().text = "收集率";
@@ -59,7 +58,7 @@ public class CollectionUI : MonoBehaviour
         else
             _score.GetComponent<TMPro.TMP_Text>().text = $"{currScore}/{totalScore}";
 
-        if (rate.ToString("F0") == "NaN")
+        if (rate.ToString("F0") == "NaN" || rate.ToString("F0") == "Infinity")
             _rate.GetComponent<TMPro.TMP_Text>().text = "0%";
         else
             _rate.GetComponent<TMPro.TMP_Text>().text = rate.ToString("F0") + "%";
