@@ -35,7 +35,8 @@ public class CameraManager : MonoSingleton<CameraManager> {
         }
     }
 
-    public int GetCurCameraIdx() {
+    public int GetCurCameraIdx() 
+    {
         for (int i = 0; i < CommonCameraList.Length; i++) {
             if (CommonCameraList[i] == _curActiveCamera) {
                 return i;
