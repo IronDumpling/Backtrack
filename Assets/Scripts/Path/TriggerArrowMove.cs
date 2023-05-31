@@ -19,9 +19,12 @@ public class TriggerArrowMove : MonoBehaviour
     [SerializeField] private float restTrackDuration;
 
     [SerializeField] private Transform moveObjTransform;
+    private AudioSource _audioSource;
+    //public AudioClip arrowMoveClip;
     
     private void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
         firstPointPos = new Vector3[firstTrack.Length];
         secondPointPos = new Vector3[secondTrack.Length];
         thirdPointPos = new Vector3[thirdTrack.Length];
@@ -59,17 +62,22 @@ public class TriggerArrowMove : MonoBehaviour
 
     IEnumerator arrowRest()
     {
+        
         yield return new WaitForSeconds(restTrackDuration);
-
+        
+        
         moveObjTransform.DOLocalPath(secondPointPos, secondTrackDuration)
             .onComplete += () =>
         {
             moveObjTransform.DOLocalPath(thirdPointPos, thirdTrackDuration).SetEase(Ease.InQuad)
                 .onComplete += () =>
             {
+                
                 transform.parent.gameObject.SetActive(false);
             };
         };
+        //yield return new WaitForSeconds(0.75f);
+        //_audioSource.PlayOneShot(arrowMoveClip);
 
     }
 }
