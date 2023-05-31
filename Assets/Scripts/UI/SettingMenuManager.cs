@@ -28,7 +28,7 @@ public class SettingMenuManager : MonoBehaviour
 
     private void Start()
     {
-        ChangeResolution(MonoGameData.Instance.ResolutionIdx);
+        ChangeResolution(Resolutions.Length - 1);
         ChangeVolume(MonoGameData.Instance.Volume);
         ChangeBrightness(MonoGameData.Instance.Brightness);
         gameObject.SetActive(false);
