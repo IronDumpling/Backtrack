@@ -60,11 +60,13 @@ public class TriggerSavePoint : TriggerBase
         float time = AudioManager.Instance.GetMusicTime(bgmName);
         int scores = ScoreManager.Instance.CurrentScoreInLevel;
         int trackId = TrackManager.Instance._CurrentTrackIdx;
+        float trackPosition = TrackManager.Instance._playerDollyCart.m_Position;
         SavePointManager.Instance.SetSavePointLevel3(sceneName,
             bgmName,
             time,
             scores,
-            trackId);
+            trackId,
+            trackPosition);
         
     }
 }
