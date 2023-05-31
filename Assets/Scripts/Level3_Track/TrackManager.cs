@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Cinemachine;
 using Common;
 using System;
@@ -22,7 +23,7 @@ namespace Level3_Track {
         private PlayerController_L3 _playerController;
         private CinemachineDollyCart _playerDollyCart;
 
-        public Action A_TrackUpdate;
+        public UnityEvent UE_TrackUpdate;
 
         public bool isL4 = false;
 
@@ -31,7 +32,8 @@ namespace Level3_Track {
                 _CurrentTrackIdx++;
 
                 /* Update TrackSwitch */
-                A_TrackUpdate = TrackSwitch;
+                UE_TrackUpdate.RemoveAllListeners();
+                UE_TrackUpdate.AddListener(TrackSwitch);
                 return;
             }
             Track curTrack = _TrackList[_CurrentTrackIdx];
@@ -85,8 +87,8 @@ namespace Level3_Track {
 
 
             //}
-
-            A_TrackUpdate = TrackNormal;
+            UE_TrackUpdate.RemoveAllListeners();
+            UE_TrackUpdate.AddListener(TrackNormal);
             StartCoroutine(CamBlendYieldPlyControl(curTrack));
         }
 
@@ -128,13 +130,13 @@ namespace Level3_Track {
             if (_cmbrain == null) {
                 Debug.LogError("CinemachineBrain not found in scene");
             }
-
-            A_TrackUpdate = TrackSwitch;
+            UE_TrackUpdate.RemoveAllListeners();
+            UE_TrackUpdate.AddListener(TrackSwitch);
         }
 
 
         private void Update() {
-            A_TrackUpdate?.Invoke();
+            UE_TrackUpdate?.Invoke();
         }
     }
 }
