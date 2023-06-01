@@ -23,6 +23,7 @@ public class SavePointManager : Singleton<SavePointManager>
 
     public int levelNum;
     public int saveTrackId;
+    public float saveTrackPosition;
 
     public float saveTimeScale;
     
@@ -46,12 +47,13 @@ public class SavePointManager : Singleton<SavePointManager>
     }
 
     public void SetSavePointLevel3(string sceneName, string bgmName, float bgmTime,int scores, 
-        int trackId)
+        int trackId, float trackPosition)
     {
         isSave = true;
         levelNum = 3;
         saveSceneName = sceneName;
         saveTrackId = trackId;
+        saveTrackPosition = trackPosition;
         saveBGMName = bgmName;
         saveBGMTime = bgmTime;
         saveScores = scores;
@@ -87,18 +89,19 @@ public class SavePointManager : Singleton<SavePointManager>
 
     private void LoadAfterAsync()
     {
-        TrackManager.Instance._CurrentTrackIdx = saveTrackId;
-        TrackManager.Instance.TrackSwitch();
     }
 
-    private void LoadAfterScene(Scene scene, LoadSceneMode mode) //
+    private void LoadAfterScene(Scene scene, LoadSceneMode mode)
     {
         if (levelNum == 3)
         {
-            //TrackManager.Instance._CurrentTrackIdx = saveTrackId;
+            TrackManager.Instance._CurrentTrackIdx = saveTrackId;
+            TrackManager.Instance._CurrentTrackPosition = saveTrackPosition;
+            ScoreManager.Instance.CurrentScoreInLevel = saveScores;
+            AudioManager.Instance.SetMusicTime(saveBGMName, saveBGMTime);
+            AudioManager.Instance.Play(saveBGMName);
             
-
-            
+            TrackManager.Instance.TrackLoad();
         }
         else
         {

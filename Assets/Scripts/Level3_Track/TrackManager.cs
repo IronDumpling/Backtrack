@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Cinemachine;
 using Common;
 using System;
@@ -15,14 +16,15 @@ namespace Level3_Track {
 
         [Header("TrackManager Settings")]
         public Track[] _TrackList;
-        public int _CurrentTrackIdx;
+        public int _CurrentTrackIdx = 0;
+        public float _CurrentTrackPosition = 0;
 
         private CinemachineBrain _cmbrain;
 
         private PlayerController_L3 _playerController;
-        private CinemachineDollyCart _playerDollyCart;
+        public CinemachineDollyCart _playerDollyCart;
 
-        private Action A_TrackUpdate;
+        public UnityEvent UE_TrackUpdate;
 
         public bool isL4 = false;
 
@@ -31,7 +33,8 @@ namespace Level3_Track {
                 _CurrentTrackIdx++;
 
                 /* Update TrackSwitch */
-                A_TrackUpdate = TrackSwitch;
+                UE_TrackUpdate.RemoveAllListeners();
+                UE_TrackUpdate.AddListener(TrackSwitch);
                 return;
             }
             Track curTrack = _TrackList[_CurrentTrackIdx];
@@ -85,8 +88,8 @@ namespace Level3_Track {
 
 
             //}
-
-            A_TrackUpdate = TrackNormal;
+            UE_TrackUpdate.RemoveAllListeners();
+            UE_TrackUpdate.AddListener(TrackNormal);
             StartCoroutine(CamBlendYieldPlyControl(curTrack));
         }
 
@@ -102,6 +105,21 @@ namespace Level3_Track {
             _playerController.SwitchMoveMapping(curTrack._InputMapping);
         }
 
+        public void TrackLoad() {
+            if (_CurrentTrackIdx >= _TrackList.Length) {
+                return;
+            }
+
+            Track curTrack = _TrackList[_CurrentTrackIdx];
+            curTrack._TrackVirtualCamera.m_Priority = (_CurrentTrackIdx + 1);
+
+            _playerDollyCart.m_Position = _CurrentTrackPosition;
+            _playerDollyCart.m_Path = curTrack._PlayerTrack;
+
+            UE_TrackUpdate.AddListener(TrackNormal);
+
+            _playerController.SwitchMoveMapping(curTrack._InputMapping);
+        }
 
         protected void Awake() {
             if (_TrackList == null || _TrackList.Length == 0) {
@@ -129,12 +147,12 @@ namespace Level3_Track {
                 Debug.LogError("CinemachineBrain not found in scene");
             }
 
-            A_TrackUpdate = TrackSwitch;
+            TrackLoad();
         }
 
 
         private void Update() {
-            A_TrackUpdate?.Invoke();
+            UE_TrackUpdate?.Invoke();
         }
     }
 }

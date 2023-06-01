@@ -9,7 +9,7 @@ using Cyan;
 
 public class UIManager : MonoSingleton<UIManager>
 {
-    private bool isVideo = true;
+    private bool isVideo = false;
 
     private GameObject _pausePanel;
     private GameObject _settingPanel;
