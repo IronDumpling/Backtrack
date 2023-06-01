@@ -16,7 +16,7 @@ namespace Level3_Track {
 
         [Header("TrackManager Settings")]
         public Track[] _TrackList;
-        public int _CurrentTrackIdx;
+        public int _CurrentTrackIdx = 0;
         public float _CurrentTrackPosition = 0;
 
         private CinemachineBrain _cmbrain;

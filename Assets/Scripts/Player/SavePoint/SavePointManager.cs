@@ -97,6 +97,7 @@ public class SavePointManager : Singleton<SavePointManager>
         {
             TrackManager.Instance._CurrentTrackIdx = saveTrackId;
             TrackManager.Instance._CurrentTrackPosition = saveTrackPosition;
+            TrackManager.Instance.TrackLoad();
         }
         else
         {
