@@ -97,6 +97,10 @@ public class SavePointManager : Singleton<SavePointManager>
         {
             TrackManager.Instance._CurrentTrackIdx = saveTrackId;
             TrackManager.Instance._CurrentTrackPosition = saveTrackPosition;
+            ScoreManager.Instance.CurrentScoreInLevel = saveScores;
+            AudioManager.Instance.SetMusicTime(saveBGMName, saveBGMTime);
+            AudioManager.Instance.Play(saveBGMName);
+            
             TrackManager.Instance.TrackLoad();
         }
         else
