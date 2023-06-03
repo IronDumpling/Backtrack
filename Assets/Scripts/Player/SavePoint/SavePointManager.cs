@@ -102,7 +102,7 @@ public class SavePointManager : Singleton<SavePointManager>
             
             //TrackManager.Instance.TrackLoad();
         }
-        if(levelNum == 1) {
+        if(levelNum == 0) {
             PlayerController.Instance.transform.position = savePointVector3;
             PlayerController.Instance.transform.rotation = Quaternion.Euler(saveRotationVector3);
             PlayerController.Instance.GetComponent<PlayerMotor>().ZSpeed = speed;
