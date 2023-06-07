@@ -28,7 +28,7 @@ public class AsyncLevelLoader : MonoBehaviour
         yield return new WaitForSeconds(1.2f);
         if(_targetSceneName == null) Debug.LogError(this.name + " targetSceneName is null");
         _asyncOperation = SceneManager.LoadSceneAsync(_targetSceneName);
-
+        _asyncOperation.allowSceneActivation = true;
         while (!_asyncOperation.isDone)
         {
             //场景加载中
