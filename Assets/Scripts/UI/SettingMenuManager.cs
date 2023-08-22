@@ -28,7 +28,7 @@ public class SettingMenuManager : MonoBehaviour
 
     private void Start()
     {
-        ChangeResolution(Resolutions.Length - 1);
+        //ChangeResolution(Resolutions.Length - 1);
         ChangeVolume(MonoGameData.Instance.Volume);
         ChangeBrightness(MonoGameData.Instance.Brightness);
         gameObject.SetActive(false);
@@ -62,7 +62,7 @@ public class SettingMenuManager : MonoBehaviour
     public void SetResolution(int listIndex)
     {
         Resolution resolution = Resolutions[listIndex];
-        Screen.SetResolution(resolution.width,resolution.height,Screen.fullScreen,resolution.refreshRate);
+        Screen.SetResolution(resolution.width,resolution.height,false,resolution.refreshRate);
         Debug.Log("当前分辨率设置为 " + resolution);
     }
 

@@ -2,6 +2,7 @@ using Common;
 using UnityEngine.InputSystem;
 using System;
 using System.Numerics;
+using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 
 
@@ -62,6 +63,13 @@ public class PlayerController_L3: PlayerControllerBase
         _inputMove = _playerInput.Player.Move;
 
         _playerMotor = GetComponent<PlayerMotor_L3>();
+    }
+
+    public Transform birdslot;
+    public override void GameEnd()
+    {
+        birdslot.GetComponent<Collider>().enabled = false;
+        _playerMotor.enabled = false;
     }
 
  

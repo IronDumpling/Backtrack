@@ -93,29 +93,26 @@ public class SavePointManager : Singleton<SavePointManager>
 
     private void LoadAfterScene(Scene scene, LoadSceneMode mode)
     {
-        if (levelNum == 3)
-        {
+        if (levelNum == 3) {
             TrackManager.Instance._CurrentTrackIdx = saveTrackId;
             TrackManager.Instance._CurrentTrackPosition = saveTrackPosition;
             ScoreManager.Instance.CurrentScoreInLevel = saveScores;
-            AudioManager.Instance.SetMusicTime(saveBGMName, saveBGMTime);
-            AudioManager.Instance.Play(saveBGMName);
+            //AudioManager.Instance.SetMusicTime(saveBGMName, saveBGMTime);
+            //AudioManager.Instance.Play(saveBGMName);
             
-            TrackManager.Instance.TrackLoad();
+            //TrackManager.Instance.TrackLoad();
         }
-        else
-        {
+        if(levelNum == 0) {
             PlayerController.Instance.transform.position = savePointVector3;
             PlayerController.Instance.transform.rotation = Quaternion.Euler(saveRotationVector3);
             PlayerController.Instance.GetComponent<PlayerMotor>().ZSpeed = speed;
             PlayerController.Instance.GetComponent<PlayerMotor>().XSpeed = xspeed;
-            
+            Time.timeScale = saveTimeScale;
             CameraManager.Instance.LoadCamera(saveCamera);
         }
         ScoreManager.Instance.CurrentScoreInLevel = saveScores;
         AudioManager.Instance.SetMusicTime(saveBGMName, saveBGMTime);
         AudioManager.Instance.Play(saveBGMName);
-        Time.timeScale = saveTimeScale;
         SceneManager.sceneLoaded -= LoadAfterScene;
     }
 }
