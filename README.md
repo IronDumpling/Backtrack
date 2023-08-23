@@ -1,5 +1,6 @@
 ## Game Introduction
 You encountered an unexpected event and had to go into hibernation to preserve your life. After a prolonged period of hibernation, you slowly begin to awaken. Inside your mind, a grand and adventurous parkour journey unfolds.
+
 ![截屏2023-08-22 23 37 19](https://github.com/IronDumpling/Backtrack/assets/70104294/307f20e5-1820-41ef-8590-c88279e817e8)
 
 ## Gameplay Demo
